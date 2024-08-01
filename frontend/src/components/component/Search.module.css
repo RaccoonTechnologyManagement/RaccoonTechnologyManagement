@@ -1,0 +1,23 @@
+.containerInput{
+    position: relative;
+    display: inline-block;
+    margin: 10px 0px;
+}
+
+.containerInput input{
+    z-index: 1;
+    padding: 12px 12px 12px 50px;
+    border: none;
+    border-radius: 20px;
+    width: 17rem;
+    background-color: #1F1F1F;
+    color: #fff;
+}
+
+.containerInput img {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+  

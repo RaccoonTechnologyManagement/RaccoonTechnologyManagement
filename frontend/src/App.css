@@ -1,0 +1,19 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  color: #FFF;
+}
+
+.active li,
+.active ul
+{
+  background-color: #aaaaaa33;
+  color: rgb(255, 145, 0);
+  /* Outros estilos que você desejar */
+}
+
+ .Chamados_notBorderButton__XYczU .active {
+  border-bottom: 2px solid #00DC82;
+  padding-bottom: 5px;
+}
