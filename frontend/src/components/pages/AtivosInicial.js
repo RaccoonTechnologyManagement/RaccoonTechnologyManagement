@@ -1,24 +1,11 @@
-import Container from '../layout/Container'
 import { useState } from 'react'
-
 import { IoMdArrowRoundBack } from "react-icons/io"
-
 import { IoMdArrowRoundForward } from "react-icons/io";
-
 import styles from '../pages/AtivosAbertos.module.css'
-
 import editar from '../../img/editar.png'
-
 import { ativos } from '../data/AtivosDatabase'
-
-
-
 import {InfoSearch} from '../component/Search'
-
 import AtivosLt from '../layout/AtivosLt';
-
-
-
 
 function AtivosInicial (){
 

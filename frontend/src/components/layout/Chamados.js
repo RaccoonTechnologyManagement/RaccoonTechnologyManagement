@@ -2,9 +2,6 @@ import Container from './Container'
 import styles from './Chamados.module.css'
 import { NavLink } from 'react-router-dom';
 
-import { useState } from 'react'
-import ChamadosAbertos from '../pages/ChamadosAbertos';
-
 function Chamados(props){
 
 
@@ -19,7 +16,7 @@ function Chamados(props){
                     <button className={styles.bdGray}>HISTÓRICO</button>
                 </NavLink> 
             </div>
-            <div className={styles.notBorderButton}>
+            <div id="selecionado" className={styles.notBorderButton}>
                 <NavLink to={`/chamados/abertos`}>
                     <button>ABERTOS</button>
                 </NavLink> 

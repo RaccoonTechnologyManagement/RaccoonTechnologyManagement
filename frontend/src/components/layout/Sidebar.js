@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import styles from './Sidebar.module.css'
 import logoAtivos from '../../img/ativos.png'
 import logoChamados from '../../img/chamados.png'

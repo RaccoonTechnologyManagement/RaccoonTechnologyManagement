@@ -1,0 +1,108 @@
+.mainContainer{
+    width: 100vw;
+    height: 100vh;
+    background-color: #0C0B0B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    
+}
+
+.mainContainer form{
+    max-width: 40%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logoRaccoon{
+    color: #FFF;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bdLogoRaccoon{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.bdLogoRaccoon img{
+    height: 100%;
+}
+
+.logoRaccoon p{
+    width: 100px;
+
+}
+
+.bdInputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.bdInput{
+    position: relative;
+    display: inline-block;
+    margin: 7px 0px;
+    width: 100%;
+}
+
+.bdInput input{
+    z-index: 1;
+    padding: 20px 20px 20px 40px;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    background-color: #1F1F1F;
+    color: #fff;
+    font-weight: bold;
+}
+
+.iconInput{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+
+.mainContainer form h3{
+    height: 4rem;
+    font-size: 1.5rem;
+    width: 50%;
+    text-align: center;
+}
+
+.mainContainer form span{
+    color: #ffffff83;
+    width: 50%;
+    font-size: .7rem;
+    text-decoration: none;
+}
+
+.inputSubmit {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 20px;
+    background-color: #1F1F1F;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.clickLink{
+    text-decoration: none;
+    color: #ffffff83;
+    font-size: .8rem;
+}

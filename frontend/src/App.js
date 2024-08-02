@@ -1,5 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {Login} from './components/pages/Login'
 import AtivosInicial from './components/pages/AtivosInicial';
 import Chamados from './components/layout/Chamados';
 import Monitorar from './components/pages/Monitorar';
@@ -18,7 +19,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<User/>}/>
+          <Route path="/" element={<Login/>}/>
           <Route path="/ativos" element={<AtivosInicial/>}/>
           <Route path="/ativos/hardware" element={<AtivosHardware/>}/>
           <Route path="/chamados" element={<Chamados/>}/>
