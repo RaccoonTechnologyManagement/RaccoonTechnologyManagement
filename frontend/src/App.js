@@ -1,8 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Container from './components/layout/Container';
-import Sidebar from './components/layout/Sidebar';
-import Ativos from './components/pages/Ativos';
+import AtivosInicial from './components/pages/AtivosInicial';
 import Chamados from './components/layout/Chamados';
 import Monitorar from './components/pages/Monitorar';
 import Dashboard from './components/pages/Dashboard';
@@ -13,15 +11,16 @@ import ChamadosSemTecnico from './components/pages/ChamadosSemTecnico';
 import ChamadosPrioridadeAlta from './components/pages/ChamadosPrioridadeAlta';
 import ChamadosPrazoVencendo from './components/pages/ChamadosPrazoVencendo';
 import ChamadosVencidos from './components/pages/ChamadosVencidos';
+import AtivosHardware from './components/pages/AtivosHardware';
 
 function App() {
   return (
     <div className="App">
       <Router>
-      <Sidebar/>
         <Routes>
           <Route path="/" element={<User/>}/>
-          <Route path="/ativos" element={<Ativos/>}/>
+          <Route path="/ativos" element={<AtivosInicial/>}/>
+          <Route path="/ativos/hardware" element={<AtivosHardware/>}/>
           <Route path="/chamados" element={<Chamados/>}/>
           <Route path="/chamados/abertos" element={<ChamadosAbertos/>}/>
           <Route path="/chamados/sem-tecnico" element={<ChamadosSemTecnico/>}/>
