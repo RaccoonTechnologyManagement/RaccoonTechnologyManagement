@@ -30,8 +30,8 @@ Este repositório contém o código-fonte do Trabalho de Conclusão de Curso (TC
 - 🐈‍⬛ Github
 
 **👨🏾‍💻 Felipe Martins**  
-- 🌐 Linkedin
-- 🐈‍⬛ Github
+- 🌐 [Linkedin](https://www.linkedin.com/in/felipe-martins-324a8b233/)
+- 🐈‍⬛ [Github](https://github.com/Felipe-Martins6)
 
 **👨🏾‍💻 Guilherme Araújo**  
 - 🌐 [Linkedin](https://www.linkedin.com/in/guilherme-araujo-rodrigues/)  
