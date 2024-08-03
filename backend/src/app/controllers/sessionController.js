@@ -10,16 +10,15 @@ class SessionController {
         // Verificando se email fornecido na requisição existe na base
         const user = await User.findOne({ where: {email}});
         if(!user){
-            return res.status(401).json({ error: 'Usuario não existe' })
+            return res.status(401).json({ error: 'Usuario não existe' });
         }
 
         // chamando função (checkPassword) criada no model users para compara se senha correta
         if(!(await user.checkPassword(password))){
-            return res.status(401).json({ error: 'Senha inválida' })
+            return res.status(401).json({ error: 'Senha inválida' });
         }
 
         const { id, name } = user;
-
         return res.json({
             user: {
                 id,

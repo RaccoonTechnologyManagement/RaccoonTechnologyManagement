@@ -1,3 +1,4 @@
+import axios from 'axios';
 import styles from './Login.module.css'
 import {useState} from 'react'
 import { NavLink } from 'react-router-dom'
@@ -6,19 +7,27 @@ import logoRacoom from '../../img/racoom.png'
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
 
-
-
 export const Login = ()=>{
 
     const [user, setUser] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault()
-        alert("Logando: (teste) " + "\n" + "Usuário: "+ user + "\n" + "Senha: "+ password)
-        navigate('/chamados')
-    }
+        const data = {
+            email: user,
+            password: password,
+          };
+          axios.post("http://localhost:3333/sessions", data)
+          .then(response => {
+            console.log(response);
+            navigate('/chamados');
+          })
+          .catch(response => {
+            alert(response.response.data.error);
+          });
+      };
 
     return(
         <div className={styles.mainContainer}>
