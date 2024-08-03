@@ -10,7 +10,7 @@ import AtivosLt from '../layout/AtivosLt';
 function AtivosInicial (){
 
     const cabecalho = [
-        'N° Pat','Nome','Marca','Modelo','Status','Empresa','Sede',
+        'N° Pat','Nome','Marca','Modelo','Empresa','Sede','Status',
       ]
       const itemsPerPage = 15;
       const [currentPage, setCurrentPage] = useState(1);
@@ -49,17 +49,18 @@ function AtivosInicial (){
                   <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
                   <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>
                   <td className={styles.tabelaCabecalhoItens}>{item.marca}</td>                
-                  <td className={styles.tabelaCabecalhoItens}>{item.empresa}</td>                  
-                  <td className={styles.tabelaCabecalhoItens}>{item.tecnico}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.modelo}</td>                  
+                  <td className={styles.tabelaCabecalhoItensEmpresa}>{item.empresa}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.sede}</td>
 
                   <td className={styles.prioridade}>
                     {item.prioridade === 'Ativo'? 
-                    <div className={styles.prioridadeAlta}>Ativo</div>: ''}
-                    {item.prioridade === 'Média'? 
-                    <div className={styles.prioridadeMedia}>Média</div>: ''}
-                    {item.prioridade === 'Baixa'? 
-                    <div className={styles.prioridadeBaixa}>Baixa</div>: ''}
+                    <div className={styles.userativo}>Ativo</div>: ''}
+                    {item.prioridade === 'Inativo'? 
+                    <div className={styles.userinativo}>Inativo</div>: ''}
                   </td>
+
+                  
 
                   <td className={styles.tabelaCabecalhoItens}>
                     <img 

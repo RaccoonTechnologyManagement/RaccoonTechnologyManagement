@@ -17,7 +17,7 @@ function AtivosLt (props){
             </div>
 
             <div className={styles.notBorderButton}>
-                <NavLink to={`/ativos/abertos`}>
+                <NavLink to={`/ativos`}>
                     <button>TODOS</button>
                 </NavLink> 
                 <NavLink to={`/ativos/hardware`}>
@@ -32,7 +32,7 @@ function AtivosLt (props){
                 <NavLink to={`/ativos/licencas`}>
                     <button>LICENÇAS</button>
                 </NavLink>
-                <NavLink to={`/ativos/vencidos`}>
+                <NavLink to={`/ativos/excluidos`}>
                     <button>EXCLUIDOS</button>
                 </NavLink>
             </div>

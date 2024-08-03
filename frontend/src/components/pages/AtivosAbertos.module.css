@@ -13,6 +13,12 @@
     border-bottom: 2px solid #292929;
 }
 
+.tabelaCabecalhoItensEmpresa{
+    padding: 10px 5px;
+    border-bottom: 2px solid #292929;
+    text-align: center;
+}
+
 .tabelaCabecalhoItens img{
     cursor: pointer;
 }
@@ -20,11 +26,11 @@
 .prioridade{
     height: 2em;
     border-bottom: 2px solid #292929;
+    
 }
 
-.prioridadeAlta,
-.prioridadeMedia,
-.prioridadeBaixa{
+.userativo,
+.userinativo{
     font-weight: bold;
     width: 5em;
     height: 2em;
@@ -34,17 +40,13 @@
     align-items: center;
 }
 
-.prioridadeAlta{
-    background-color: #EE8282;
-    color: #9D3434;
+.userativo{
+    background-color: #020202;
+    color: #f6f6f6;
 }
-.prioridadeMedia{
-    background-color: #FEFFBD;
-    color: #8B8C57;
-}
-.prioridadeBaixa{
-    background-color: #1F1F1F;
-    color: #FFF;
+.userinativo{
+    background-color: #f6f6f6;
+    color: #020202;
 }
 
 .colums{
