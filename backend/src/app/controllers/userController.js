@@ -20,13 +20,23 @@ class UserController {
             return res.status(400).json({ error: 'Campos preenchidos de forma incorreta'})
         }
 
+
         // Fazendo verificação se já tem um email na base igual o que está sendo enviado na requisição
-        const userExists = await User.findOne({
+        const userExist = await User.findOne({
+            where: {username: req.body.username }
+        });
+
+        if(userExist){
+            return res.status(400).json({ error: 'Usuario já existe '})
+        }
+
+        // Fazendo verificação se já tem um email na base igual o que está sendo enviado na requisição
+        const emailExist = await User.findOne({
             where: {email: req.body.email }
         });
 
-        if(userExists){
-            return res.status(400).json({ error: 'Usuario já existe '})
+        if(emailExist){
+            return res.status(400).json({ error: 'Email já cadastrado '})
         }
 
         // Enviando data da requisição para sequelize registrar
