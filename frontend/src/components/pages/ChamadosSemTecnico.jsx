@@ -7,12 +7,11 @@ import Chamados from '../layout/Chamados'
 import { useState } from 'react'
 import {InfoSearch} from '../component/Search'
 
-function ChamadosAbertos(){
+function ChamadosSemTecnico(){
   const cabecalho = [
     'ID','Título','Categoria','Prioridade','Empresa','Técnico',''
   ]
   const itemsPerPage = 10;
-  const totalPages = Math.ceil(tickets.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -33,6 +32,9 @@ function ChamadosAbertos(){
     .includes(search.toLowerCase()));
   })
 
+  const filteredItems = verificarSearch.filter((item) => item.tecnico === '');
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
   return(
     <Chamados>
       <InfoSearch setSearch={setSearch} />  
@@ -46,8 +48,9 @@ function ChamadosAbertos(){
         </thead>
         <tbody >
           {verificarSearch.length > 0 ? verificarSearch
+           .filter((item) => item.tecnico === '') // Filtra apenas os chamados sem técnicos
           .slice(startIndex, endIndex).map((item,index) =>(
-            <tr key={index}>
+            <tr key={index} >
               <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
               <td className={styles.tabelaCabecalhoItens}>{item.titulo}</td>
               <td className={styles.tabelaCabecalhoItens}>{item.categoria}</td>
@@ -60,7 +63,7 @@ function ChamadosAbertos(){
                 <div className={styles.prioridadeBaixa}>Baixa</div>: ''}
               </td>
               <td className={styles.tabelaCabecalhoItens}>{item.empresa}</td>
-              <td className={styles.tabelaCabecalhoItens}>{item.tecnico}</td>
+              <td className={styles.tabelaCabecalhoItensTecnico}>{item.tecnico}</td>
               <td className={styles.tabelaCabecalhoItens}>
                 <img 
                 src={editar}/>
@@ -83,12 +86,12 @@ function ChamadosAbertos(){
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         >
-          <IoMdArrowRoundForward/>
+            <IoMdArrowRoundForward/>
         </button>
       </div>
     </Chamados>
     )
 }
 
-export default ChamadosAbertos
+export default ChamadosSemTecnico
 

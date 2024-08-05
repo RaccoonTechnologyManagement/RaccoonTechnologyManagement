@@ -11,6 +11,7 @@
 
 .mainContainer form{
     max-width: 40%;
+    min-width: 300px;
     height: 80%;
     display: flex;
     align-items: center;
