@@ -13,6 +13,7 @@ import ChamadosPrioridadeAlta from './components/pages/ChamadosPrioridadeAlta';
 import ChamadosPrazoVencendo from './components/pages/ChamadosPrazoVencendo';
 import ChamadosVencidos from './components/pages/ChamadosVencidos';
 import AtivosHardware from './components/pages/AtivosHardware';
+import AtivosLt from './components/layout/AtivosLt';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login/>}/>
-          <Route path="/ativos" element={<AtivosInicial/>}/>
+          <Route path="/ativos/" element={<AtivosLt/>}/>
+          <Route path="/ativos/todos" element={<AtivosInicial/>}/>
           <Route path="/ativos/hardware" element={<AtivosHardware/>}/>
           <Route path="/chamados" element={<Chamados/>}/>
           <Route path="/chamados/abertos" element={<ChamadosAbertos/>}/>

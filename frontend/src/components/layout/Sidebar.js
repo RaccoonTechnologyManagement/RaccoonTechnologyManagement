@@ -15,12 +15,12 @@ function Sidebar(){
         {
             title: "Ativos",
             icon: logoAtivos,
-            link: "/ativos"
+            link: "/ativos/todos"
         },
         {
             title: "Chamados",
             icon: logoChamados,
-            link: "/chamados"
+            link: "/chamados/abertos"
         },
         {
             title: "Monitorar",

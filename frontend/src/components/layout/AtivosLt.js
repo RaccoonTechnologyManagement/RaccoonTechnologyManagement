@@ -16,8 +16,8 @@ function AtivosLt (props){
               
             </div>
 
-            <div className={styles.notBorderButton}>
-                <NavLink to={`/ativos`}>
+            <div id="selecionado" className={styles.notBorderButton}>
+                <NavLink to={`/ativos/todos`}>
                     <button>TODOS</button>
                 </NavLink> 
                 <NavLink to={`/ativos/hardware`}>

@@ -28,12 +28,11 @@
 }
 
 .bdLogoRaccoon{
-    width: 100px;
+    width: 50%;
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
 }
 
 .bdLogoRaccoon img{
@@ -42,7 +41,8 @@
 
 .logoRaccoon p{
     width: 100px;
-
+    padding-right: 170px;
+    margin-left: 10px;
 }
 
 .bdInputs{
