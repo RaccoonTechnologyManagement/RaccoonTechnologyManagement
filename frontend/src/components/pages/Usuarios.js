@@ -37,6 +37,7 @@ function Usuarios() {
       <div className={styles.profileContainer}>
         <h1>Meu Perfil</h1>
         <div className={styles.profileGrid}>
+        <div className={styles.profile}>
           <div className={styles.profileItem}>
             <label>Usuário</label>
             <input type="text" name="username" value={user.username} onChange={handleChange} />
@@ -48,6 +49,7 @@ function Usuarios() {
           <div className={styles.profileItem}>
             <label>Sobrenome</label>
             <input type="text" name="lastName" value={user.lastName} onChange={handleChange} />
+          </div>
           </div>
           <aside className={styles.profileAvatar}>
             <img src={Racoon} alt="Profile" />
@@ -86,6 +88,7 @@ function Usuarios() {
           <button onClick={handleEdit}>EDITAR</button>
           <button onClick={handleResetPassword}>REDEFINIR SENHA</button>
         </div>
+        
         </div>
        
       </div>

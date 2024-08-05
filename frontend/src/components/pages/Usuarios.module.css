@@ -4,6 +4,19 @@
   background-color: #0C0B0B;
 }
 
+.profileContainer h1{
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.profile label {
+  margin-top: 1.5rem;
+
+
+
+}
+
 .profileGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -17,6 +30,8 @@
 
 .profileItem label {
   margin-bottom: .8rem;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 .profileItem input {
@@ -28,7 +43,7 @@
   background-color: #1F1F1F;
   color: #ffffff;
   font-size: 1.8rem;
-
+margin-bottom: 1.5rem;
 }
 
 .profileAvatar {
@@ -36,12 +51,20 @@
   grid-column: span 1;
   grid-row: span 1;
   text-align: center;
+  margin-top: 103px;
 }
+
+
 
 .profileAvatar .active {
   display: block;
   margin-top: 10px;
   color: #00DC82;
+  font-weight: bold;
+}
+
+.profileAvatar span{
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
@@ -56,36 +79,37 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 2.3rem;
 }
 
 .actions button:first-child {
   background-color: #0072DC;
   color: #0C0B0B;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: bold;
-
+  width: 10.0rem;
+  height: 8.0rem;
   border-radius: 20px;
   margin-right: 18px;
+  height: 4.0rem;
+  width: 100%;
 }
 
 .actions button:last-child {
   background-color: #00DC82;
   color: #0C0B0B;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: bold;
   border-radius: 20px;
+  height: 4.0rem;
+  width: 100%;
 
 }
 
-
-.borda{
-  text-align: left;
-  border-bottom: 2px solid #292929; 
-}
 
 @media (max-width: 768px) {
   .profileGrid {
-    grid-template-columns: 1fr; /* Ajusta para uma coluna em telas menores */
+    grid-template-columns: 1fr; 
   }
   
   .header {
@@ -122,6 +146,6 @@
 
   .profileItem input {
     width: 100%;
-    max-width: none; /* Remove o limite máximo para telas pequenas */
+    max-width: none; 
   }
 }
