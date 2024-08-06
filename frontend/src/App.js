@@ -13,6 +13,10 @@ import ChamadosPrioridadeAlta from './components/pages/ChamadosPrioridadeAlta';
 import ChamadosPrazoVencendo from './components/pages/ChamadosPrazoVencendo';
 import ChamadosVencidos from './components/pages/ChamadosVencidos';
 import AtivosHardware from './components/pages/AtivosHardware';
+import AtivosServidores from './components/pages/AtivosServidores';
+import AtivosSoftware from './components/pages/AtivosSoftware';
+import AtivosLicencas from './components/pages/AtivosLicencas';
+import AtivosExcluidos from './components/pages/AtivosExcluidos';
 import AtivosLt from './components/layout/AtivosLt';
 
 function App() {
@@ -24,6 +28,10 @@ function App() {
           <Route path="/ativos/" element={<AtivosLt/>}/>
           <Route path="/ativos/todos" element={<AtivosInicial/>}/>
           <Route path="/ativos/hardware" element={<AtivosHardware/>}/>
+          <Route path="/ativos/servidores" element={<AtivosServidores/>}/>
+          <Route path="/ativos/software" element={<AtivosSoftware/>}/>
+          <Route path="/ativos/licencas" element={<AtivosLicencas/>}/>
+          <Route path="/ativos/excluidos" element={<AtivosExcluidos/>}/>
           <Route path="/chamados" element={<Chamados/>}/>
           <Route path="/chamados/abertos" element={<ChamadosAbertos/>}/>
           <Route path="/chamados/sem-tecnico" element={<ChamadosSemTecnico/>}/>
