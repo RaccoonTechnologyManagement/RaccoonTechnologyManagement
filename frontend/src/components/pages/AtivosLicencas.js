@@ -3,27 +3,31 @@ import { IoMdArrowRoundBack } from "react-icons/io"
 import { IoMdArrowRoundForward } from "react-icons/io";
 import styles from '../pages/AtivosAbertos.module.css'
 import editar from '../../img/editar.png'
-import { ativos } from '../data/AtivosDatabase'
+import { licencas } from '../data/LicencasDatabase';
 import {InfoSearch} from '../component/Search'
 import AtivosLt from '../layout/AtivosLt';
+import AtivosLicencasDois from './AtivosLicencasDois';
 
 function AtivosInicial (){
 
     const cabecalho = [
-        'N° Pat','Nome','Marca','Modelo','Empresa','Sede','Status',
+        'N° Pat','Software','Departamento','Empresa','Sede','Status','LT','LR',
       ]
-      const itemsPerPage = 5;
+      const itemsPerPage = 4;
+      const totalPages = Math.ceil(licencas.length / itemsPerPage);
       const [currentPage, setCurrentPage] = useState(1);
     
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
     
       const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
+        if (newPage >= 1 && newPage <= totalPages) {
+          setCurrentPage(newPage);
+        }
       };
       const [search, setSearch] = useState("")
     
-      const verificarSearch = ativos 
+      const verificarSearch = licencas 
       .filter((item) =>{
         return Object.values(item)
         .some((prop) => prop && prop
@@ -48,16 +52,24 @@ function AtivosInicial (){
                 <tr key={index}>
                   <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
                   <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.marca}</td>                
-                  <td className={styles.tabelaCabecalhoItens}>{item.modelo}</td>                  
+                  <td className={styles.tabelaCabecalhoItens}>{item.setor}</td>                                 
                   <td className={styles.tabelaCabecalhoItensEmpresa}>{item.empresa}</td>
                   <td className={styles.tabelaCabecalhoItens}>{item.sede}</td>
-
-                  <td className={styles.prioridade}>
-                    {item.prioridade === 'Ativo'? 
+                  <td className={styles.status}>
+                    {item.status === 'Ativo'? 
                     <div className={styles.userativo}>Ativo</div>: ''}
-                    {item.prioridade === 'Inativo'? 
+                    {item.status === 'Inativo'? 
                     <div className={styles.userinativo}>Inativo</div>: ''}
+                  </td>
+
+                  <td className={styles.licencas}>
+                    {item.lict === '10'?
+                    <div className={styles.userativo}>10</div>: ''}   
+                  </td>
+
+                  <td className={styles.licencas}>
+                    {item.licr === '07'? 
+                    <div className={styles.userativo}>07</div>: ''}
                   </td>
 
                   
@@ -78,64 +90,14 @@ function AtivosInicial (){
             </tbody>
           </table>
           <div className={styles.pages}>
-            <button onClick={() => handlePageChange(currentPage - 1)}><IoMdArrowRoundBack/></button>
-            <span>Página {currentPage} de {Math.ceil(ativos.length/itemsPerPage)}</span>
-            <button onClick={() => handlePageChange(currentPage + 1)}><IoMdArrowRoundForward/></button>
-          </div>
-
-
-              <div>
-          <InfoSearch setSearch={setSearch} />  
-          <table className={styles.Tabela}>
-            <thead>
-              <tr className={styles.tabelaCabecalho}>
-                {cabecalho.map((item, index)=>(
-                  <th key={index} className={styles.tabelaCabecalhoItens}>{item}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody >
-              {verificarSearch.length > 0 ? verificarSearch
-              .slice(startIndex, endIndex).map((item,index) =>(
-                <tr key={index}>
-                  <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.marca}</td>                
-                  <td className={styles.tabelaCabecalhoItens}>{item.modelo}</td>                  
-                  <td className={styles.tabelaCabecalhoItensEmpresa}>{item.empresa}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.sede}</td>
-
-                  <td className={styles.prioridade}>
-                    {item.prioridade === 'Ativo'? 
-                    <div className={styles.userativo}>Ativo</div>: ''}
-                    {item.prioridade === 'Inativo'? 
-                    <div className={styles.userinativo}>Inativo</div>: ''}
-                  </td>
-
-                  
-
-                  <td className={styles.tabelaCabecalhoItens}>
-                    <img 
-                    src={editar}/>
-                  </td>
-                </tr>
-              ))
-              :
-              <tr>
-                <td colSpan="7">
-                  <h3>Nenhum resultado para '{search}'</h3>
-                </td>
-              </tr>
-              }
-            </tbody>
-          </table>
-          <div className={styles.pages}>
-            <button onClick={() => handlePageChange(currentPage - 1)}><IoMdArrowRoundBack/></button>
-            <span>Página {currentPage} de {Math.ceil(ativos.length/itemsPerPage)}</span>
-            <button onClick={() => handlePageChange(currentPage + 1)}><IoMdArrowRoundForward/></button>
-          </div>
-          </div>
-          
+        <button onClick={() => handlePageChange(currentPage - 1)}><IoMdArrowRoundBack/></button>
+        <span>Página {currentPage} de {totalPages}</span><button 
+        onClick={() => handlePageChange(currentPage + 1)}disabled={currentPage === totalPages}><IoMdArrowRoundForward/>
+        </button>
+        </div>
+        <div>
+          <AtivosLicencasDois/>
+        </div>
         </AtivosLt>
 
         
