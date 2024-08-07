@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Login} from './components/pages/Login'
 import AtivosInicial from './components/pages/AtivosInicial';
 import Chamados from './components/layout/Chamados';
@@ -32,7 +32,7 @@ function App() {
           <Route path="/ativos/software" element={<AtivosSoftware/>}/>
           <Route path="/ativos/licencas" element={<AtivosLicencas/>}/>
           <Route path="/ativos/excluidos" element={<AtivosExcluidos/>}/>
-          <Route path="/chamados" element={<Chamados/>}/>
+          <Route path="/chamados" element={<Navigate to="/chamados/abertos" replace />} />
           <Route path="/chamados/abertos" element={<ChamadosAbertos/>}/>
           <Route path="/chamados/sem-tecnico" element={<ChamadosSemTecnico/>}/>
           <Route path="/chamados/prioridade-alta" element={<ChamadosPrioridadeAlta/>}/>

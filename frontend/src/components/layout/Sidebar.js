@@ -20,7 +20,7 @@ function Sidebar(){
         {
             title: "Chamados",
             icon: logoChamados,
-            link: "/chamados/abertos"
+            link: "/chamados"
         },
         {
             title: "Monitorar",
