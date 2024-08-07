@@ -2,7 +2,6 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Login} from './components/pages/Login'
 import AtivosInicial from './components/pages/AtivosInicial';
-import Chamados from './components/layout/Chamados';
 import Monitorar from './components/pages/Monitorar';
 import Dashboard from './components/pages/Dashboard';
 import Usuarios from './components/pages/Usuarios';

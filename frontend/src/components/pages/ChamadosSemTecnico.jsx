@@ -66,6 +66,7 @@ function ChamadosSemTecnico(){
               <td className={styles.tabelaCabecalhoItensTecnico}>{item.tecnico}</td>
               <td className={styles.tabelaCabecalhoItens}>
                 <img 
+                alt="Editar"
                 src={editar}/>
               </td>
             </tr>
@@ -79,16 +80,18 @@ function ChamadosSemTecnico(){
           }
         </tbody>
       </table>
-      <div className={styles.pages}>
-        <button onClick={() => handlePageChange(currentPage - 1)}><IoMdArrowRoundBack/></button>
-        <span>Página {currentPage} de {totalPages}</span>
-        <button 
-        onClick={() => handlePageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        >
-            <IoMdArrowRoundForward/>
-        </button>
-      </div>
+      {verificarSearch.length > 0 && (
+        <div className={styles.pages}>
+          <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}><IoMdArrowRoundBack /></button>
+          <span>Página {currentPage} de {totalPages}</span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            <IoMdArrowRoundForward />
+          </button>
+        </div>
+      )}
     </Chamados>
     )
 }
