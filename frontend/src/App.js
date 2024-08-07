@@ -6,6 +6,7 @@ import Chamados from './components/layout/Chamados';
 import Monitorar from './components/pages/Monitorar';
 import Dashboard from './components/pages/Dashboard';
 import Usuarios from './components/pages/Usuarios';
+import EditarUsuarios from './components/pages/EditarUsuario';
 import User from './components/pages/User';
 import ChamadosAbertos from './components/pages/ChamadosAbertos';
 import ChamadosSemTecnico from './components/pages/ChamadosSemTecnico';
@@ -37,11 +38,13 @@ function App() {
           <Route path="/chamados/sem-tecnico" element={<ChamadosSemTecnico/>}/>
           <Route path="/chamados/prioridade-alta" element={<ChamadosPrioridadeAlta/>}/>
           <Route path="/chamados/prazo-vencendo" element={<ChamadosPrazoVencendo/>}/>
+          <Route path="/editar-usuario" element={<EditarUsuarios />} />
           <Route path="/chamados/vencidos" element={<ChamadosVencidos/>}/>
           <Route path="/monitorar" element={<Monitorar/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/usuarios" element={<Usuarios/>}/>
           <Route path="/user" element={<User/>}/>
+
         </Routes>
       </Router>
     </div>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Container from '../layout/Container';
 import Racoon from '../../img/RACOON.svg';
 import styles from '../pages/Usuarios.module.css';
+import { NavLink } from 'react-router-dom';
+
 
 function Usuarios() {
   const [user, setUser] = useState({
@@ -85,7 +87,9 @@ function Usuarios() {
           </div>
 
           <div className={styles.actions}>
+            <NavLink to={`/editar-usuario`}>
           <button onClick={handleEdit}>EDITAR</button>
+          </NavLink>
           <button onClick={handleResetPassword}>REDEFINIR SENHA</button>
         </div>
         
