@@ -34,6 +34,7 @@ function AtivosLicencasDois () {
         .includes(search.toLowerCase()));
       })
 
+      const constante1 = 'Valor1';
 
     return (
 
