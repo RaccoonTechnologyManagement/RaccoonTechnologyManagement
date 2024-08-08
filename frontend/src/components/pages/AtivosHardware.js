@@ -7,7 +7,7 @@ import { ativos } from '../data/AtivosDatabase'
 import {InfoSearch} from '../component/Search'
 import AtivosLt from '../layout/AtivosLt';
 
-function AtivosInicial (){
+function AtivosHardware (){
 
     const cabecalho = [
         'N° Pat','Categoria','Marca','Modelo','Empresa','Sede','Status',
@@ -89,4 +89,4 @@ function AtivosInicial (){
     }
     
 
-export default AtivosInicial
+export default AtivosHardware
