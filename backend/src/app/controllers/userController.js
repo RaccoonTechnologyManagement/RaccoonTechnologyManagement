@@ -1,5 +1,5 @@
 import * as Yup from 'yup'; // biblioteca de validação de campos
-import User from '../models/users';
+import User from '../models/user';
 
 // No controller vamos defirnir as regras de negocio para registro no banco
 

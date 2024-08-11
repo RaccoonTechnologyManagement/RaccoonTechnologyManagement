@@ -2,10 +2,12 @@ import Sequelize from 'sequelize';
 import databaseConfig from '../config/database';
 
 // Importando nossos models
-import User from '../app/models/users';
+import User from '../app/models/user';
+import Person from '../app/models/person';
 
 const models = [
-	User
+	User,
+	Person
 ]
 
 // Carregando nossos Models
@@ -19,7 +21,9 @@ class Database {
 		this.connection = new Sequelize(databaseConfig);
 
 		// Acessando cada models do array e acessando init e carregando o model
-		models.map(model => model.init(this.connection));
+		models
+		.map(model => model.init(this.connection))
+		.map(model => model.associate && model.associate(this.connection.models));
 	}
 }
 

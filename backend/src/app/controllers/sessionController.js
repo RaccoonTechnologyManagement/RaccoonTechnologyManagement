@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'; // biblioteca de auenticação
-import User from '../models/users';
+import User from '../models/user';
 
 import authConfig from '../../config/auth';
 
