@@ -23,7 +23,7 @@ import AtivosCriarHardware from './components/pages/AtivosCriarHardware';
 import AtivosCriarServidores from './components/pages/AtivosCriarServidores';
 import AtivosCriarSoftwares from './components/pages/AtivosCriarSoftwares';
 import AtivosCriarLicencas from './components/pages/AtivosCriarLicencas';
-import RedefinirSenha from './components/pages/RefinirSenha';
+import RedefinirSenha from './components/pages/RedefinirSenha';
 
 function App() {
   return (

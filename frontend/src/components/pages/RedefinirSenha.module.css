@@ -28,8 +28,7 @@ header h1 {
   position: relative;
 }
 
-input[type="password"],
-input[type="text"] {
+.formGroup input{
   width: 100%;
   padding: 10px;
   border: none;
@@ -44,7 +43,7 @@ input[type="text"] {
 
 
 
-label{
+.formGroup label{
   font-size: 18px;
   font-weight: bold;
   
@@ -122,8 +121,7 @@ label{
     margin-bottom: 20px;
   }
 
-  input[type="password"],
-  input[type="text"] {
+  .formGroup input {
     font-size: 14px;
     padding: 8px;
   }
@@ -141,8 +139,7 @@ label{
     margin-bottom: 15px;
   }
 
-  input[type="password"],
-  input[type="text"] {
+  .formGroup input {
     font-size: 12px;
     padding: 6px;
   }
