@@ -18,6 +18,11 @@ import AtivosSoftware from './components/pages/AtivosSoftware';
 import AtivosLicencas from './components/pages/AtivosLicencas';
 import AtivosExcluidos from './components/pages/AtivosExcluidos';
 import AtivosLt from './components/layout/AtivosLt';
+import AtivosCriar from './components/pages/AtivosCriar';
+import AtivosCriarHardware from './components/pages/AtivosCriarHardware';
+import AtivosCriarServidores from './components/pages/AtivosCriarServidores';
+import AtivosCriarSoftwares from './components/pages/AtivosCriarSoftwares';
+import AtivosCriarLicencas from './components/pages/AtivosCriarLicencas';
 
 function App() {
   return (
@@ -32,6 +37,11 @@ function App() {
           <Route path="/ativos/software" element={<AtivosSoftware/>}/>
           <Route path="/ativos/licencas" element={<AtivosLicencas/>}/>
           <Route path="/ativos/excluidos" element={<AtivosExcluidos/>}/>
+          <Route path="/ativos/criar" element={<AtivosCriar/>}/>
+          <Route path="/ativos/criar/hardware" element={<AtivosCriarHardware/>}/>
+          <Route path="/ativos/criar/servidor" element={<AtivosCriarServidores/>}/>
+          <Route path="/ativos/criar/software" element={<AtivosCriarSoftwares/>}/>
+          <Route path="/ativos/criar/licenca" element={<AtivosCriarLicencas/>}/>
           <Route path="/chamados" element={<Navigate to="/chamados/abertos" replace />} />
           <Route path="/chamados/abertos" element={<ChamadosAbertos/>}/>
           <Route path="/chamados/sem-tecnico" element={<ChamadosSemTecnico/>}/>

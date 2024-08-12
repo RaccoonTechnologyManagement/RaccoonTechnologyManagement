@@ -25,7 +25,7 @@ function AtivosHardware (){
           setCurrentPage(newPage);
         }
       };
-      const [search, setSearch] = useState("")
+      const [search, setSearch] = useState("");
     
       const verificarSearch = ativos 
       .filter((item) =>{
