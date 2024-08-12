@@ -20,13 +20,21 @@ function EditarUsuarios() {
     phone: "",
   });
 
+  const formatPhoneNumber = (phone) => {
+    return phone.replace(/[^\d]/g, "");
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    setUser({
+      ...user,
+      [name]: name === "phone" ? formatPhoneNumber(value) : value,
+    });
   };
 
   const handleEdit = () => {
     console.log("Botão Editar clicado");
+    console.log("Telefone formatado:", user.phone);
   };
 
   const handleResetPassword = () => {

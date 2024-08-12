@@ -12,9 +12,15 @@ function RedefinirSenha() {
     confirmPassword: "",
   });
 
-  const [visiblePasswordField, setVisiblePasswordField] = useState(null);
+  const [visiblePasswords, setVisiblePasswords] = useState({
+    oldPassword: false,
+    newPassword: false,
+    confirmPassword: false,
+  });
+
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState(""); 
+  
   const handleChange = (e) => {
     setPasswords({
       ...passwords,
@@ -23,7 +29,10 @@ function RedefinirSenha() {
   };
 
   const handleTogglePassword = (field) => {
-    setVisiblePasswordField(visiblePasswordField === field ? null : field);
+    setVisiblePasswords({
+      ...visiblePasswords,
+      [field]: !visiblePasswords[field],
+    });
   };
 
   const handleSubmit = (e) => {
@@ -40,9 +49,12 @@ function RedefinirSenha() {
         newPassword: "",
         confirmPassword: "",
       });
-      setVisiblePasswordField(null);
+      setVisiblePasswords({
+        oldPassword: false,
+        newPassword: false,
+        confirmPassword: false,
+      });
 
-      
       setTimeout(() => {
         setMessage("");
         setMessageType("");
@@ -63,7 +75,7 @@ function RedefinirSenha() {
           <div className={styles.formGroup}>
             <label>SENHA ANTIGA</label>
             <input
-              type={visiblePasswordField === "oldPassword" ? "text" : "password"}
+              type={visiblePasswords.oldPassword ? "text" : "password"}
               name="oldPassword"
               placeholder="SENHA ANTIGA"
               value={passwords.oldPassword}
@@ -71,7 +83,7 @@ function RedefinirSenha() {
               required
             />
             <img
-              src={visiblePasswordField === "oldPassword" ? olho : olho1}
+              src={visiblePasswords.oldPassword ? olho : olho1}
               alt="Mostrar/Esconder Senha"
               className={styles.togglePassword}
               onClick={() => handleTogglePassword("oldPassword")}
@@ -80,7 +92,7 @@ function RedefinirSenha() {
           <div className={styles.formGroup}>
             <label>NOVA SENHA</label>
             <input
-              type={visiblePasswordField === "newPassword" ? "text" : "password"}
+              type={visiblePasswords.newPassword ? "text" : "password"}
               name="newPassword"
               placeholder="NOVA SENHA"
               value={passwords.newPassword}
@@ -88,7 +100,7 @@ function RedefinirSenha() {
               required
             />
             <img
-              src={visiblePasswordField === "newPassword" ? olho : olho1}
+              src={visiblePasswords.newPassword ? olho : olho1}
               alt="Mostrar/Esconder Senha"
               className={styles.togglePassword}
               onClick={() => handleTogglePassword("newPassword")}
@@ -97,7 +109,7 @@ function RedefinirSenha() {
           <div className={styles.formGroup}>
             <label>CONFIRMAR SENHA</label>
             <input
-              type={visiblePasswordField === "confirmPassword" ? "text" : "password"}
+              type={visiblePasswords.confirmPassword ? "text" : "password"}
               name="confirmPassword"
               placeholder="CONFIRMAR SENHA"
               value={passwords.confirmPassword}
@@ -105,7 +117,7 @@ function RedefinirSenha() {
               required
             />
             <img
-              src={visiblePasswordField === "confirmPassword" ? olho : olho1}
+              src={visiblePasswords.confirmPassword ? olho : olho1}
               alt="Mostrar/Esconder Senha"
               className={styles.togglePassword}
               onClick={() => handleTogglePassword("confirmPassword")}
