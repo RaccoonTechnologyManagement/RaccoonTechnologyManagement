@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import Container from '../layout/Container';
-import Racoon from '../../img/RACOON.svg';
-import styles from '../pages/Usuarios.module.css';
-import { NavLink } from 'react-router-dom';
-
+import React, { useState } from "react";
+import Container from "../layout/Container";
+import Racoon from "../../img/RACOON.svg";
+import styles from "../pages/Usuarios.module.css";
+import { NavLink } from "react-router-dom";
 
 function Usuarios() {
   const [user, setUser] = useState({
-    username: '',
-    firstName: '',
-    lastName: '',
-    company: '',
-    branch: '',
-    department: '',
-    category: '',
-    position: '',
-    email: '',
-    phone: ''
+    username: "",
+    firstName: "",
+    lastName: "",
+    company: "",
+    branch: "",
+    department: "",
+    category: "",
+    position: "",
+    email: "",
+    phone: "",
   });
 
   const handleChange = (e) => {
@@ -25,13 +24,11 @@ function Usuarios() {
   };
 
   const handleEdit = () => {
-    // Lógica para editar
-    console.log('Botão Editar clicado');
+    console.log("Botão Editar clicado");
   };
 
   const handleResetPassword = () => {
-    // Lógica para redefinir senha
-    console.log('Botão Redefinir Senha clicado');
+    console.log("Botão Redefinir Senha clicado");
   };
 
   return (
@@ -39,19 +36,34 @@ function Usuarios() {
       <div className={styles.profileContainer}>
         <h1>Meu Perfil</h1>
         <div className={styles.profileGrid}>
-        <div className={styles.profile}>
-          <div className={styles.profileItem}>
-            <label>Usuário</label>
-            <input type="text" name="username" value={user.username} onChange={handleChange} />
-          </div>
-          <div className={styles.profileItem}>
-            <label>Nome</label>
-            <input type="text" name="firstName" value={user.firstName} onChange={handleChange} />
-          </div>
-          <div className={styles.profileItem}>
-            <label>Sobrenome</label>
-            <input type="text" name="lastName" value={user.lastName} onChange={handleChange} />
-          </div>
+          <div className={styles.profile}>
+            <div className={styles.profileItem}>
+              <label>Usuário</label>
+              <input
+                type="text"
+                name="username"
+                value={user.username}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={styles.profileItem}>
+              <label>Nome</label>
+              <input
+                type="text"
+                name="firstName"
+                value={user.firstName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={styles.profileItem}>
+              <label>Sobrenome</label>
+              <input
+                type="text"
+                name="lastName"
+                value={user.lastName}
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <aside className={styles.profileAvatar}>
             <img src={Racoon} alt="Profile" />
@@ -59,42 +71,78 @@ function Usuarios() {
           </aside>
           <div className={styles.profileItem}>
             <label>Empresa</label>
-            <input type="text" name="company" value={user.company} onChange={handleChange} />
+            <input
+              type="text"
+              name="company"
+              value={user.company}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.profileItem}>
             <label>Cargo</label>
-            <input type="text" name="position" value={user.position} onChange={handleChange} />
+            <input
+              type="text"
+              name="position"
+              value={user.position}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.profileItem}>
             <label>Filial</label>
-            <input type="text" name="branch" value={user.branch} onChange={handleChange} />
+            <input
+              type="text"
+              name="branch"
+              value={user.branch}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.profileItem}>
             <label>E-mail</label>
-            <input type="email" name="email" value={user.email} onChange={handleChange} />
+            <input
+              type="email"
+              name="email"
+              value={user.email}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.profileItem}>
             <label>Departamento</label>
-            <input type="text" name="department" value={user.department} onChange={handleChange} />
+            <input
+              type="text"
+              name="department"
+              value={user.department}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.profileItem}>
             <label>Telefone</label>
-            <input type="tel" name="phone" value={user.phone} onChange={handleChange} />
+            <input
+              type="tel"
+              name="phone"
+              value={user.phone}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.profileItem}>
             <label>Categoria</label>
-            <input type="text" name="category" value={user.category} onChange={handleChange} />
+            <input
+              type="text"
+              name="category"
+              value={user.category}
+              onChange={handleChange}
+            />
           </div>
 
           <div className={styles.actions}>
             <NavLink to={`/editar-usuario`}>
-          <button onClick={handleEdit}>EDITAR</button>
-          </NavLink>
-          <button onClick={handleResetPassword}>REDEFINIR SENHA</button>
+              <button onClick={handleEdit}>EDITAR</button>
+            </NavLink>
+
+            <NavLink to={`/redefinir-senha`}>
+              <button onClick={handleResetPassword}>REDEFINIR SENHA</button>
+            </NavLink>
+          </div>
         </div>
-        
-        </div>
-       
       </div>
     </Container>
   );

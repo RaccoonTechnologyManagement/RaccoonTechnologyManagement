@@ -1,0 +1,155 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.passwordResetContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  color: #FFFFFF;
+  position: relative;
+}
+
+header h1 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+  
+}
+
+.formGroup {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #333;
+  color: #FFF;
+  font-size: 16px;
+  padding-right: 38px;
+  height: 62px;
+  margin-bottom: 30px;
+}
+
+
+
+label{
+  font-size: 18px;
+  font-weight: bold;
+  
+}
+
+.togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #FFF;
+}
+
+.buttongroup {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.resetButton,
+.cancelButton {
+  flex: 1;
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.resetButton {
+  background-color: #00FF99;
+  color: #000;
+}
+
+.cancelButton {
+  background-color: #FF0033;
+  color: #FFF;
+}
+
+.resetButton:hover,
+.cancelButton:hover {
+  opacity: 0.8;
+}
+
+
+.message {
+  position: absolute;
+  top: -60px; 
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4CAF50; 
+  color: #FFFFFF;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0; 
+  transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out; 
+}
+
+.message.show {
+  top: 20px; 
+  opacity: 1; 
+}
+
+.message.error {
+  background-color: #FF0033; 
+}
+
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  input[type="password"],
+  input[type="text"] {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .resetButton,
+  .cancelButton {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  input[type="password"],
+  input[type="text"] {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .resetButton,
+  .cancelButton {
+    font-size: 12px;
+    padding: 6px;
+  }
+}

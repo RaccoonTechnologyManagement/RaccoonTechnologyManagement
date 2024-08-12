@@ -23,6 +23,7 @@ import AtivosCriarHardware from './components/pages/AtivosCriarHardware';
 import AtivosCriarServidores from './components/pages/AtivosCriarServidores';
 import AtivosCriarSoftwares from './components/pages/AtivosCriarSoftwares';
 import AtivosCriarLicencas from './components/pages/AtivosCriarLicencas';
+import RedefinirSenha from './components/pages/RefinirSenha';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/chamados/prioridade-alta" element={<ChamadosPrioridadeAlta/>}/>
           <Route path="/chamados/prazo-vencendo" element={<ChamadosPrazoVencendo/>}/>
           <Route path="/editar-usuario" element={<EditarUsuarios />} />
+          <Route path="/redefinir-senha" element={<RedefinirSenha />} />         
           <Route path="/chamados/vencidos" element={<ChamadosVencidos/>}/>
           <Route path="/monitorar" element={<Monitorar/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
