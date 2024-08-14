@@ -70,14 +70,19 @@ class UserController {
         const user = await User.findByPk(req.userId);
 
         // Verifica se existe email passado na requisição é igual da base
-        if(email !== user.email){
-            const userExists = await User.findOne({
-                where: { email },
-            });
-    
-            if(userExists){
-                return res.status(400).json({ error: 'Usuario já existe '})
+        if (typeof email !== 'undefined')
+        {
+            if(email !== user.email){
+                const userExists = await User.findOne({
+                    where: { email },
+                });
+        
+                if(userExists){
+                    return res.status(400).json({ error: 'Usuario já existe '})
+                }
             }
+    
+            console.log('A variável está definida');
         }
 
         // Verifica se tem parametro "oldPassword" nova na requisição

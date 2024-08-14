@@ -36,6 +36,11 @@ module.exports = {
 				type: Sequelize.STRING,
 				allowNull: false
 			},
+			profile_photo: {
+				type: Sequelize.STRING,
+				defaultValue: 'default-profile-photo.png',
+				allowNull: false
+			},
 			person_activy: {
 				type: Sequelize.BOOLEAN,
 				defaultValue: true,

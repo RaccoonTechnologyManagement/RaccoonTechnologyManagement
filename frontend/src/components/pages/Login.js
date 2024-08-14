@@ -23,7 +23,7 @@ export const Login = ()=>{
           };
           axios.post("http://localhost:3333/sessions", data)
           .then(response => {
-            console.log(response);
+            localStorage.setItem('token', response.data.token);
             navigate('/chamados');
           })
           .catch(response => {

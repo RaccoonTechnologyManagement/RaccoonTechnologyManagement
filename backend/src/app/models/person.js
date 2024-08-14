@@ -8,6 +8,7 @@ class Person extends Model {
                 lastname: Sequelize.STRING,
                 telephone: Sequelize.STRING,
                 office: Sequelize.STRING,
+                profile_photo: Sequelize.STRING,
                 person_activy: Sequelize.BOOLEAN,
             },
             {

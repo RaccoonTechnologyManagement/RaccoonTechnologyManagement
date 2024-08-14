@@ -4,10 +4,12 @@ import databaseConfig from '../config/database';
 // Importando nossos models
 import User from '../app/models/user';
 import Person from '../app/models/person';
+import Ticket from '../app/models/ticket';
 
 const models = [
 	User,
-	Person
+	Person,
+	Ticket
 ]
 
 // Carregando nossos Models

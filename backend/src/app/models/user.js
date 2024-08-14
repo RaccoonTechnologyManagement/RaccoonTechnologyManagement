@@ -1,7 +1,7 @@
 import Sequelize, { Model } from "sequelize";
 import bcrypt from 'bcrypt'; // biblioteca de encriptação de decriptação de senhas/valores
 
-class User extends Model{
+class User extends Model {
     static init(sequelize){
         super.init(
             {

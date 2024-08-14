@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import Container from "../layout/Container";
 import styles from "../pages/RedefinirSenha.module.css";
 import olho from "../../img/olho.png";
 import olho1 from "../../img/olho1.png";
 import { NavLink } from "react-router-dom";
+import { useNavigate} from 'react-router-dom';
 
 function RedefinirSenha() {
   const [passwords, setPasswords] = useState({
@@ -12,6 +14,7 @@ function RedefinirSenha() {
     confirmPassword: "",
   });
 
+  const navigate = useNavigate();
   const [visiblePasswords, setVisiblePasswords] = useState({
     oldPassword: false,
     newPassword: false,
@@ -37,32 +40,32 @@ function RedefinirSenha() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const data = {
+      oldPassword: passwords.oldPassword,
+      password: passwords.newPassword,
+      confirmPassword: passwords.confirmPassword
+    };
 
-    if (passwords.oldPassword === passwords.newPassword) {
-      setMessage("A nova senha não pode ser igual à senha antiga.");
-      setMessageType("error"); 
-    } else if (passwords.newPassword === passwords.confirmPassword) {
-      setMessage("Senha redefinida com sucesso!");
-      setMessageType("success"); 
-      setPasswords({
-        oldPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-      });
-      setVisiblePasswords({
-        oldPassword: false,
-        newPassword: false,
-        confirmPassword: false,
-      });
-
-      setTimeout(() => {
-        setMessage("");
-        setMessageType("");
-      }, 3000);
-    } else {
-      setMessage("As novas senhas não coincidem.");
-      setMessageType("error"); 
-    }
+    axios.put("http://localhost:3333/users", data, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    .then(response => {
+        localStorage.setItem('token', response.data.token);
+        console.log(response);
+        setMessage("Senha redefinida com sucesso!");
+        setMessageType("success");
+         
+        setTimeout(() => {
+          navigate('/chamados');
+        }, 3000);
+    })
+    .catch(error => {
+      console.log(error)
+        setMessage(error.response.data.error);
+        setMessageType("error"); 
+    });
   };
 
   return (
