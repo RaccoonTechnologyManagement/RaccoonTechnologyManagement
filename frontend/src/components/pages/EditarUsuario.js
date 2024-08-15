@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Container from "../layout/Container";
 import Racoon from "../../img/RACOON.svg";
 import padlock from "../../img/padlock.svg";
-import styles from "../pages/Usuarios.module.css";
+import styles from "../pages/User.module.css";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 
@@ -90,10 +90,10 @@ function EditarUsuarios() {
           </div>
           {renderInput("category", "Categoria", true)}
           <div className={styles.actions}>
-            <NavLink to={`/usuarios`}>
+            <NavLink to={`/user`}>
               <button onClick={handleEdit}>SALVAR</button>
             </NavLink>
-            <NavLink to={`/usuarios`}>
+            <NavLink to={`/user`}>
               <button onClick={handleResetPassword}>CANCELAR</button>
             </NavLink>
           </div>
