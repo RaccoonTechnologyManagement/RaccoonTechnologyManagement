@@ -12,6 +12,7 @@
 .tabelaCabecalhoItensTecnico{
     padding: 10px 5px;
     border-bottom: 2px solid #292929;
+    max-width: 15rem;
 }
 
 .tabelaCabecalhoItensTecnico{

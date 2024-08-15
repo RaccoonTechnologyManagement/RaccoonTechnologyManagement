@@ -7,9 +7,9 @@ import Chamados from '../layout/Chamados'
 import { useState } from 'react'
 import {InfoSearch} from '../component/Search'
 
-function ChamadosSemTecnico(){
+function ChamadosVencidos(){
   const cabecalho = [
-    'ID','Título','Categoria','Prioridade','Empresa','Técnico',''
+    'ID','Título','Vencido há','Prioridade','Empresa','Técnico',''
   ]
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,8 +32,13 @@ function ChamadosSemTecnico(){
     .includes(search.toLowerCase()));
   })
 
-  const filteredItems = verificarSearch.filter((item) => item.tecnico === '');
+  //const filteredItems = verificarSearch.filter((item) => item.prioridade === 'Alta'); 
+  //Aguardando DataBase p/ filtrar item.prize <= 2;
+
+  const filteredItems = verificarSearch;
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+  
 
   return(
     <Chamados>
@@ -52,23 +57,21 @@ function ChamadosSemTecnico(){
             <tr key={index} >
               <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
               <td className={styles.tabelaCabecalhoItens}>{item.titulo}</td>
-              <td className={styles.tabelaCabecalhoItens}>{item.categoria}</td>
+              <td className={styles.tabelaCabecalhoItens}>1 Dia (s)</td>
               <td className={styles.prioridade}>
-                {item.prioridade === 'Alta'? 
-                <div className={styles.prioridadeAlta}>Alta</div>: ''}
-                {item.prioridade === 'Média'? 
-                <div className={styles.prioridadeMedia}>Média</div>: ''}
-                {item.prioridade === 'Baixa'? 
-                <div className={styles.prioridadeBaixa}>Baixa</div>: ''}
+                {item.prioridade === 'Alta' ? <div className={styles.prioridadeAlta}>Alta</div> : ''}
+                {item.prioridade === 'Média' ? <div className={styles.prioridadeMedia}>Média</div> : ''}
+                {item.prioridade === 'Baixa' ? <div className={styles.prioridadeBaixa}>Baixa</div> : ''}
               </td>
               <td className={styles.tabelaCabecalhoItens}>{item.empresa}</td>
-              <td className={styles.tabelaCabecalhoItensTecnico}>{item.tecnico}</td>
+              <td className={styles.tabelaCabecalhoItens}>{item.tecnico}</td>
               <td className={styles.tabelaCabecalhoItens}>
                 <img 
                 alt="Editar"
                 src={editar}/>
               </td>
             </tr>
+            
           ))
           :
           <tr>
@@ -95,5 +98,5 @@ function ChamadosSemTecnico(){
     )
 }
 
-export default ChamadosSemTecnico
+export default ChamadosVencidos
 

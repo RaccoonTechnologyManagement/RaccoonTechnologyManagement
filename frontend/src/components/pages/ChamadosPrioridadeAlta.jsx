@@ -35,8 +35,6 @@ function ChamadosPrioridadeAlta(){
   const filteredItems = verificarSearch.filter((item) => item.prioridade === 'Alta');
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
-  
-
   return(
     <Chamados>
       <InfoSearch setSearch={setSearch} />  
@@ -49,8 +47,7 @@ function ChamadosPrioridadeAlta(){
           </tr>
         </thead>
         <tbody >
-          {verificarSearch.length > 0 ? verificarSearch
-          .filter((item) => item.prioridade === 'Alta') // Filtra apenas os itens com prioridade alta
+          {filteredItems.length > 0 ? filteredItems
           .slice(startIndex, endIndex).map((item,index) =>(
             <tr key={index} >
               <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
