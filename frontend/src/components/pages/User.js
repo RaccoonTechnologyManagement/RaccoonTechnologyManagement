@@ -37,6 +37,8 @@ function User(){
             <h1>Meu Perfil</h1>
             
             <div className={styles.profileGrid}>
+              <div className={styles.firstContainer}>
+              
               <div className={styles.profile}>
                 <div className={styles.profileItem}>
                   <label>Usuário</label>
@@ -65,12 +67,26 @@ function User(){
                     onChange={handleChange}
                   />
                 </div>
-              </div>
+                </div>
+
+              <div className={styles.avatar}>
               <aside className={styles.profileAvatar}>
                 <img src={Racoon} alt="Profile" />
-                <span className={styles.active}>ATIVO</span>
+                <div className={styles.active}>
+                <span >ATIVO</span>
+                </div>
               </aside>
+              </div>
+              </div>
               
+              
+              <div className={styles.bdRisk}><div className={styles.Risk}></div></div>
+              <div></div>
+
+              <div className={styles.secondContainer}>
+      
+                <div className={styles.business}>
+
               <div className={styles.profileItem}>
                 <label>Empresa</label>
                 <input
@@ -78,8 +94,38 @@ function User(){
                   name="company"
                   value={user.company}
                   onChange={handleChange}
-                />
-              </div>
+                /></div>
+
+                <div className={styles.profileItem}>
+                  <label>Filial</label>
+                  <input
+                    type="text"
+                    name="branch"
+                    value={user.branch}
+                    onChange={handleChange}
+                  /></div>
+
+                <div className={styles.profileItem}>
+                  <label>Departamento</label>
+                  <input
+                    type="text"
+                    name="department"
+                    value={user.department}
+                    onChange={handleChange}
+                  /></div>
+
+                    <div className={styles.profileItem}>
+                      <label>Categoria</label>
+                      <input
+                        type="text"
+                        name="category"
+                        value={user.category}
+                        onChange={handleChange}
+                      /></div>
+
+</div>
+
+              <div className={styles.information}>
               <div className={styles.profileItem}>
                 <label>Cargo</label>
                 <input
@@ -87,17 +133,9 @@ function User(){
                   name="position"
                   value={user.position}
                   onChange={handleChange}
-                />
-              </div>
-              <div className={styles.profileItem}>
-                <label>Filial</label>
-                <input
-                  type="text"
-                  name="branch"
-                  value={user.branch}
-                  onChange={handleChange}
-                />
-              </div>
+                /></div>
+
+
               <div className={styles.profileItem}>
                 <label>E-mail</label>
                 <input
@@ -107,15 +145,8 @@ function User(){
                   onChange={handleChange}
                 />
               </div>
-              <div className={styles.profileItem}>
-                <label>Departamento</label>
-                <input
-                  type="text"
-                  name="department"
-                  value={user.department}
-                  onChange={handleChange}
-                />
-              </div>
+              
+              
               <div className={styles.profileItem}>
                 <label>Telefone</label>
                 <input
@@ -123,29 +154,24 @@ function User(){
                   name="phone"
                   value={user.phone}
                   onChange={handleChange}
-                />
-              </div>
-              <div className={styles.profileItem}>
-                <label>Categoria</label>
-                <input
-                  type="text"
-                  name="category"
-                  value={user.category}
-                  onChange={handleChange}
-                />
-              </div>
-    
+                /></div>
+
               <div className={styles.actions}>
                 <NavLink to={`/editar-usuario`}>
-                  <button onClick={handleEdit}>EDITAR</button>
+                  <button id={styles.first} onClick={handleEdit}>EDITAR</button>
                 </NavLink>
     
                 <NavLink to={`/redefinir-senha`}>
-                  <button onClick={handleResetPassword}>REDEFINIR SENHA</button>
+                  <button id={styles.last} onClick={handleResetPassword}>REDEFINIR SENHA</button>
                 </NavLink>
               </div>
+</div>
+              </div>
+
+              </div>
+    
             </div>
-          </div>
+          
         </Container>
       );
     }

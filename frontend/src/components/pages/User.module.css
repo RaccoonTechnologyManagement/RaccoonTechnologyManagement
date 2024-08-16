@@ -1,149 +1,129 @@
-.profileContainer {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.firstContainer, .secondContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Permite que os itens se movam para uma nova linha em telas menores */
+}
+
+.firstContainer {
+  padding: 72px 111px 27px 119px;
+}
+
+.secondContainer {
+  padding: 57px 72px 52px 119px;
+}
+
+.profile, .business, .information {
+  width: 100%; /* Definido como 100% para telas pequenas */
+  max-width: 482px; /* Limite de largura para telas maiores */
+}
+
+.profile input, .business input, .information input {
+  z-index: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 20px;
   width: 100%;
-  height: 100%;
-  background-color: #0C0B0B;
-}
-
-.profileContainer h1{
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-
-.profile label {
-  margin-top: 1.5rem;
-}
-
-
-.profileGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.0rem;
-}
-
-.profileItem {
-  display: flex;
-  flex-direction: column;
-}
-
-.profileItem label {
-  margin-bottom: .8rem;
-  font-size: 1.4rem;
-  font-weight: bold;
-}
-
-.profileItem input {
-  width: 100%; 
-  max-width: 40.7rem;
-  padding: .8rem;
-  border: 1px solid #333;
-  border-radius: 1.0rem;
   background-color: #1F1F1F;
-  color: #ffffff;
-  font-size: 1.8rem;
-margin-bottom: 1.5rem;
+  color: #fff;
+  margin-bottom: 47px;
 }
 
-.profileAvatar {
-  display: area;
-  grid-column: span 1;
-  grid-row: span 1;
+.profileGrid label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.avatar {
+  width: 100%; /* Ajuste para telas pequenas */
+  max-width: 450px;
+  align-items: center;
   text-align: center;
-  margin-top: 103px;
+  height: auto; /* Altura ajustável */
+  margin-top: 40px;
 }
 
-
-
-.profileAvatar .active {
-  display: block;
-  margin-top: 10px;
+.active span {
   color: #00DC82;
+  font-size: 18px;
   font-weight: bold;
 }
 
-.profileAvatar span{
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-.actions {
+.bdRisk {
+  width: 100%;
   display: flex;
-  justify-content:center;
- 
+  align-items: center;
+  justify-content: center;
+}
+
+.Risk {
+  width: 100%;
+  height: 2px;
+  background-color: #1f1f1f;
 }
 
 .actions button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 2.3rem;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.actions button:first-child {
+#first, #last {
+  width: 100%; /* Ajustado para telas pequenas */
+  max-width: 40%;
+  padding: 10px;
+  margin-bottom: 10px;
   background-color: #0072DC;
-  color: #0C0B0B;
-  font-size: 1.2rem;
-  font-weight: bold;
-  width: 10.0rem;
-  height: 8.0rem;
-  border-radius: 20px;
-  margin-right: 18px;
-  height: 4.0rem;
-  width: 100%;
 }
 
-.actions button:last-child {
+#last {
   background-color: #00DC82;
-  color: #0C0B0B;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 20px;
-  height: 4.0rem;
-  width: 100%;
-
 }
 
-
+/* Media Queries para diferentes tamanhos de tela */
 @media (max-width: 768px) {
-  .profileGrid {
-    grid-template-columns: 1fr; 
-  }
-  
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
+  .firstContainer, .secondContainer {
+    padding: 40px 20px; /* Redução do padding em telas menores */
   }
 
-  .status {
-    grid-area: status;
-  }
-
-  .actions {
-    flex-direction: column;
-  }
-
-  .actions button {
+  .profile, .business, .information {
     width: 100%;
-    margin: 5px 0;
+  }
+
+  .avatar {
+    width: 100%;
+    height: auto;
+  }
+
+  #first, #last {
+    width: 100%;
+    margin-right: 0;
   }
 }
 
 @media (max-width: 480px) {
-  .group {
-    padding: 0;
+  h1 {
+    font-size: 24px; /* Reduzindo o tamanho da fonte em telas muito pequenas */
   }
 
-  .container {
-    padding: 10px;
+  .firstContainer, .secondContainer {
+    flex-direction: column; /* Itens empilhados verticalmente em telas menores */
+    align-items: flex-start;
+    padding: 20px;
   }
 
-  .status img {
-    width: 80px;
-  }
-
-  .profileItem input {
-    width: 100%;
-    max-width: none; 
+  .avatar {
+    margin-top: 20px;
   }
 }
