@@ -12,8 +12,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Permite que os itens se movam para uma nova linha em telas menores */
-}
+  flex-wrap: wrap; }
 
 .firstContainer {
   padding: 72px 111px 27px 119px;
@@ -24,8 +23,8 @@ h1 {
 }
 
 .profile, .business, .information {
-  width: 100%; /* Definido como 100% para telas pequenas */
-  max-width: 482px; /* Limite de largura para telas maiores */
+  width: 100%; 
+  max-width: 482px; 
 }
 
 .profile input, .business input, .information input {
@@ -45,11 +44,11 @@ h1 {
 }
 
 .avatar {
-  width: 100%; /* Ajuste para telas pequenas */
+  width: 100%; 
   max-width: 450px;
   align-items: center;
   text-align: center;
-  height: auto; /* Altura ajustável */
+  height: auto; 
   margin-top: 40px;
 }
 
@@ -80,21 +79,26 @@ h1 {
 }
 
 #first, #last {
-  width: 100%; /* Ajustado para telas pequenas */
+  width: 100%; 
   max-width: 40%;
   padding: 10px;
   margin-bottom: 10px;
   background-color: #0072DC;
 }
 
-#last {
-  background-color: #00DC82;
+#first{
+  margin-right: 18px;
 }
 
-/* Media Queries para diferentes tamanhos de tela */
+#last {
+  background-color: #00DC82;
+ 
+}
+
+
 @media (max-width: 768px) {
   .firstContainer, .secondContainer {
-    padding: 40px 20px; /* Redução do padding em telas menores */
+    padding: 40px 20px; 
   }
 
   .profile, .business, .information {
@@ -114,11 +118,11 @@ h1 {
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 24px; /* Reduzindo o tamanho da fonte em telas muito pequenas */
+    font-size: 24px; 
   }
 
   .firstContainer, .secondContainer {
-    flex-direction: column; /* Itens empilhados verticalmente em telas menores */
+    flex-direction: column; 
     align-items: flex-start;
     padding: 20px;
   }
