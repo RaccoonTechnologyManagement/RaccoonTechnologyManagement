@@ -76,7 +76,7 @@ function RedefinirSenha() {
       <div className={styles.passwordResetContainer}>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label>SENHA ANTIGA</label>
+            <label>Senha Antiga</label>
             <input
               type={visiblePasswords.oldPassword ? "text" : "password"}
               name="oldPassword"
@@ -93,7 +93,7 @@ function RedefinirSenha() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>NOVA SENHA</label>
+            <label>Nova Senha</label>
             <input
               type={visiblePasswords.newPassword ? "text" : "password"}
               name="newPassword"
@@ -110,7 +110,7 @@ function RedefinirSenha() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>CONFIRMAR SENHA</label>
+            <label>Confirmar Senha</label>
             <input
               type={visiblePasswords.confirmPassword ? "text" : "password"}
               name="confirmPassword"

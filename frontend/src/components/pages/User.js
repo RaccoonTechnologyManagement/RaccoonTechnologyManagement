@@ -3,6 +3,8 @@ import Container from "../layout/Container";
 import Racoon from "../../img/RACOON.svg";
 import styles from "../pages/User.module.css";
 import { NavLink } from "react-router-dom";
+import InputMask from "react-input-mask";
+
 
 function User(){
     const [user, setUser] = useState({
@@ -17,6 +19,17 @@ function User(){
         email: "",
         phone: "",
       });
+
+      function User() {
+        const [user, setUser] = useState({
+          phone: "",
+        });
+      
+        const handleChange = (e) => {
+          const { name, value } = e.target;
+          setUser({ ...user, [name]: value });
+        };
+      }      
     
       const handleChange = (e) => {
         const { name, value } = e.target;
@@ -149,12 +162,13 @@ function User(){
               
               <div className={styles.profileItem}>
                 <label>Telefone</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={user.phone}
-                  onChange={handleChange}
-                /></div>
+                <InputMask
+              mask="(99) 99999-9999"
+              type="tel"
+              name="phone"
+              value={user.phone}
+              onChange={handleChange}
+            /></div>
 
               <div className={styles.actions}>
                 <NavLink to={`/editar-usuario`}>

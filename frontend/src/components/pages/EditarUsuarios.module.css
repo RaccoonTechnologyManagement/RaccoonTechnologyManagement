@@ -1,153 +1,168 @@
-.profileContainer {
-  width: 100%;
-  height: 100%;
-  background-color: #0C0B0B;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.profileContainer h1 {
+h1 {
   text-align: center;
-  font-size: 2.5rem;
+}
+
+.firstContainer, .secondContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; 
+}
+
+.firstContainer {
+  padding: 72px 111px 27px 119px;
+}
+
+.secondContainer {
+  padding: 57px 72px 52px 119px;
+}
+
+.profile, .business, .information {
+  width: 100%; 
+  max-width: 482px; 
+}
+
+.profile input, .business input, .information input {
+  z-index: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  background-color: #1F1F1F;
+  color: #fff;
+  margin-bottom: 47px;
+}
+
+.profileGrid label {
+  font-size: 18px;
   font-weight: bold;
 }
 
-.profileGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.0rem;
+.avatar {
+  width: 100%; 
+  max-width: 450px;
+  align-items: center;
+  text-align: center;
+  height: auto; 
+  margin-top: 40px;
 }
 
-.profileItem {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.profileItem label {
-  margin-bottom: .8rem;
-  font-size: 1.4rem;
+.active span {
+  color: #00DC82;
+  font-size: 18px;
   font-weight: bold;
+}
+
+.bdRisk {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Risk {
+  width: 100%;
+  height: 2px;
+  background-color: #1f1f1f;
+}
+
+.actions button {
+  text-align: center;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 35px;
+}
+
+
+
+.profileItem input{
+  margin-top: 15px;
+}
+
+
+#first, #last {
+  width: 100%; 
+  max-width: 40%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #0072DC;
+  cursor: pointer;
+
+}
+#first:hover,
+#last:hover{
+  opacity: 0.8;
+}
+
+
+
+#first{
+  margin-right: 18px;
+}
+
+#last {
+  background-color: #DC0000;
 }
 
 .inputContainer {
-  display: flex;
-  align-items: center;
   position: relative;
-}
 
-input {
-  width: 100%;
-  max-width: 407px;
-  padding: 8px;
-  padding-right: 30px; 
-  border: 1px solid #333;
-  border-radius: 1.0rem;
-  background-color: #1F1F1F;
-  color: #ffffff;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
 }
 
 .lockIcon {
   position: absolute;
-  right: 1rem;
-  top: 50%;
+  right: 15px; 
+  top: 47%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  pointer-events: none;
+  width: 20px; 
+  height: 20px; 
 }
 
-.profileAvatar {
-  display: area;
-  grid-column: span 1;
-  grid-row: span 1;
-  text-align: center;
-  margin-top: 103px;
-}
 
-.profileAvatar .active {
-  display: block;
-  margin-top: 10px;
-  color: #00DC82;
-  font-weight: bold;
-}
-
-.profileAvatar span {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-.actions {
-  display: flex;
-  justify-content: center;
-}
-
-.actions button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 2.3rem;
-}
-
-.actions button:first-child {
-  background-color: #0072DC;
-  color: #0C0B0B;
-  font-size: 1.2rem;
-  font-weight: bold;
-  width: 10.0rem;
-  height: 4.0rem;
-  border-radius: 20px;
-  margin-right: 18px;
-}
-
-.actions button:last-child {
-  background-color: #DC0000;
-  color: #0C0B0B;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 20px;
-  height: 4.0rem;
-}
-
-@media (max-width: 768px) {
-  .profileGrid {
-    grid-template-columns: 1fr; 
-  }
-
-  .header {
+@media (max-width: 1357px) {
+  .firstContainer, .secondContainer {
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px; 
   }
 
-  .status {
-    grid-area: status;
-  }
-
-  .actions {
-    flex-direction: column;
-  }
-
-  .actions button {
+  .profile, .business, .information {
     width: 100%;
-    margin: 5px 0;
+  }
+
+  .avatar {
+    width: 100%;
+    height: auto;
+  }
+
+  #first, #last {
+    width: 100%;
+    margin-right: 0;
+  }
+  #first{
+    margin-right: 50px;
   }
 }
 
 @media (max-width: 480px) {
-  .group {
-    padding: 0;
+  h1 {
+    font-size: 24px; 
   }
 
-  .container {
-    padding: 10px;
+  .firstContainer, .secondContainer {
+    flex-direction: column; 
+    align-items: center;
+    padding: 20px;
   }
 
-  .status img {
-    width: 80px;
-  }
-
-  .profileItem input {
-    width: 100%;
-    max-width: none; 
+  .avatar {
+    margin-top: 20px;
   }
 }
