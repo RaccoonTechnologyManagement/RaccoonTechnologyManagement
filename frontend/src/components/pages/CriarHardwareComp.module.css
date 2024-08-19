@@ -1,0 +1,113 @@
+/* Formulário para criação de Ativos Hardware */
+
+.assetFormContainer {
+    background-color: #111;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.assetFormWrapper { /* VERIFICAR AQUI NO WRAPPER A CONDIÇÃO PRA ALINHAR AO CENTRO */
+    padding: 20px; /* Reduz o padding para diminuir o tamanho */
+    border-radius: 10px;
+    max-width: 600px; /* Reduz a largura máxima */
+    width: 100%;
+}
+
+.assetFormTitle {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.assetForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+}
+
+
+.assetFormGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.assetFormGroupTest {
+    display: flex;
+    flex-direction: column;
+}
+
+.assetFormGroup label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.assetFormGroup input,
+.assetFormGroup select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1F1F1F;
+    color: #fff;
+}
+
+
+.assetFormGroup input[type="text"] {
+    width: 100%;
+}
+
+.assetFormGroup textarea {
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1F1F1F;
+    color: #fff;
+    resize: none;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: 10px; /* Espaçamento entre os botões */
+    margin-top: 20px; /* Espaçamento acima dos botões */
+}
+
+.createButton {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: #00DC82;
+    color: #0C0B0B;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.createButton:hover {
+    background-color: #00DC82;
+}
+
+.cancelButton {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: #DC0000;
+    color: #0C0B0B;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancelButton:hover {
+    background-color: #DC0000;
+}
+

@@ -64,12 +64,12 @@ function AtivosInicial (){
 
                   <td className={styles.licencas}>
                     {item.lict === '10'?
-                    <div className={styles.userativo}>10</div>: ''}   
+                    <div className={styles.totallicencas}>10</div>: ''}   
                   </td>
 
                   <td className={styles.licencas}>
                     {item.licr === '07'? 
-                    <div className={styles.userativo}>07</div>: ''}
+                    <div className={styles.totallicencas}>07</div>: ''}
                   </td>
 
                   

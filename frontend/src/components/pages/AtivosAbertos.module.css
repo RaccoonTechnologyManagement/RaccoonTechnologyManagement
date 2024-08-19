@@ -29,6 +29,7 @@
         
 }
 
+.totallicencas,
 .userativo,
 .userinativo{
     font-weight: bold;
@@ -41,13 +42,21 @@
 }
 
 .userativo{
-    background-color: #020202;
+    background-color: #00DC82;
     color: #f6f6f6;
 }
 .userinativo{
-    background-color: #f6f6f6;
-    color: #020202;
+    background-color: #EE8282;
+    color: #f6f6f6;
 }
+
+.totallicencas{
+    background-color: #1F1F1F;
+    color: #f6f6f6;
+}
+
+
+
 
 .colums{
     display: flex;
@@ -79,4 +88,5 @@
 .licencas{
     height: 2em;
     border-bottom: 2px solid #292929;
+    
 }
