@@ -1,6 +1,6 @@
 /* Formulário para criação de Ativos Hardware */
 
-.assetFormContainer {
+.assetFormContainer { /* Aqui ja é mexer com gente grande, cuidado, aqui é o Pai da criança */
     background-color: #111;
     font-family: Arial, sans-serif;
     color: #fff;
@@ -12,37 +12,40 @@
     height: 100vh;
 }
 
-.assetFormWrapper { /* VERIFICAR AQUI NO WRAPPER A CONDIÇÃO PRA ALINHAR AO CENTRO */
+.assetFormWrapper { /* VERIFICAR AQUI NO WRAPPER A CONDIÇÃO PRA ALINHAR AO CENTRO, aqui é BO, é o Pai da parada */
     padding: 20px; /* Reduz o padding para diminuir o tamanho */
     border-radius: 10px;
-    max-width: 600px; /* Reduz a largura máxima */
+    max-width: 700px; /* Reduz a largura máxima */
     width: 100%;
+    margin: 0 auto;
 }
 
-.assetFormTitle {
+.assetFormTitle { /*Aqui é pro famoso h1, padrãozin*/
     text-align: center;
     margin-bottom: 20px;
     font-size: 18px;
 }
 
-.assetForm {
+.assetForm { /* Aqui ja é mexer com gente grande, cuidado, aqui é para add a quantidade de colunas e layout */
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 35px;
+    grid-template-columns: 1fr 1fr; /* aqui informa quantas colunas o formulario vai ter, no meu caso duas */
+    gap: 35px; /*Pelo que entendi distancia os campos em sentido vertical */
 }
 
 
-.assetFormGroup {
+.assetFormGroup { /* Aqui ja é mexer com gente grande, cuidado, aqui é para direcionar as colunas */
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.assetFormGroupTest { /*Aqui coloquei pra testar uma coisa, não estou usando mais*/
     display: flex;
     flex-direction: column;
 }
 
-.assetFormGroupTest {
-    display: flex;
-    flex-direction: column;
-}
-
-.assetFormGroup label {
+.assetFormGroupFullWidth,
+.assetFormGroup label { /*Aqui é pras labels, padrãozin*/
     margin-bottom: 5px;
     font-size: 14px;
     font-weight: bold;
@@ -50,7 +53,7 @@
 
 
 .assetFormGroup input,
-.assetFormGroup select {
+.assetFormGroup select { /*Texto dos selects, padrãozin*/
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -59,11 +62,12 @@
 }
 
 
-.assetFormGroup input[type="text"] {
+.assetFormGroup input[type="text"] { /*Texto dos inputs, padrãozin*/
     width: 100%;
 }
 
-.assetFormGroup textarea {
+
+.assetFormGroup textarea { /*Aqui é o antigo text area do campo Anotação, !!!Não estou utilziando mais!!! Mas quero deixa pra consulta!!*/
     margin-bottom: 5px;
     padding: 10px;
     border-radius: 5px;
@@ -73,14 +77,14 @@
     resize: none;
 }
 
-.buttonGroup {
+.buttonGroup { /*Para alinhamento dos botões*/
     display: flex;
     justify-content: flex-end; /* Alinha os botões à direita */
     gap: 10px; /* Espaçamento entre os botões */
     margin-top: 20px; /* Espaçamento acima dos botões */
 }
 
-.createButton {
+.createButton { /*Botão Criar*/
     padding: 10px 20px;
     border-radius: 15px;
     border: none;
@@ -92,11 +96,11 @@
     margin-right: 10px;
 }
 
-.createButton:hover {
+.createButton:hover { /*Botão Criar*/
     background-color: #00DC82;
 }
 
-.cancelButton {
+.cancelButton { /*Botão Cancelar*/
     padding: 10px 20px;
     border-radius: 15px;
     border: none;
@@ -107,7 +111,37 @@
     font-size: 16px;
 }
 
-.cancelButton:hover {
+.cancelButton:hover {/*Botão Cancelar*/
     background-color: #DC0000;
 }
+
+/* Classe criada separadamente para o "Anotação" ocupar largura total */
+.assetFormGroupFullWidth {
+    grid-column: 1 / -1; /* Faz o grupo ocupar toda a largura do grid */
+    width: 100%;    
+}
+
+/* Classe separa para o campo de texto de largura total, assim achei mais facil editar separadamente*/
+.fullWidth {
+    width: 100%; /* Garante que o campo ocupe 100% da largura disponível */
+    resize: none;
+    background-color: #1F1F1F; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    padding: 10px; /* Padding para o campo */
+    border-radius: 5px; /* Bordas arredondadas */
+    border: none; /* Remove a borda padrão */
+}
+
+.assetFormGroupFullWidth label {
+    margin-bottom: 5px; /* Espaçamento inferior */
+    font-size: 14px; /* Tamanho da fonte */
+    font-weight: bold; /* Estilo da fonte */
+    color: #fff; /* Cor do texto */
+    padding-bottom: 0px; /* Espaçamento inferior */
+    display: block; /* Garante que o label ocupe toda a largura disponível */
+}
+
+
+
+
 
