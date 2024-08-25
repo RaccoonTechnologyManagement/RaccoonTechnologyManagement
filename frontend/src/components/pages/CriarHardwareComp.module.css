@@ -141,6 +141,30 @@
     display: block; /* Garante que o label ocupe toda a largura disponível */
 }
 
+.popup { /* Pop up de ativo criado*/
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+}
+
+.errorInput { /* Teste para borda de campo ficar vermelha, não estou utilizando */
+    border: 2px solid red;
+}
+
+.errorText { /* Formatação para testo de campo obrigatorio */
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
 
 
 

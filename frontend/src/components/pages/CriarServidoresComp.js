@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import styles from './CriarHardwareComp.module.css';
 
-function CriarHardwareComp() {
-    const [showLocalizacao, setShowLocalizacao] = useState(true);
+function CriarServidoresComp() {
     const [showPopup, setShowPopup] = useState(false);
     const [errors, setErrors] = useState({}); // Estado para armazenar erros de validação
 
     const handleIPv4Change = (event) => {
         const { value } = event.target;
-        // Remove caracteres que não são números e permite o caracter de ponto final
+        // Remove caracteres que não são números
         const numericValue = value.replace(/[^0-9.]/g, '');
         event.target.value = numericValue;
     };
 
     const handleCancel = () => {
-        setErrors({}); // Limpa os erros ao clicar botão cancelar cancelar
+        setErrors({}); // Limpa os erros ao cancelar
         document.getElementById('monitorar').value = '';
         document.getElementById('status').value = '';
         document.getElementById('categoria').value = '';
@@ -29,9 +28,8 @@ function CriarHardwareComp() {
         document.getElementById('mac-wifi').value = '';
         document.getElementById('empresa').value = '';
         document.getElementById('sede').value = '';
-        if (showLocalizacao) {
-            document.getElementById('localizacao').value = '';
-        }
+        document.getElementById('localizacao').value = '';
+        document.getElementById('departamento').value = '';
         document.getElementById('user').value = '';
         document.getElementById('anotacao').value = '';
     };
@@ -77,7 +75,7 @@ function CriarHardwareComp() {
             macWifi: document.getElementById('mac-wifi').value,
             empresa,
             sede,
-            localizacao: showLocalizacao ? document.getElementById('localizacao').value : '',
+            localizacao: document.getElementById('localizacao').value,
             user: document.getElementById('user').value,
             anotacao: document.getElementById('anotacao').value,
         };
@@ -87,14 +85,9 @@ function CriarHardwareComp() {
         setShowPopup(true);
         handleCancel();
 
-        setTimeout(() => { // Tempo de popup
+        setTimeout(() => { // Tempo de popuo
             setShowPopup(false);
         }, 3000);
-    };
-
-    const handleCategoriaChange = (event) => { // Evento para quando selecionado periferico esconder o localização
-        const categoria = event.target.value;
-        setShowLocalizacao(categoria !== 'periferico');
     };
 
     return (
@@ -120,11 +113,12 @@ function CriarHardwareComp() {
                     </div>
                     <div className={styles.assetFormGroup}>
                         <label htmlFor="categoria">CATEGORIA</label>
-                        <select id="categoria" name="categoria" onChange={handleCategoriaChange} className={errors.categoria ? styles.errorInput : ''}>
+                        <select id="categoria" name="categoria" className={errors.categoria ? styles.errorInput : ''}>
                             <option value=""></option>
-                            <option value="periferico">PERIFÉRICO</option>
-                            <option value="hardware">HARDWARE</option>
-                            <option value="rede">REDE</option>
+                            <option value="backup">BACKUP</option>
+                            <option value="ad">AD</option>
+                            <option value="aplicacao">APLICAÇÃO</option>
+                            <option value="storage">STORAGE</option>
                         </select>
                         {errors.categoria && <span className={styles.errorText}>{errors.categoria}</span>}
                     </div>
@@ -186,12 +180,19 @@ function CriarHardwareComp() {
                         </select>
                         {errors.sede && <span className={styles.errorText}>{errors.sede}</span>}
                     </div>
-                    {showLocalizacao && (
                     <div className={styles.assetFormGroup}>
                         <label htmlFor="localizacao">LOCALIZAÇÃO</label>
                         <input type="text" id="localizacao" name="localizacao" />
                     </div>
-                    )}
+                    <div className={styles.assetFormGroup}>
+                        <label htmlFor="departamento">DEPARTAMENTO</label>
+                        <select id="departamento" name="departamento">
+                            <option value=""></option>
+                            <option value="departamento1">FISCAL</option>
+                            <option value="departamento2">TI</option>
+                            <option value="departamento3">RH</option>
+                        </select>
+                    </div>
                     <div className={styles.assetFormGroup}>
                         <label htmlFor="user">USUARIO</label>
                         <select id="user" name="user">
@@ -222,4 +223,4 @@ function CriarHardwareComp() {
     );
 }
 
-export default CriarHardwareComp;
+export default CriarServidoresComp;
