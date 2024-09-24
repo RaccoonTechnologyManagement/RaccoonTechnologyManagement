@@ -19,7 +19,7 @@ class personController {
         });
 
         if(!(await schema.isValid(req.body))){
-            return res.status(400).json({ error: 'Prenecha os campos obrigatórios' });
+            return res.status(400).json({ error: 'Preencha os campos obrigatórios' });
         }
 
         const userExist = await Person.findOne({
