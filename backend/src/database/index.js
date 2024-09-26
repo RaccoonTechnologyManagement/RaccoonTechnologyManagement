@@ -5,11 +5,13 @@ import databaseConfig from '../config/database';
 import User from '../app/models/user';
 import Person from '../app/models/person';
 import Ticket from '../app/models/ticket';
+import CategorysTickets from '../app/models/categorysTickets';
 
 const models = [
 	User,
 	Person,
-	Ticket
+	Ticket,
+	CategorysTickets
 ]
 
 // Carregando nossos Models

@@ -16,7 +16,7 @@ class ticketController {
 
         const ticket = await Ticket.create({
             title: req.body.title,
-            description: req.body.description,
+            description: req.body.description
         });
 
         return res.json(ticket);
