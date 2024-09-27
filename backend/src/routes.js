@@ -28,7 +28,11 @@ routes.post('/persons', personController.store);
 routes.get('/persons', personController.index);
 routes.post('/tickets', ticketController.store);
 routes.post('/categorysTickets', categorysTicketsController.store);
+
 routes.post('/relCategorysTickets', relCategorysTicketsController.store);
+routes.get('/relCategorysTickets', relCategorysTicketsController.index);
+routes.put('/relCategorysTickets', relCategorysTicketsController.update);
+routes.delete('/relCategorysTickets', relCategorysTicketsController.delete);
 
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);

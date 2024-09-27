@@ -81,8 +81,6 @@ class UserController {
                     return res.status(400).json({ error: 'Usuario já existe '})
                 }
             }
-    
-            console.log('A variável está definida');
         }
 
         // Verifica se tem parametro "oldPassword" nova na requisição
