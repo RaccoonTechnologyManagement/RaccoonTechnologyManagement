@@ -9,6 +9,7 @@ import sessionController from './app/controllers/sessionController';
 import personController from './app/controllers/personController';
 import ticketController from './app/controllers/ticketController';
 import categorysTicketsController from './app/controllers/categorysTicketsController';
+import relCategorysTicketsController from './app/controllers/relCategorysTicketsController';
 
 
 const routes = new Router();
@@ -27,6 +28,7 @@ routes.post('/persons', personController.store);
 routes.get('/persons', personController.index);
 routes.post('/tickets', ticketController.store);
 routes.post('/categorysTickets', categorysTicketsController.store);
+routes.post('/relCategorysTickets', relCategorysTicketsController.store);
 
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);
