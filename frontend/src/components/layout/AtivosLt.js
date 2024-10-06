@@ -10,7 +10,7 @@ function AtivosLt (props){
 
             <h2 className={styles.title}>ATIVOS</h2>
             <div className={styles.borderButton}>
-                <NavLink to={`/ativos/criar`}>
+                <NavLink to={`/ativos/criar/hardware`}>
                     <button>CRIAR ATIVO</button>
                 </NavLink> 
               

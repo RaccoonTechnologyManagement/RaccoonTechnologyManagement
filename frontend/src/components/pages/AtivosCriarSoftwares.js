@@ -1,14 +1,11 @@
 import CriarAtivo from "../layout/CriarAtivo";
-import styles from '../pages/AtivosCriar.module.css';
+import CriarSoftwareComp from "./CriarSoftwareComp";
+
 
 function AtivosCriarSoftwares () {
     return (
         <CriarAtivo>
-
-            <div className={styles.Teste}>
-                CRIAR ATIVO
-            </div>
-
+            <CriarSoftwareComp/>
         </CriarAtivo>
     )
 }
