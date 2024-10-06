@@ -1,15 +1,72 @@
+.mainContainerCenter{
+    display: flex;
+    justify-content: center;
+}
+.containerCenter{
+    width: 60%;
+    @media screen and (max-width: 1200px) {
+        width: 80%;
+    }
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
 .title{
     width: 100%;
     font-size: 14px;
     padding-bottom: 7px;
+    font-weight: bold;
+    
+}
+.ticketNumber{
+    width: 100%;    
+    display: flex;
+    justify-content: center;
     border-bottom: 2px solid #292929;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+.ticketInputsDouble{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas com o mesmo tamanho */
+    grid-gap: 50px;
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        grid-gap: 0px;
+    }
+}
+
+
+.ticketInputs label{
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+}
+
+.ticketInputs,
+.ticketInputsDouble{
+    margin-bottom: 10px;
+    max-width: 700px;
+}
+
+.ticketInputs input{
+    margin-top: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #1F1F1F;
+    color: #fff;
     margin-bottom: 10px;
 }
 
 .chat{
+    border-top: 2px solid #292929;
     width: 100%;
-    min-height: 200px;
-    max-height: 300px;
+    min-height: 150px;
+    max-height: 250px;
     overflow-y: scroll;
     scrollbar-width: 30px;
     scrollbar-color: #333333 #000000; /* Define a cor da barra de scroll (cor do thumb e cor de fundo) */  
@@ -29,13 +86,13 @@
 
 .userLogged{
     align-self: flex-end;
-    padding: 2px 15px;
+    padding: 5px 15px;
     font-weight: bold;
 }
 
 .user{
     align-self: flex-start;
-    padding: 2px 15px;
+    padding: 5px 15px;
     font-weight: bold;
 }
 
@@ -55,6 +112,7 @@
 .messageLogged{
     align-self: flex-end;
 }
+
 
 .containerInput{
     position: relative;
@@ -80,6 +138,32 @@
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
+    cursor: pointer;
 }
-  
 
+.assetFormGroupFullWidth{ /*Aqui é pras labels, padrãozin*/
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    grid-column: 1 / -1; /* Faz o grupo ocupar toda a largura do grid */
+    width: 100%;
+    margin-bottom: 20px;
+}
+.assetFormGroupFullWidth label {
+    margin-bottom: 5px; /* Espaçamento inferior */
+    font-size: 14px; /* Tamanho da fonte */
+    font-weight: bold; /* Estilo da fonte */
+    color: #fff; /* Cor do texto */
+    padding-bottom: 0px; /* Espaçamento inferior */
+    display: block; /* Garante que o label ocupe toda a largura disponível */
+}
+
+.fullWidth {
+    width: 100%; /* Garante que o campo ocupe 100% da largura disponível */
+    resize: none;
+    background-color: #1F1F1F; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    padding: 10px; /* Padding para o campo */
+    border-radius: 5px; /* Bordas arredondadas */
+    border: none; /* Remove a borda padrão */
+}
