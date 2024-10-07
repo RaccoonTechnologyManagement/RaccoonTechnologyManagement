@@ -3,7 +3,7 @@
     justify-content: center;
 }
 .containerCenter{
-    width: 50%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,20 +32,10 @@
     padding-bottom: 5px;
 }
 
-.ticketNumber h2,
-.ticketNumber span{
-    font-size: 20px;
-}
-
-.ticketNumber span{
-    color: rgb(255, 145, 0);
-}
-
-.formTicket{
-    width: 100%;
+.ticketInputsDouble{
     display: grid;
     grid-template-columns: 1fr 1fr; /* Duas colunas com o mesmo tamanho */
-    grid-gap: 5px 50px;
+    grid-gap: 50px;
 
     @media screen and (max-width: 768px) {
         grid-template-columns: 1fr; /* Uma coluna em telas menores */
@@ -59,13 +49,13 @@
     padding-bottom: 10px;
 }
 
-.ticketInputs{
+.ticketInputs,
+.ticketInputsDouble{
     margin-bottom: 10px;
     max-width: 700px;
 }
 
-.ticketInputs input,
-.ticketInputs select{
+.ticketInputs input{
     margin-top: 5px;
     padding: 10px;
     border: none;
@@ -76,27 +66,11 @@
     margin-bottom: 10px;
 }
 
-input[type="text"]:disabled,
-input[type="date"]:disabled,
-select:disabled{
-    cursor: not-allowed;
-    color: #6E6E6E;
-}
-
-.assetFormGroupFullWidth textarea:disabled{
-    cursor: not-allowed;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    background-color: #707070;
-  }
-  
-
 .chat{
     border-top: 2px solid #292929;
     width: 100%;
-    height: 170px;
-    max-height: 170px;
+    min-height: 150px;
+    max-height: 250px;
     overflow-y: scroll;
     scrollbar-width: 30px;
     scrollbar-color: #333333 #000000; /* Define a cor da barra de scroll (cor do thumb e cor de fundo) */  
@@ -124,7 +98,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-self: flex-start;
     padding: 5px 15px;
     font-weight: bold;
-    font-size: 14px;
 }
 
 .message,
@@ -138,7 +111,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 25px;
     align-self: flex-start;
     background-color: #1F1F1F;
-    font-size: 14px;
 }
 
 .messageLogged{
@@ -198,62 +170,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 10px; /* Padding para o campo */
     border-radius: 5px; /* Bordas arredondadas */
     border: none; /* Remove a borda padrão */
-}
-
-.buttonGroup { /*Para alinhamento dos botões*/
-    width: 100%;
-    display: flex;
-    justify-content: space-between; /* Alinha os botões à direita */
-    margin-top: 20px; /* Espaçamento acima dos botões */
-    @media screen and (max-width: 650px) {
-        align-items: center;
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-
-.boxLeftButtonGroup,
-.boxRightButtonGroup{
-    display: flex;
-    align-items: center;
-}
-
-.createButton,
-.cancelButton,
-.saveButton,
-.deleteButton { 
-    padding: 10px 20px;
-    border-radius: 15px;
-    border: none;
-    background-color: #DC0000;
-    color: #0C0B0B;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 15px;
-}
-
-.createButton{
-    background-color: #00DC82;
-}
-
-.createButton:hover { 
-    background-color: #62dba9;
-}
-
-.cancelButton,
-.buttonGroup img{
-    background-color: #DC0000;
-}
-.cancelButton:hover,
-.buttonGroup img:hover{
-    background-color: #d63737;
-}
-
-.saveButton{
-    background-color: #0072DC;
-}
-
-.saveButton:hover{
-    background-color: #438bce;
 }
