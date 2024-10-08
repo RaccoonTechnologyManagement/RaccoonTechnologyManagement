@@ -10,6 +10,7 @@ import RelCategorysTickets from '../app/models/relCategorysTickets';
 import CategorysPersons from '../app/models/categorysPersons';
 import RelCategorysPersons from '../app/models/relCategorysPersons';
 import RelPersonsTickets from '../app/models/relPersonsTickets';
+import CommentsTickets from '../app/models/commentsTickets';
 
 const models = [
 	User,
@@ -19,7 +20,8 @@ const models = [
 	RelCategorysTickets,
 	CategorysPersons,
 	RelCategorysPersons,
-	RelPersonsTickets
+	RelPersonsTickets,
+	CommentsTickets
 ]
 
 // Carregando nossos Models

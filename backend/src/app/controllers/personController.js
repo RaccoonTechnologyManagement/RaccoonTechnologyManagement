@@ -11,6 +11,14 @@ class personController {
         return res.json(persons);
     }
 
+    async getPersonByUserId(userId) {
+        const persons = await Person.findAll({
+            where: { id_user: userId }
+        });
+
+        return persons[0].dataValues.id;
+    }
+
     async store(req, res) {
         const schema = Yup.object().shape({
             name: Yup.string().required(),

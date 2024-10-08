@@ -12,7 +12,8 @@ import categorysTicketsController from './app/controllers/categorysTicketsContro
 import relCategorysTicketsController from './app/controllers/relCategorysTicketsController';
 import categorysPersonsController from './app/controllers/categorysPersonsController';
 import relCategorysPersonsController from './app/controllers/relCategorysPersonsController';
-import relPersonsTickets from './app/controllers/relPersonsTickets';
+import relPersonsTicketsController from './app/controllers/relPersonsTickets';
+import commentsTicketsController from './app/controllers/commentsTicketsController';
 
 const routes = new Router();
 
@@ -40,7 +41,10 @@ routes.post('/categorysPersons', categorysPersonsController.store);
 
 routes.post('/relCategorysPersons', relCategorysPersonsController.store);
 
-routes.post('/relPersonsTickets', relPersonsTickets.store);
+routes.post('/relPersonsTickets', relPersonsTicketsController.store);
+
+routes.post('/commentsTickets', commentsTicketsController.store)
+routes.get('/commentsTickets', commentsTicketsController.index)
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);
 

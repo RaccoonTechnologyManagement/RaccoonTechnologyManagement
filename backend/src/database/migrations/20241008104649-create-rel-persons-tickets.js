@@ -13,7 +13,7 @@ module.exports = {
 				autoIncrement: true,
 				primaryKey: true,
 			 },
-       id_ticket: {
+       		 id_ticket: {
 				type: Sequelize.INTEGER,
 				references: { model: 'tickets', key: 'id'},
 				onUpdate: 'CASCADE',
@@ -27,13 +27,13 @@ module.exports = {
 				onDelete: 'SET NULL',
 				allowNull: false
 			},
-        id_person_accountable: {
-        type: Sequelize.INTEGER,
-        references: { model: 'persons', key: 'id'},
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: false
-      },
+			 id_person_accountable: {
+				type: Sequelize.INTEGER,
+				references: { model: 'persons', key: 'id'},
+				onUpdate: 'CASCADE',
+				onDelete: 'SET NULL',
+				allowNull: false
+			},
 			 created_at: {
 				type: Sequelize.DATE,
 				allowNull: false
