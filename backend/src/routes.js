@@ -10,7 +10,9 @@ import personController from './app/controllers/personController';
 import ticketController from './app/controllers/ticketController';
 import categorysTicketsController from './app/controllers/categorysTicketsController';
 import relCategorysTicketsController from './app/controllers/relCategorysTicketsController';
-
+import categorysPersonsController from './app/controllers/categorysPersonsController';
+import relCategorysPersonsController from './app/controllers/relCategorysPersonsController';
+import relPersonsTickets from './app/controllers/relPersonsTickets';
 
 const routes = new Router();
 
@@ -34,6 +36,11 @@ routes.get('/relCategorysTickets', relCategorysTicketsController.index);
 routes.put('/relCategorysTickets', relCategorysTicketsController.update);
 routes.delete('/relCategorysTickets', relCategorysTicketsController.delete);
 
+routes.post('/categorysPersons', categorysPersonsController.store);
+
+routes.post('/relCategorysPersons', relCategorysPersonsController.store);
+
+routes.post('/relPersonsTickets', relPersonsTickets.store);
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);
 

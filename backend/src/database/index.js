@@ -7,13 +7,19 @@ import Person from '../app/models/person';
 import Ticket from '../app/models/ticket';
 import CategorysTickets from '../app/models/categorysTickets';
 import RelCategorysTickets from '../app/models/relCategorysTickets';
+import CategorysPersons from '../app/models/categorysPersons';
+import RelCategorysPersons from '../app/models/relCategorysPersons';
+import RelPersonsTickets from '../app/models/relPersonsTickets';
 
 const models = [
 	User,
 	Person,
 	Ticket,
 	CategorysTickets,
-	RelCategorysTickets
+	RelCategorysTickets,
+	CategorysPersons,
+	RelCategorysPersons,
+	RelPersonsTickets
 ]
 
 // Carregando nossos Models
