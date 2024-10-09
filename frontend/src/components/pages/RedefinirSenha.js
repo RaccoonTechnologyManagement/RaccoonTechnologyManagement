@@ -127,12 +127,16 @@ function RedefinirSenha() {
             />
           </div>
           <footer className={styles.buttongroup}>
+          <NavLink to={`/user`}>
             <button type="submit" className={styles.resetButton}>
               REDEFINIR
             </button>
+            </NavLink>
+            <NavLink to={`/user`}>
             <button type="button" className={styles.cancelButton}>
               CANCELAR
             </button>
+            </NavLink>
           </footer>
         </form>
         <p className={`${styles.message} ${message ? styles.show : ""} ${messageType === "error" ? styles.error : ""}`}>

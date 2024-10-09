@@ -1,0 +1,78 @@
+.Tabela {
+    width: 100%;
+    border-collapse: collapse; 
+}
+
+.tabelaCabecalho {
+    text-align: left;
+    border-bottom: 2px solid #292929;
+}
+
+.tabelaCabecalhoItens {
+    padding: 15px 0;  
+    border-bottom: 2px solid #292929; 
+    
+     
+}
+
+
+.altaPrioridade {
+    margin-top: 10px;
+    background-color: #EE8282; 
+    color: white;
+    font-weight: bold;
+    width: 5em;
+    height: 2em;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mediaPrioridade {
+    margin-top: 10px;
+    background-color: #fdd663; 
+    color: white;
+    font-weight: bold;
+    width: 5em;
+    height: 2em;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.pages button {
+    background-color: rgb(99, 99, 99);
+    width: 30px;
+    height: 30px;
+    border: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    gap: 10px;
+    cursor: pointer;
+}
+
+.pages button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pages span {
+    font-size: 14px;
+    color: #333;
+}
