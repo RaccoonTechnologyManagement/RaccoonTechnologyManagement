@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { getComments, insertComments } from '../data/api'
 import styles from '../pages/ChamadosEdit.module.css'
 import Container from '../layout/Container'
 import { useEffect, useRef, useState } from 'react';
@@ -9,7 +11,6 @@ function ChamadosEdit(){
   const chatRef = useRef();
 
   const scrollBelow = () => {
-    // Rola para baixo automaticamente
     chatRef.current.scrollTop = chatRef.current.scrollHeight;
   };
 
@@ -39,6 +40,75 @@ function ChamadosEdit(){
   const dataFormatada = parseDate(ticket.data);
   const dataPrazoFormatada = parseDate(ticket.dataprazo);
 
+  const id_ticket = 5;
+
+  async function inserirComentarios(data)
+  {
+    try
+    {
+        insertComments(data);
+    }
+    catch(erro)
+    {
+        return [];
+    }
+  }
+
+  async function carregarComentarios()
+  {
+    try
+    {
+        let comments = await getComments(id_ticket);
+        let commentsFormated = await formataComentariosCarregadas(comments);
+
+        return commentsFormated;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+  }
+
+  async function formataComentariosCarregadas(messagens)
+  {
+    try
+    {
+      return axios.get(`http://localhost:3333/persons`, {
+        headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzI4NjA0MjE5LCJleHAiOjE3Mjg2OTA2MTl9.8CLLcC5g74GiPAQPq2TxrVpjGgSFqLf-rkzbyNTDYyk`
+          }
+        })
+        .then(response => {
+          let mensagensFormatadas = messagens.map(mensagem => 
+            {
+              return {
+                logged: validaUsuarioLogado(mensagem.id_person, response.data[0]['id']),
+                usuario: mensagem.person.name,
+                texto: mensagem.comment
+              };
+            });
+
+          return mensagensFormatadas;
+       })
+    }
+    catch(erro)
+    {
+      return [];
+    }
+  }
+
+  function validaUsuarioLogado(idUserMessagem, idUserLogged)
+  {
+    if(idUserMessagem === idUserLogged)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
   function parseDate(dateString) {
     const parts = dateString.split('/');
     if (parts.length === 3) {
@@ -53,25 +123,44 @@ function ChamadosEdit(){
       setTicket({ ...ticket, [name]: value });
     };
   
-  const [mensagens, setMensagens] = useState([
+    const [mensagens, setMensagens] = useState([
     {
-      logged: false,
-      usuario: 'asd.dumontt',
-      texto: 'Olá! Estou enfrentando problemas para acessar o sistema.',
+        logged: false,
+        usuario: '',
+        texto: '',
     }
   ]);
+
+  useEffect(() => {
+    const inserirComentariosCarregados = async () => {
+      const comentarios = await carregarComentarios();
+      if(comentarios.length > 0)
+      {
+        setMensagens(comentarios);
+      }
+    };
+
+    inserirComentariosCarregados();
+  }, []);
 
   const userLogged = 'gui.araujo' //puxar do login
   const handleEnviarMensagem = () => {
     if (novaMensagem.trim() === '') return; // Ignora mensagens vazias
 
-    const novaMensagemObj = {
+    const novoComentario = {
       logged: true,
-      usuario: userLogged, // usuário logado
+      usuario: userLogged,
       texto: novaMensagem,
     };
 
-    setMensagens([...mensagens, novaMensagemObj]); // Atualiza o estado com a nova mensagem
+    const data = {
+      id_ticket: id_ticket,
+      comment: novaMensagem
+    }
+
+    inserirComentarios(data);
+
+    setMensagens([...mensagens, novoComentario]); // Atualiza o estado com a nova mensagem
     setNovaMensagem(''); // Limpa o input
     chatRef.current.scrollTop = chatRef.current.scrollHeight;
   };
@@ -242,4 +331,3 @@ function ChamadosEdit(){
 }
 
 export default ChamadosEdit
-

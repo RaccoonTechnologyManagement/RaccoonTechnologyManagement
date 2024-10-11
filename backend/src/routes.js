@@ -26,6 +26,7 @@ routes.post('/sessions', sessionController.store);
 
 // Todas rotas que estiverem abaixo, necessitaram de token para serem usadas.
 routes.use(authMiddleware);
+routes.get('/commentsTickets', commentsTicketsController.index);
 routes.put('/users', UserController.update);
 routes.post('/persons', personController.store);
 routes.get('/persons', personController.index);
@@ -44,7 +45,6 @@ routes.post('/relCategorysPersons', relCategorysPersonsController.store);
 routes.post('/relPersonsTickets', relPersonsTicketsController.store);
 
 routes.post('/commentsTickets', commentsTicketsController.store)
-routes.get('/commentsTickets', commentsTicketsController.index)
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);
 

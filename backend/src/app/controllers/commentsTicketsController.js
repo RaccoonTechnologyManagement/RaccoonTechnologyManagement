@@ -1,12 +1,17 @@
 import CommentsTickets from '../models/commentsTickets';
+import Person from '../models/person';
 import personController from './personController';
 
 class commentsTicketsController {
 
     async index(req, res) {
-        console.log(req.body.id_ticket)
         const comments = await CommentsTickets.findAll({
-            where: { id_ticket: req.body.id_ticket }
+            where: { id_ticket: req.query.id_ticket },
+            include: [{
+                model: Person,
+                as: 'person', // Usando o alias correto
+                attributes: ['name']
+            }]
         });
 
         return res.json(comments);
