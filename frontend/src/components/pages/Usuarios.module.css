@@ -19,7 +19,7 @@
 .altaPrioridade {
     margin-top: 10px;
     background-color: #EE8282; 
-    color: white;
+    color:#9D3434; 
     font-weight: bold;
     width: 5em;
     height: 2em;
@@ -32,7 +32,7 @@
 .mediaPrioridade {
     margin-top: 10px;
     background-color: #fdd663; 
-    color: white;
+    color: #927c39;
     font-weight: bold;
     width: 5em;
     height: 2em;

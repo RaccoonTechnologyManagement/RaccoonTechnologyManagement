@@ -25,6 +25,7 @@ import AtivosCriarSoftwares from './components/pages/AtivosCriarSoftwares';
 import AtivosCriarLicencas from './components/pages/AtivosCriarLicencas';
 import RedefinirSenha from './components/pages/RedefinirSenha';
 import ChamadosEdit from './components/pages/ChamadosEdit';
+import ChamadosCriar from './components/pages/ChamadosCriar';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path="/chamados/sem-tecnico" element={<ChamadosSemTecnico/>}/>
           <Route path="/chamados/prioridade-alta" element={<ChamadosPrioridadeAlta/>}/>
           <Route path="/chamados/prazo-vencendo" element={<ChamadosPrazoVencendo/>}/>
+          <Route path="/chamados/criar" element={<ChamadosCriar/>}/>
           <Route path="/chamados/edit" element={<ChamadosEdit/>}/>
           <Route path="/editar-usuario" element={<EditarUsuarios />} />
           <Route path="/redefinir-senha" element={<RedefinirSenha />} />         

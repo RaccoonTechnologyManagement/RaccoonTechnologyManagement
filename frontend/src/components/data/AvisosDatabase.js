@@ -17,11 +17,11 @@ export const avisos = [
     },
 
     {
-        titulo: '',
-        prioridade: '',
-        empresa: '',
-        tipo: '',
-        expira: '' 
+        titulo: 'teste',
+        prioridade: 'Baixo',
+        para: 'Itau',
+        tipo: 'Consultoria',
+        expira: '01/01/2024' 
     },
 
     {
