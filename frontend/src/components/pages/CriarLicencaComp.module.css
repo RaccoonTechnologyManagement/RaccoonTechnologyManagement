@@ -1,0 +1,260 @@
+/* Formulário para criação de Ativos Hardware */
+
+.assetFormContainer { /* Aqui ja é mexer com gente grande, cuidado, aqui é o Pai da criança */
+    background-color: #111;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.assetFormWrapper { /* VERIFICAR AQUI NO WRAPPER A CONDIÇÃO PRA ALINHAR AO CENTRO, aqui é BO, é o Pai da parada */
+    padding: 20px; /* Reduz o padding para diminuir o tamanho */
+    border-radius: 10px;
+    max-width: 700px; /* Reduz a largura máxima */
+    width: 100%;
+    margin: 0 auto;
+}
+
+.assetFormTitle { /*Aqui é pro famoso h1, padrãozin*/
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.assetForm { /* Aqui ja é mexer com gente grande, cuidado, aqui é para add a quantidade de colunas e layout */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* aqui informa quantas colunas o formulario vai ter, no meu caso duas */
+    gap: 35px; /*Pelo que entendi distancia os campos em sentido vertical */
+}
+
+
+.assetFormGroup { /* Aqui ja é mexer com gente grande, cuidado, aqui é para direcionar as colunas */
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.assetFormGroupTest { /*Aqui coloquei pra testar uma coisa, não estou usando mais*/
+    display: flex;
+    flex-direction: column;
+}
+
+.assetFormGroupFullWidth,
+.assetFormGroup label { /*Aqui é pras labels, padrãozin*/
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.assetFormGroup input,
+.assetFormGroup select { /*Texto dos selects, padrãozin*/
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1F1F1F;
+    color: #fff;
+}
+
+
+.assetFormGroup input[type="text"] { /*Texto dos inputs, padrãozin*/
+    width: 100%;
+}
+
+
+.assetFormGroup textarea { /*Aqui é o antigo text area do campo Anotação, !!!Não estou utilziando mais!!! Mas quero deixa pra consulta!!*/
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1F1F1F;
+    color: #fff;
+    resize: none;
+}
+
+.buttonGroup { /*Para alinhamento dos botões*/
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: 10px; /* Espaçamento entre os botões */
+    margin-top: 20px; /* Espaçamento acima dos botões */
+}
+
+.createButton { /*Botão Criar*/
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: #00DC82;
+    color: #0C0B0B;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.createButton:hover { /*Botão Criar*/
+    background-color: #00DC82;
+}
+
+.cancelButton { /*Botão Cancelar*/
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: #DC0000;
+    color: #0C0B0B;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancelButton:hover {/*Botão Cancelar*/
+    background-color: #DC0000;
+}
+
+/* Classe criada separadamente para o "Anotação" ocupar largura total */
+.assetFormGroupFullWidth {
+    grid-column: 1 / -1; /* Faz o grupo ocupar toda a largura do grid */
+    width: 100%;    
+}
+
+/* Classe separa para o campo de texto de largura total, assim achei mais facil editar separadamente*/
+.fullWidth {
+    width: 100%; /* Garante que o campo ocupe 100% da largura disponível */
+    resize: none;
+    background-color: #1F1F1F; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    padding: 10px; /* Padding para o campo */
+    border-radius: 5px; /* Bordas arredondadas */
+    border: none; /* Remove a borda padrão */
+}
+
+.assetFormGroupFullWidth label {
+    margin-bottom: 5px; /* Espaçamento inferior */
+    font-size: 14px; /* Tamanho da fonte */
+    font-weight: bold; /* Estilo da fonte */
+    color: #fff; /* Cor do texto */
+    padding-bottom: 0px; /* Espaçamento inferior */
+    display: block; /* Garante que o label ocupe toda a largura disponível */
+}
+
+.popup { /* Pop up de ativo criado*/
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+}
+
+.errorInput { /* Teste para borda de campo ficar vermelha, não estou utilizando */
+    border: 2px solid red;
+}
+
+.errorText { /* Formatação para testo de campo obrigatorio */
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.licencaContainer {
+    display: flex; /* Alinha os elementos lado a lado */
+    gap: 15px; /* Espaçamento entre os campos */
+}
+
+.assetFormGroup {
+    flex: 0 0 auto; /* Evita que os campos se expandam ou encolham */
+}
+
+.licencaInput {
+    width: 150px; /* Define uma largura fixa para os campos de licenças */
+}
+
+.labelCentralizado {
+    text-align: left; /* Centraliza o texto */
+    width: 100%; /* Faz com que o rótulo ocupe toda a largura do seu contêiner */
+}
+
+.toggleContainer {
+    display: flex;
+    justify-content: center; /* Centraliza o toggle */
+    margin-top: 20px; /* Espaçamento acima do toggle */
+    width: 100%; /* Adicionada para ocupar toda a largura */
+}
+
+.toggleLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #fff; /* Cor do texto */
+    font-size: 14px; /* Tamanho da fonte */
+    font-weight: bold; /* Estilo da fonte */
+}
+
+.toggle {
+    width: 50px; /* Largura do toggle */
+    height: 25px; /* Altura do toggle */
+    background-color: #ccc; /* Cor do fundo do toggle */
+    border-radius: 15px; /* Bordas arredondadas */
+    position: relative;
+    transition: background-color 0.3s;
+    margin-left: 10px; /* Espaçamento entre o texto e o toggle */
+}
+
+input[type="checkbox"] {
+    opacity: 0; /* Torna o checkbox invisível */
+}
+
+input[type="checkbox"]:checked + .toggle {
+    background-color: #00DC82; /* Cor do toggle quando ativado */
+}
+
+.toggle::before {
+    content: '';
+    width: 20px; /* Largura do círculo do toggle */
+    height: 20px; /* Altura do círculo do toggle */
+    background-color: white; /* Cor do círculo */
+    border-radius: 50%; /* Círculo perfeito */
+    position: absolute;
+    left: 3px; /* Posição inicial */
+    bottom: 2.5px; /* Alinhamento vertical */
+    transition: transform 0.3s;
+}
+
+input[type="checkbox"]:checked + .toggle::before {
+    transform: translateX(25px); /* Move o círculo para a direita */
+}
+
+.selectContainer {
+    display: flex; /* Permite que os itens fiquem em linha */
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    gap: 10px; /* Espaçamento entre os elementos */
+    margin-top: 20px; /* Espaço acima do campo select */
+}
+
+.select {
+    flex: 1; /* Faz o select ocupar o espaço disponível */
+}
+
+.addButton, .removeButton {
+    padding: 10px 15px; /* Estilização dos botões */
+    border: none;
+    border-radius: 5px;
+    background-color: #00DC82; /* Cor verde */
+    color: #fff; /* Texto branco */
+    cursor: pointer;
+}
+
+.removeButton {
+    background-color: #DC0000; /* Cor vermelha para o botão de remover */
+}

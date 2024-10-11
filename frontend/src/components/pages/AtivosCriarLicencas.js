@@ -1,13 +1,12 @@
 import CriarAtivo from "../layout/CriarAtivo";
 import styles from '../pages/AtivosCriar.module.css';
+import CriarLicencaComp from "./CriarLicencaComp";
 
 function AtivosCriarLicencas () {
     return (
         <CriarAtivo>
 
-            <div className={styles.Teste}>
-                CRIAR ATIVO
-            </div>
+            <CriarLicencaComp/>
 
         </CriarAtivo>
     )
