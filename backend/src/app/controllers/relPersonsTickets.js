@@ -4,6 +4,11 @@ import Ticket from '../models/ticket';
 
 class relPersonsTicketsController {
 
+    async index(req, res) {
+        const relPersonsTickets = await RelPersonsTickets.findAll();
+        return res.json(relPersonsTickets);
+    }
+
     async store(req, res) {
 
         const personCreatorExist = await Person.findOne({

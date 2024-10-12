@@ -3,6 +3,11 @@ import * as Yup from 'yup'; // biblioteca de validação de campos
 
 class categorysPersonsController {
 
+    async index(req, res) {
+        const categorysPerson = await CategorysPersons.findAll();
+        return res.json(categorysPerson);
+    }
+
     async store(req, res) {
 
         const schema = Yup.object().shape({

@@ -1,15 +1,15 @@
 import Sequelize, { Model } from "sequelize";
 
-class RelCategorysTickets extends Model {
+class RelStatusTickets extends Model {
     static init(sequelize){
         super.init(
             {
                 id_ticket: Sequelize.INTEGER,
-                id_category: Sequelize.INTEGER
+                id_status: Sequelize.INTEGER
             },
             {
                 sequelize,
-                tableName: 'rel_categorys_tickets',
+                tableName: 'rel_status_tickets',
             }
         );
 
@@ -18,8 +18,8 @@ class RelCategorysTickets extends Model {
 
     static associate(models){
         this.belongsTo(models.Ticket, {foreignKey: 'id_ticket', as: 'ticket'});
-        this.belongsTo(models.CategorysTickets, {foreignKey: 'id_category', as: 'category'});
+        this.belongsTo(models.StatusTickets, {foreignKey: 'id_status', as: 'status'});
     }
 }
 
-export default RelCategorysTickets;
+export default RelStatusTickets;

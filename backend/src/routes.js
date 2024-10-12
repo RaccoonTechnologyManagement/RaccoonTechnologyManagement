@@ -14,6 +14,10 @@ import categorysPersonsController from './app/controllers/categorysPersonsContro
 import relCategorysPersonsController from './app/controllers/relCategorysPersonsController';
 import relPersonsTicketsController from './app/controllers/relPersonsTickets';
 import commentsTicketsController from './app/controllers/commentsTicketsController';
+import prioritysTicketsController from './app/controllers/prioritysTicketsController';
+import relPrioritysTicketsController from './app/controllers/relPrioritysTicketsController';
+import statusTicketsController from './app/controllers/statusTicketsController';
+import relStatusTicketsController from './app/controllers/relStatusTicketsController';
 
 const routes = new Router();
 
@@ -31,7 +35,9 @@ routes.put('/users', UserController.update);
 routes.post('/persons', personController.store);
 routes.get('/persons', personController.index);
 routes.post('/tickets', ticketController.store);
+
 routes.post('/categorysTickets', categorysTicketsController.store);
+routes.get('/categorysTickets', categorysTicketsController.index);
 
 routes.post('/relCategorysTickets', relCategorysTicketsController.store);
 routes.get('/relCategorysTickets', relCategorysTicketsController.index);
@@ -39,12 +45,31 @@ routes.put('/relCategorysTickets', relCategorysTicketsController.update);
 routes.delete('/relCategorysTickets', relCategorysTicketsController.delete);
 
 routes.post('/categorysPersons', categorysPersonsController.store);
+routes.get('/categorysPersons', categorysPersonsController.index);
 
 routes.post('/relCategorysPersons', relCategorysPersonsController.store);
 
 routes.post('/relPersonsTickets', relPersonsTicketsController.store);
+routes.get('/relPersonsTickets', relPersonsTicketsController.index);
 
-routes.post('/commentsTickets', commentsTicketsController.store)
+routes.post('/commentsTickets', commentsTicketsController.store);
+
+routes.post('/prioritysTickets', prioritysTicketsController.store);
+routes.get('/prioritysTickets', prioritysTicketsController.index);
+
+routes.post('/relPrioritysTickets', relPrioritysTicketsController.store);
+routes.get('/relPrioritysTickets', relPrioritysTicketsController.index);
+routes.put('/relPrioritysTickets', relPrioritysTicketsController.update);
+routes.delete('/relPrioritysTickets', relPrioritysTicketsController.delete);
+
+routes.post('/statusTickets', statusTicketsController.store);
+routes.get('/statusTickets', statusTicketsController.index);
+
+routes.post('/relStatusTickets', relStatusTicketsController.store);
+routes.get('/relStatusTickets', relStatusTicketsController.index);
+routes.put('/relStatusTickets', relStatusTicketsController.update);
+routes.delete('/relStatusTickets', relStatusTicketsController.delete);
+
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);
 

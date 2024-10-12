@@ -11,6 +11,10 @@ import CategorysPersons from '../app/models/categorysPersons';
 import RelCategorysPersons from '../app/models/relCategorysPersons';
 import RelPersonsTickets from '../app/models/relPersonsTickets';
 import CommentsTickets from '../app/models/commentsTickets';
+import PrioritysTickets from '../app/models/prioritysTickets';
+import RelPrioritysTickets from '../app/models/relPrioritysTickets';
+import StatusTickets from '../app/models/statusTickets';
+import RelStatusTickets from '../app/models/relStatusTickets';
 
 const models = [
 	User,
@@ -21,7 +25,11 @@ const models = [
 	CategorysPersons,
 	RelCategorysPersons,
 	RelPersonsTickets,
-	CommentsTickets
+	CommentsTickets,
+	PrioritysTickets,
+	RelPrioritysTickets,
+	StatusTickets,
+	RelStatusTickets
 ]
 
 // Carregando nossos Models
