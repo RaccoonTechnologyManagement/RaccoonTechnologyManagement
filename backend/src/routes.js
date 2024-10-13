@@ -18,6 +18,13 @@ import prioritysTicketsController from './app/controllers/prioritysTicketsContro
 import relPrioritysTicketsController from './app/controllers/relPrioritysTicketsController';
 import statusTicketsController from './app/controllers/statusTicketsController';
 import relStatusTicketsController from './app/controllers/relStatusTicketsController';
+import companysController from './app/controllers/companysController';
+import departamentsController from './app/controllers/departamentsController';
+import branchesController from './app/controllers/branchesController';
+import relBranchesDepartamentsController from './app/controllers/relBranchesDepartamentsController';
+import relCompanysBranchesController from './app/controllers/relCompanysBranchesController';
+import relPersonsDepartamentsController from './app/controllers/relPersonsDepartamentsController';
+import relDepartamentsTicketsController from './app/controllers/relDepartamentsTicketsController';
 
 const routes = new Router();
 
@@ -30,11 +37,14 @@ routes.post('/sessions', sessionController.store);
 
 // Todas rotas que estiverem abaixo, necessitaram de token para serem usadas.
 routes.use(authMiddleware);
+
 routes.get('/commentsTickets', commentsTicketsController.index);
 routes.put('/users', UserController.update);
 routes.post('/persons', personController.store);
 routes.get('/persons', personController.index);
+
 routes.post('/tickets', ticketController.store);
+routes.get('/tickets', ticketController.index);
 
 routes.post('/categorysTickets', categorysTicketsController.store);
 routes.get('/categorysTickets', categorysTicketsController.index);
@@ -69,6 +79,27 @@ routes.post('/relStatusTickets', relStatusTicketsController.store);
 routes.get('/relStatusTickets', relStatusTicketsController.index);
 routes.put('/relStatusTickets', relStatusTicketsController.update);
 routes.delete('/relStatusTickets', relStatusTicketsController.delete);
+
+routes.post('/companys', companysController.store);
+routes.get('/companys', companysController.index);
+
+routes.post('/departaments', departamentsController.store);
+routes.get('/departaments', departamentsController.index);
+
+routes.post('/branches', branchesController.store);
+routes.get('/branches', branchesController.index);
+
+routes.post('/relBranchesDepartaments', relBranchesDepartamentsController.store);
+routes.get('/relBranchesDepartaments', relBranchesDepartamentsController.index);
+
+routes.post('/relCompanysBranches', relCompanysBranchesController.store);
+routes.get('/relCompanysBranches', relCompanysBranchesController.index);
+
+routes.post('/relPersonsDepartaments', relPersonsDepartamentsController.store);
+routes.get('/relPersonsDepartaments', relPersonsDepartamentsController.index);
+
+routes.post('/relDepartamentsTickets', relDepartamentsTicketsController.store);
+routes.get('/relDepartamentsTickets', relDepartamentsTicketsController.index);
 
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);

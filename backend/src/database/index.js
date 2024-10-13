@@ -15,6 +15,13 @@ import PrioritysTickets from '../app/models/prioritysTickets';
 import RelPrioritysTickets from '../app/models/relPrioritysTickets';
 import StatusTickets from '../app/models/statusTickets';
 import RelStatusTickets from '../app/models/relStatusTickets';
+import Companys from '../app/models/companys';
+import Departaments from '../app/models/departaments';
+import Branches from '../app/models/branches';
+import RelBranchesDepartaments from '../app/models/relBranchesDepartaments';
+import RelCompanysBranches from '../app/models/relCompanysBranches';
+import RelPersonsDepartaments from '../app/models/relPersonsDepartaments';
+import RelDepartamentsTickets from '../app/models/relDepartamentsTickets';
 
 const models = [
 	User,
@@ -29,7 +36,14 @@ const models = [
 	PrioritysTickets,
 	RelPrioritysTickets,
 	StatusTickets,
-	RelStatusTickets
+	RelStatusTickets,
+	Companys,
+	Departaments,
+	Branches,
+	RelBranchesDepartaments,
+	RelCompanysBranches,
+	RelPersonsDepartaments,
+	RelDepartamentsTickets
 ]
 
 // Carregando nossos Models

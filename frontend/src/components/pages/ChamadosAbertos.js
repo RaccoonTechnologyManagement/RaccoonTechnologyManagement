@@ -2,18 +2,36 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoMdArrowRoundForward } from "react-icons/io";
 import styles from '../pages/ChamadosAbertos.module.css';
 import editar from '../../img/editar.png';
-import { tickets } from '../data/ChamadosDataBase';
 import Chamados from '../layout/Chamados';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InfoSearch } from '../component/Search';
+import { getTickets } from '../data/api';
+
+async function carregarTickets() {
+  try {
+    let tickets = await getTickets();
+    return tickets;
+  } catch (erro) {
+    return [];
+  }
+}
 
 function ChamadosAbertos() {
-  const cabecalho = [
-    'ID', 'Título', 'Categoria', 'Prioridade', 'Empresa', 'Técnico', ''
-  ];
-  const itemsPerPage = 10;
+  const [tickets, setTickets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const fetchTickets = async () => {
+      const ticketsData = await carregarTickets();
+      setTickets(ticketsData);
+    };
+    fetchTickets();
+  }, []);
+
+  const cabecalho = ['ID', 'Título', 'Categoria', 'Prioridade', 'Empresa', 'Técnico', ''];
+
+  const itemsPerPage = 10;
 
   const verificarSearch = tickets.filter((item) => {
     return Object.values(item)
@@ -46,15 +64,15 @@ function ChamadosAbertos() {
             .slice(startIndex, endIndex).map((item, index) => (
               <tr key={index}>
                 <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
-                <td className={styles.tabelaCabecalhoItens}>{item.titulo}</td>
-                <td className={styles.tabelaCabecalhoItens}>{item.categoria}</td>
-                <td className={styles.prioridade}>
-                  {item.prioridade === 'Alta' ? <div className={styles.prioridadeAlta}>Alta</div> : ''}
-                  {item.prioridade === 'Média' ? <div className={styles.prioridadeMedia}>Média</div> : ''}
-                  {item.prioridade === 'Baixa' ? <div className={styles.prioridadeBaixa}>Baixa</div> : ''}
+                <td className={styles.tabelaCabecalhoItens}>{item.title}</td>
+                <td className={styles.tabelaCabecalhoItens}>{item.category}</td>
+                <td className={styles.priority}>
+                  {item.priority === 'Alta' ? <div className={styles.prioridadeAlta}>Alta</div> : ''}
+                  {item.priority === 'Média' ? <div className={styles.prioridadeMedia}>Média</div> : ''}
+                  {item.priority === 'Baixa' ? <div className={styles.prioridadeBaixa}>Baixa</div> : ''}
                 </td>
-                <td className={styles.tabelaCabecalhoItens}>{item.empresa}</td>
-                <td className={styles.tabelaCabecalhoItens}>{item.tecnico}</td>
+                <td className={styles.tabelaCabecalhoItens}>{item.company.company}</td>
+                <td className={styles.tabelaCabecalhoItens}>{item.accountable}</td>
                 <td className={styles.tabelaCabecalhoItens}>
                   <img src={editar} alt="Editar" />
                 </td>
