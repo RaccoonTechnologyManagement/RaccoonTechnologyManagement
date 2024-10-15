@@ -74,7 +74,14 @@ function ChamadosAbertos() {
                 <td className={styles.tabelaCabecalhoItens}>{item.company.company}</td>
                 <td className={styles.tabelaCabecalhoItens}>{item.accountable}</td>
                 <td className={styles.tabelaCabecalhoItens}>
-                  <img src={editar} alt="Editar" />
+                  <img 
+                    src={editar} 
+                    alt="Editar" 
+                    onClick={() => {
+                      localStorage.setItem('idTicket', item.id);
+                      window.location.href = '/chamados/edit'; // substitua '/nova-pagina' pela URL desejada
+                    }} 
+                  />
                 </td>
               </tr>
             ))
