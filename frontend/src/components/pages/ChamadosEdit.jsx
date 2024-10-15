@@ -42,6 +42,8 @@ function ChamadosEdit(){
 
   const id_ticket = 5;
 
+  console.log(localStorage.getItem('idTicket'))
+
   async function inserirComentarios(data)
   {
     try
