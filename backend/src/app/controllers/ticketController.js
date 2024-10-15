@@ -11,7 +11,10 @@ import RelBranchesDepartaments from '../models/relBranchesDepartaments';
 import Branches from '../models/branches';
 import RelCompanysBranches from '../models/relCompanysBranches';
 import Companys from '../models/companys';
+import RelStatusTickets from '../models/relStatusTickets';
+import RelPersonsTickets from '../models/relPersonsTickets';
 
+import sequelize from "sequelize";
 import { formatResponseMenuTicket } from '../../functions/functions';
 import * as Yup from 'yup'; // biblioteca de validação de campos
 
@@ -84,10 +87,12 @@ class ticketController {
     }
 
     async store(req, res) {
-
         const schema = Yup.object().shape({
             title: Yup.string().required(),
-            description: Yup.string().required() 
+            description: Yup.string().required(),
+            id_category: Yup.string().required(),
+            id_priority: Yup.string().required(),
+            id_departament: Yup.string().required(),
         });
 
         if(!(await schema.isValid(req.body))){
@@ -97,6 +102,38 @@ class ticketController {
         const ticket = await Ticket.create({
             title: req.body.title,
             description: req.body.description
+        });
+
+        if(!ticket)
+        {
+            await transaction.rollback();
+            return res.status(400).json({ error: 'Ticket não pôde ser criado' });
+        }
+
+        await RelDepartamentsTickets.create({
+            id_ticket: ticket.id,
+            id_departament: req.body.id_departament
+        });
+
+        await RelPrioritysTickets.create({
+            id_ticket: ticket.id,
+            id_priority: req.body.id_priority
+        });
+
+        await RelCategorysTickets.create({
+            id_ticket: ticket.id,
+            id_category: req.body.id_category
+        });
+
+        await RelStatusTickets.create({
+            id_ticket: ticket.id,
+            id_status: 1
+        });
+
+        await RelPersonsTickets.create({
+            id_ticket: ticket.id,
+            id_person_creator: req.body.id_person_creator,
+            id_person_accountable: req.body.id_person_accountable
         });
 
         return res.json(ticket);

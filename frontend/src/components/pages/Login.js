@@ -21,7 +21,7 @@ export const Login = ()=>{
             email: user,
             password: password,
           };
-          axios.post("http://localhost:3333/sessions", data)
+          axios.post("http://localhost:3334/sessions", data)
           .then(response => {
             localStorage.setItem('token', response.data.token);
             navigate('/chamados');

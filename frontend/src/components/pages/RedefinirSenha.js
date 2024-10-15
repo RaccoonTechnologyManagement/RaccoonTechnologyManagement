@@ -46,7 +46,7 @@ function RedefinirSenha() {
       confirmPassword: passwords.confirmPassword
     };
 
-    axios.put("http://localhost:3333/users", data, {
+    axios.put("http://localhost:3334/users", data, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
