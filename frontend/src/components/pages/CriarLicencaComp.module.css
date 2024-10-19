@@ -235,26 +235,65 @@ input[type="checkbox"]:checked + .toggle::before {
 }
 
 .selectContainer {
-    display: flex; /* Permite que os itens fiquem em linha */
+    display: flex; /* Alinha os elementos lado a lado */
     align-items: center; /* Alinha verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
     gap: 10px; /* Espaçamento entre os elementos */
     margin-top: 20px; /* Espaço acima do campo select */
+    
+    
 }
 
 .select {
-    flex: 1; /* Faz o select ocupar o espaço disponível */
+    padding: 10px; /* Padding igual ao dos outros inputs */
+    border-radius: 5px; /* Bordas arredondadas */
+    border: none; /* Remove a borda padrão */
+    background-color: #1F1F1F; /* Cor de fundo igual aos outros inputs */
+    color: #fff; /* Cor do texto */
+    width: 100%; /* Garante que o select ocupe 100% da largura disponível */
+    cursor: pointer; /* Muda o cursor para indicar que é interativo */
+    
+}
+
+.selectLabel {
+    margin-bottom: 5px; /* Espaçamento abaixo da label */
+    font-size: 14px; /* Tamanho da fonte igual aos outros labels */
+    font-weight: bold; /* Estilo da fonte */
+    color: #fff; /* Cor do texto igual aos outros labels */
+    display: block; /* Garante que a label ocupe toda a largura disponível */
 }
 
 .addButton, .removeButton {
-    padding: 10px 15px; /* Estilização dos botões */
-    border: none;
-    border-radius: 5px;
-    background-color: #00DC82; /* Cor verde */
-    color: #fff; /* Texto branco */
-    cursor: pointer;
+    align-items: center; /* Alinha o conteúdo do botão verticalmente */
+    justify-content: center; /* Centraliza o conteúdo do botão horizontalmente */
 }
 
-.removeButton {
-    background-color: #DC0000; /* Cor vermelha para o botão de remover */
+.selectWrapper {
+    flex: 1; /* Faz o select ocupar o espaço disponível */
 }
+
+
+/* Em baixo é o CSS do pesquisar */
+.containerInput{
+    position: relative;
+    display: inline-block;
+    margin: 10px 0px;
+    
+}
+
+.containerInput input{
+    z-index: 1;
+    padding: 12px 12px 12px 50px;
+    border: none;
+    border-radius: 20px;
+    width: 17rem;
+    background-color: #1F1F1F;
+    color: #fff;
+}
+
+.containerInput img {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+
