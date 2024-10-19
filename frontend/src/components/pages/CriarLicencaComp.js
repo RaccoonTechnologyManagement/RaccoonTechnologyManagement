@@ -1,10 +1,50 @@
 import React, { useState } from 'react';
 import styles from './CriarLicencaComp.module.css';
+import {InfoSearch} from '../component/Search'
+import iconeInput from '../../img/lupa.png'
 
 function CriarLicencaComp (){
     const [errors, setErrors] = useState({});
     const [showPopup, setShowPopup] = useState(false);
     const [licencasExpiram, setLicencasExpiram] = useState(false);
+    const [search, setSearch] = useState("");
+    const [usuarios, setUsuarios] = useState([{ id: Math.random(), value: '' }]);
+
+    const handleAddUsuario = () => {
+        setUsuarios([...usuarios, { id: Math.random(), value: '' }]); // Adiciona um novo usuário
+    };
+
+    const handleRemoveUsuario = (id) => {
+        if (usuarios.length > 1) { // Permite remover apenas se houver mais de um usuário
+            setUsuarios(usuarios.filter(usuario => usuario.id !== id)); // Remove o usuário com o ID correspondente
+        }
+    };
+
+    const handleInputChange = (id, value) => {
+        setUsuarios(usuarios.map(usuario => 
+            usuario.id === id ? { ...usuario, value } : usuario
+        ));
+    };
+
+    const handleAddUser = (event) => {
+        event.preventDefault(); // Impede a atualização da página
+        setUsuarios([...usuarios, { id: Math.random(), value: '' }]);
+    };
+
+    const handleRemoveUser = (id) => {
+        // Não permite remover o primeiro usuário
+        if (usuarios.length > 1) {
+            setUsuarios(usuarios.filter(usuario => usuario.id !== id));
+        }
+    };
+
+    const handleUserChange = (id, event) => {
+        const updatedUsuarios = usuarios.map(usuario =>
+            usuario.id === id ? { ...usuario, value: event.target.value } : usuario
+        );
+        setUsuarios(updatedUsuarios);
+    };
+
 
     const handleCancel = () => {
         setErrors({});
@@ -121,6 +161,14 @@ function CriarLicencaComp (){
                     </div>
                 </div>
 
+                <div className={styles.containerInput}>
+                    <input 
+                    type="text" 
+                    placeholder='Pesquisar' 
+                    onChange={(e)=>setSearch(e.target.value)}
+                    />
+                    <img src={iconeInput}></img>
+                </div> 
 
 
 
@@ -138,14 +186,26 @@ function CriarLicencaComp (){
                 </div>
 
 
-                <div className={styles.selectContainer}>
-                    <button className={styles.addButton}>+</button>
-                    <select id="dados-cadastrados" name="dados-cadastrados" className={styles.select}>
-                        <option value=""></option>
-                        <option value="dados1">Dado 1</option>
-                        <option value="dados2">Dado 2</option>
-                    </select>
-                    <button className={styles.removeButton}>-</button>
+                <div>
+                    {usuarios.map(usuario => (
+                        <div key={usuario.id} className={styles.selectContainer}>
+                            <button type="button" className={styles.addButton} onClick={handleAddUsuario}>+</button>
+                            <select
+                                id={`usuario-${usuario.id}`}
+                                name={`usuario-${usuario.id}`}
+                                className={styles.select}
+                                value={usuario.value}
+                                onChange={(e) => handleInputChange(usuario.id, e.target.value)} // Atualiza o valor do select
+                            >
+                                <option value=""></option>
+                                <option value="user1">ryan.hyggor</option>
+                                <option value="user2">teste.teste</option>
+                            </select>
+                            {usuarios.length > 1 && (
+                                <button type="button" className={styles.removeButton} onClick={() => handleRemoveUsuario(usuario.id)}>-</button>
+                            )}
+                        </div>
+                    ))}
                 </div>
 
 
