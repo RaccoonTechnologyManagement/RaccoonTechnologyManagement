@@ -125,13 +125,18 @@ function ChamadosEdit(){
       setTicket({ ...ticket, [name]: value });
     };
   
-    const [mensagens, setMensagens] = useState([
+/*COMENTARIO FANTASMA
+        const [mensagens, setMensagens] = useState([
     {
         logged: false,
         usuario: '',
         texto: '',
     }
   ]);
+
+*/
+
+const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA. VERIFICAR SE ALTEROU ALGUMA FUNCIONALIDADE
 
   useEffect(() => {
     const inserirComentariosCarregados = async () => {

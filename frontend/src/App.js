@@ -26,6 +26,7 @@ import AtivosCriarLicencas from './components/pages/AtivosCriarLicencas';
 import RedefinirSenha from './components/pages/RedefinirSenha';
 import ChamadosEdit from './components/pages/ChamadosEdit';
 import ChamadosCriar from './components/pages/ChamadosCriar';
+import ChamadosHistorico from './components/pages/ChamadosHistorico';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
           <Route path="/chamados/prazo-vencendo" element={<ChamadosPrazoVencendo/>}/>
           <Route path="/chamados/criar" element={<ChamadosCriar/>}/>
           <Route path="/chamados/edit" element={<ChamadosEdit/>}/>
+          <Route path="/chamados/historico" element={<ChamadosHistorico/>}/>
           <Route path="/editar-usuario" element={<EditarUsuarios />} />
           <Route path="/redefinir-senha" element={<RedefinirSenha />} />         
           <Route path="/chamados/vencidos" element={<ChamadosVencidos/>}/>
