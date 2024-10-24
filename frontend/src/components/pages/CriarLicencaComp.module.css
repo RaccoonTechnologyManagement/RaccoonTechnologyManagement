@@ -239,7 +239,7 @@ input[type="checkbox"]:checked + .toggle::before {
     align-items: center; /* Alinha verticalmente */
     gap: 10px; /* Espaçamento entre os elementos */
     margin-top: 20px; /* Espaço acima do campo select */
-    
+    justify-content: space-between;
     
 }
 
@@ -268,8 +268,12 @@ input[type="checkbox"]:checked + .toggle::before {
 }
 
 .selectWrapper {
-    flex: 1; /* Faz o select ocupar o espaço disponível */
+    flex-grow: 1; /* O select ocupará o espaço restante */
+    display: flex;
+    align-items: center;
 }
+
+
 
 
 /* Em baixo é o CSS do pesquisar */
@@ -296,4 +300,48 @@ input[type="checkbox"]:checked + .toggle::before {
     left: 10px;
     transform: translateY(-50%);
 }
+
+.selectContainer {
+    display: flex;
+    align-items: center; /* Alinha os itens verticalmente */
+    gap: 15px; /* Espaçamento entre os elementos */
+    justify-content: space-between; /* Garante que os selects e inputs fiquem alinhados corretamente */
+    width: 100%; /* Faz o container ocupar toda a largura */
+}
+
+.dateContainer {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os campos de data */
+    align-items: center;
+}
+
+.dateInput {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1F1F1F;
+    color: #fff;
+    width: 150px; /* Define uma largura fixa para os inputs de data */
+}
+
+
+
+.addButton, .removeButton {
+    width: 25px; /* Ajuste o tamanho dos botões */
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1F1F1F; /* Pode ajustar a cor conforme desejado */
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+}
+
+.addButton:hover, .removeButton:hover {
+    background-color: #00b472;
+}
+
+
 
