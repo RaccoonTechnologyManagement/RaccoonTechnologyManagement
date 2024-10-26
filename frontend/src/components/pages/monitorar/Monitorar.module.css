@@ -1,0 +1,44 @@
+.historicoDeAlertaWrapper {
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.alertasWrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.alerta {
+    text-align: center;
+}
+
+.alertaTitulo {
+    display: block;
+    font-weight: bold;
+}
+
+.alertaNumero {
+    display: block;
+    font-size: 2em;
+    color: red; /* ou qualquer cor que preferir */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}

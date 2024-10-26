@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Login} from './components/pages/Login'
 import AtivosInicial from './components/pages/AtivosInicial';
-import Monitorar from './components/pages/Monitorar';
+import Monitorar from './components/pages/monitorar/Monitorar';
 import Dashboard from './components/pages/Dashboard';
 import Usuarios from './components/pages/Usuarios';
 import EditarUsuarios from './components/pages/EditarUsuario';
