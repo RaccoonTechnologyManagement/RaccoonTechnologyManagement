@@ -4,13 +4,13 @@ import { IoMdArrowRoundForward } from "react-icons/io";
 import styles from '../pages/AtivosAbertos.module.css'
 import editar from '../../img/editar.png'
 import { licencas } from '../data/LicencasDatabase';
-import {InfoSearch} from '../component/Search'
+import {InfoSearch} from '../component/UsuariosSearch'
 
 
 function UsuariosDois () {
 
     const cabecalho = [
-        'N° Pat','Usuarios','Software','Departamento','Empresa','Sede','Status',
+        'Nome','Usuarios','Categotria','Empresa','Status',
       ]
       const itemsPerPage = 5;
       const totalPages = Math.ceil(licencas.length / itemsPerPage);

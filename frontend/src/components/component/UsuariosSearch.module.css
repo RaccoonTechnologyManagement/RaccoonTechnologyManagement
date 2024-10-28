@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px; /* Ajuste o padding conforme necessário */
+}
+
+.containerInput {
+    position: relative;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.containerInput input {
+    z-index: 1;
+    padding: 12px 12px 12px 50px;
+    border: none;
+    border-radius: 20px;
+    width: 17rem;
+    background-color: #1F1F1F;
+    color: #fff;
+}
+
+.createUsers {
+    cursor: pointer;
+    font-size: 14px;
+    padding: 7px 12px;
+    font-weight: bold;
+    background-color: #00DC82;
+    border: none;
+    border-radius: 20px;
+}
+
+.containerInput img {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
