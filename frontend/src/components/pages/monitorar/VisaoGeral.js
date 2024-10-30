@@ -1,8 +1,11 @@
 import MonitorarLt from "../../layout/MonitorarLt"
+import CriarVisaoGeral from "./CriarVisaoGeral"
 
 function VisaoGeral (){
     return (
-        <MonitorarLt></MonitorarLt>
+        <MonitorarLt>
+            <CriarVisaoGeral/>
+        </MonitorarLt>
     )
 }
 

@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom
 import {Login} from './components/pages/Login'
 import AtivosInicial from './components/pages/AtivosInicial';
 import Monitorar from './components/pages/monitorar/Monitorar';
+import HistoricoAlerta from './components/pages/monitorar/HistoricoAlerta';
+import VisaoGeral from './components/pages/monitorar/VisaoGeral';
 import Dashboard from './components/pages/Dashboard';
 import Usuarios from './components/pages/Usuarios';
 import EditarUsuarios from './components/pages/EditarUsuario';
@@ -34,14 +36,14 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login/>}/>
-          <Route path="/ativos/" element={<AtivosLt/>}/>
+          <Route path="/ativos/" element={<Navigate to="/ativos/todos" replace />} />
           <Route path="/ativos/todos" element={<AtivosInicial/>}/>
           <Route path="/ativos/hardware" element={<AtivosHardware/>}/>
           <Route path="/ativos/servidores" element={<AtivosServidores/>}/>
           <Route path="/ativos/software" element={<AtivosSoftware/>}/>
           <Route path="/ativos/licencas" element={<AtivosLicencas/>}/>
           <Route path="/ativos/excluidos" element={<AtivosExcluidos/>}/>
-          <Route path="/ativos/criar" element={<AtivosCriar/>}/>
+          <Route path="/ativos/criar" element={<Navigate to="/ativos/criar/hardware" replace />} />
           <Route path="/ativos/criar/hardware" element={<AtivosCriarHardware/>}/>
           <Route path="/ativos/criar/servidor" element={<AtivosCriarServidores/>}/>
           <Route path="/ativos/criar/software" element={<AtivosCriarSoftwares/>}/>
@@ -57,7 +59,9 @@ function App() {
           <Route path="/editar-usuario" element={<EditarUsuarios />} />
           <Route path="/redefinir-senha" element={<RedefinirSenha />} />         
           <Route path="/chamados/vencidos" element={<ChamadosVencidos/>}/>
-          <Route path="/monitorar" element={<Monitorar/>}/>
+          <Route path="/monitorar" element={<Navigate to="/monitorar/visaogeral" replace />} />
+          <Route path="/monitorar/historicoalerta" element={<HistoricoAlerta/>}/>
+          <Route path="/monitorar/visaogeral" element={<VisaoGeral/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/usuarios" element={<Usuarios/>}/>
           <Route path="/user" element={<User/>}/>
