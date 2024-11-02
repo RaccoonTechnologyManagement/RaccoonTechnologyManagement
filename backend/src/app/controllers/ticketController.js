@@ -58,7 +58,7 @@ class ticketController {
         {
             conditionAccountable = "id_person_accountable > 0";
             conditionStatus = "id_status = 1";
-            conditionExp = `exp_finish_at <= NOW()`;
+            conditionExp = `DATE(exp_finish_at) < DATE(NOW())`;
         }
 
         const include = {
@@ -136,13 +136,8 @@ class ticketController {
             ...include,
             where: Sequelize.literal(conditionExp)
         });
-        console.log(tickets);
-
-        console.log(conditionStatus);
-        console.log(conditionAccountable);
         
         responseTickets = formatResponseMenuTicket(tickets, menu);
-        console.log(responseTickets);
 
         return res.json(responseTickets);
     }
