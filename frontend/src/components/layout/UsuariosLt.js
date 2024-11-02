@@ -1,7 +1,7 @@
 
 
 import Container from './Container'
-import styles from './Ativos.module.css'
+import styles from './Usuarios.module.css'
 import { NavLink } from 'react-router-dom';
 
 function UsuariosLt (props){
@@ -11,8 +11,11 @@ function UsuariosLt (props){
             <h2 className={styles.title}>USUARIOS</h2>
             <div className={styles.borderButton}>
                 <NavLink to={`/ativos/criar/hardware`}>
-                    <button>CRIAR AVISO</button>
+                    <button className={styles.buttonCreate}>CRIAR AVISO</button>
                 </NavLink> 
+                <NavLink>
+                <button className={styles.buttonHistory}>HISTORICO</button>
+                </NavLink>
               
             </div>
 

@@ -93,7 +93,7 @@ function Sidebar(){
                     <div 
                         className={styles.rowFooterLogout}
                         onClick={()=>{
-                            window.location.pathname = `/logout`
+                            window.location.pathname = `/`
                         }}
                     >
                         <div className={styles.bd_Icon}>

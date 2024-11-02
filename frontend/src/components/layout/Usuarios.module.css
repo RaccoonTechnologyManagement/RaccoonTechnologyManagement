@@ -1,0 +1,72 @@
+.title{
+    width: 100%;
+    font-size: 14px;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #292929;
+}
+
+.borderButton,
+.notBorderButton{
+    width: 100%;
+    padding: 10px 0px 0px 0px;
+    margin-bottom: 10px;
+}
+.notBorderButton{
+    border-bottom: 2px solid #292929;
+}
+
+.borderButton button{
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-size: 14px;
+    padding: 7px 12px;
+    margin-right: 10px;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+}
+
+.buttonHistory{
+    background-color: #1F1F1F;
+    color: #6E6E6E;
+}
+
+.buttonCreate{
+    background-color: #00DC82;
+}
+
+
+.notBorderButton button{
+    background-color: transparent;
+    border: none;
+    color: #FFF;
+    width: 10rem;
+    text-align: start;
+    padding: 10px 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.containerInput{
+    position: relative;
+    display: inline-block;
+    margin: 10px 0px;
+}
+
+.containerInput input{
+    z-index: 1;
+    padding: 12px 12px 12px 50px;
+    border: none;
+    border-radius: 20px;
+    width: 17rem;
+    background-color: #1F1F1F;
+    color: #fff;
+}
+
+.containerInput img {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+  

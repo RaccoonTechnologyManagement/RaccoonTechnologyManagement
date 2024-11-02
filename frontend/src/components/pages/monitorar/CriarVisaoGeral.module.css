@@ -1,0 +1,92 @@
+.Tabela{
+    width: 100%;
+    
+}
+
+.tabelaCabecalho{
+    text-align: left;
+    border-bottom: 2px solid #292929; 
+}
+
+.tabelaCabecalhoItens{
+    padding: 10px 5px;
+    border-bottom: 2px solid #292929;
+}
+
+.tabelaCabecalhoItensEmpresa{
+    padding: 10px 5px;
+    border-bottom: 2px solid #292929;
+    text-align: left;
+}
+
+.tabelaCabecalhoItens img{
+    cursor: pointer;
+}
+
+.status{
+    height: 2em;
+    border-bottom: 2px solid #292929;
+        
+}
+
+.totallicencas,
+.userativo,
+.userinativo{
+    font-weight: bold;
+    width: 5em;
+    height: 2em;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userativo{
+    background-color: #00DC82;
+    color: #f6f6f6;
+}
+.userinativo{
+    background-color: #EE8282;
+    color: #f6f6f6;
+}
+
+.totallicencas{
+    background-color: #1F1F1F;
+    color: #f6f6f6;
+}
+
+
+
+
+.colums{
+    display: flex;
+    flex-direction: column;
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+.pages button{
+    background-color: rgb(99, 99, 99);
+    width: 30px;
+    height: 30px;
+    border: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    gap: 10px;
+    cursor: pointer;
+}
+
+.licencas{
+    height: 2em;
+    border-bottom: 2px solid #292929;
+    
+}

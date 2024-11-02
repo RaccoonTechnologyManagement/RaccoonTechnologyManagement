@@ -1,0 +1,82 @@
+.Tabela{
+    width: 100%;
+    
+}
+
+.tabelaCabecalho{
+    text-align: left;
+    border-bottom: 2px solid #292929; 
+}
+
+.tabelaCabecalhoItens,
+.tabelaCabecalhoItensTecnico{
+    padding: 10px 5px;
+    border-bottom: 2px solid #292929;
+    max-width: 15rem;
+}
+
+.tabelaCabecalhoItensTecnico{
+    min-width: 7rem;
+}
+
+.tabelaCabecalhoItens img{
+    cursor: pointer;
+}
+
+.prioridade{
+    height: 2em;
+    border-bottom: 2px solid #292929;
+}
+
+.prioridadeAlta,
+.prioridadeMedia,
+.prioridadeBaixa{
+    font-weight: bold;
+    width: 5em;
+    height: 2em;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prioridadeAlta{
+    background-color: #EE8282;
+    color: #9D3434;
+}
+.prioridadeMedia{
+    background-color: #FEFFBD;
+    color: #8B8C57;
+}
+.prioridadeBaixa{
+    background-color: #1F1F1F;
+    color: #FFF;
+}
+
+.colums{
+    display: flex;
+    flex-direction: column;
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+.pages button{
+    background-color: rgb(99, 99, 99);
+    width: 30px;
+    height: 30px;
+    border: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    gap: 10px;
+    cursor: pointer;
+}
+

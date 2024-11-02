@@ -1,5 +1,3 @@
-
-
 import Container from './Container'
 import styles from './Ativos.module.css'
 import { NavLink } from 'react-router-dom';

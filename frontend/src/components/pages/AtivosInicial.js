@@ -10,8 +10,7 @@ import AtivosLt from '../layout/AtivosLt';
 function AtivosInicial (){
 
     const cabecalho = [
-        'N° Pat','Nome','Marca','Modelo','Empresa','Sede','Status',
-      ]
+        'N° Pat','Nome','Marca','Modelo','Empresa','Sede','Status']
       const itemsPerPage = 15;
       const totalPages = Math.ceil(ativos.length / itemsPerPage);
       const [currentPage, setCurrentPage] = useState(1);

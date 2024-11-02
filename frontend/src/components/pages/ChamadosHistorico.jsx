@@ -1,6 +1,6 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoMdArrowRoundForward } from "react-icons/io";
-import styles from '../pages/ChamadosAbertos.module.css';
+import styles from '../pages/ChamadosHistorico.module.css';
 import editar from '../../img/editar.png';
 import Chamados from '../layout/Chamados';
 import { useState, useEffect } from 'react';
@@ -10,14 +10,14 @@ import RedirectButton from "../component/RedirectButton";
 
 async function carregarTickets() {
   try {
-    let tickets = await getTickets(1);
+    let tickets = await getTickets();
     return tickets;
   } catch (erro) {
     return [];
   }
 }
 
-function ChamadosAbertos() {
+function ChamadosHistorico() {
   const [tickets, setTickets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -74,16 +74,13 @@ function ChamadosAbertos() {
                 </td>
                 <td className={styles.tabelaCabecalhoItens}>{item.company.company}</td>
                 <td className={styles.tabelaCabecalhoItens}>{item.accountable}</td>
-                <td className={styles.tabelaCabecalhoItens}>
-                  <img 
-                    src={editar} 
-                    alt="Editar" 
-                    onClick={() => {
-                      localStorage.setItem('idTicket', item.id);
-                      window.location.href = '/chamados/edit';
-                    }} 
-                  />
-                </td>
+                <RedirectButton
+                  item={item} 
+                  url="/chamados/edit"
+                  className={styles.tabelaCabecalhoItens}
+                  imageSrc={editar} 
+                  altText="Editar" 
+                />
               </tr>
             ))
             :
@@ -111,4 +108,4 @@ function ChamadosAbertos() {
   );
 }
 
-export default ChamadosAbertos;
+export default ChamadosHistorico;

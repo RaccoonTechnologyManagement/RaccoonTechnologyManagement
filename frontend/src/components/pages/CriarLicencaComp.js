@@ -186,28 +186,54 @@ function CriarLicencaComp (){
                 </div>
 
 
-                <div>
-                    {usuarios.map(usuario => (
-                        <div key={usuario.id} className={styles.selectContainer}>
-                            <button type="button" className={styles.addButton} onClick={handleAddUsuario}>+</button>
-                            <select
-                                id={`usuario-${usuario.id}`}
-                                name={`usuario-${usuario.id}`}
-                                className={styles.select}
-                                value={usuario.value}
-                                onChange={(e) => handleInputChange(usuario.id, e.target.value)} // Atualiza o valor do select
-                            >
-                                <option value=""></option>
-                                <option value="user1">ryan.hyggor</option>
-                                <option value="user2">teste.teste</option>
-                            </select>
-                            {usuarios.length > 1 && (
-                                <button type="button" className={styles.removeButton} onClick={() => handleRemoveUsuario(usuario.id)}>-</button>
-                            )}
-                        </div>
-                    ))}
-                </div>
+                    <div>
+                        {usuarios.map(usuario => (
+                            <div key={usuario.id} className={styles.selectContainer}>
+                                <button type="button" className={styles.addButton} onClick={handleAddUsuario}>+</button>
+                                <select
+                                    id={`usuario-${usuario.id}`}
+                                    name={`usuario-${usuario.id}`}
+                                    className={styles.select}
+                                    value={usuario.value}
+                                    onChange={(e) => handleInputChange(usuario.id, e.target.value)} // Atualiza o valor do select
+                                >
+                                    <option value=""></option>
+                                    <option value="user1">ryan.hyggor</option>
+                                    <option value="user2">teste.teste</option>
+                                </select>
 
+                    
+                
+            
+                                {usuarios.length > 1 && (
+                                    <button type="button" className={styles.removeButton} onClick={() => handleRemoveUsuario(usuario.id)}>-</button>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+
+                    {licencasExpiram && (
+        <div className={styles.dateContainer}>
+            <div className={styles.dateGroup}>
+                <label htmlFor="data-inicial">Data Inicial</label>
+                <input 
+                    type="date" 
+                    id="data-inicial" 
+                    name="data-inicial" 
+                    className={styles.dateInput} 
+                />
+            </div>
+            <div className={styles.dateGroup}>
+                <label htmlFor="data-final">Data Final</label>
+                <input 
+                    type="date" 
+                    id="data-final" 
+                    name="data-final" 
+                    className={styles.dateInput} 
+                />
+            </div>
+        </div>
+    )}
 
 
 
