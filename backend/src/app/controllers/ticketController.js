@@ -1,9 +1,7 @@
 import Ticket from '../models/ticket';
-import RelCategorysTickets from '../models/relCategorysTickets';
 import RelPrioritysTickets from '../models/relPrioritysTickets';
-import RelPersonsTickets from '../models/relPersonsTickets';
-import CategorysTickets from '../models/categorysTickets';
 import PrioritysTickets from '../models/prioritysTickets';
+import RelPersonsTickets from '../models/relPersonsTickets';
 import Person from '../models/person';
 import RelDepartamentsTickets from '../models/relDepartamentsTickets';
 import Departaments from '../models/departaments';
@@ -11,11 +9,13 @@ import RelBranchesDepartaments from '../models/relBranchesDepartaments';
 import Branches from '../models/branches';
 import RelCompanysBranches from '../models/relCompanysBranches';
 import Companys from '../models/companys';
+import RelCategorysTickets from '../models/relCategorysTickets';
+import CategorysTickets from '../models/categorysTickets';
 import RelStatusTickets from '../models/relStatusTickets';
-import RelPersonsTickets from '../models/relPersonsTickets';
+import StatusTickets from '../models/statusTickets';
 
-import sequelize from "sequelize";
-import { formatResponseMenuTicket } from '../../functions/functions';
+import Sequelize from 'sequelize';
+import { formatResponseMenuTicket, queryGetTickets } from '../../functions/functions';
 import * as Yup from 'yup'; // biblioteca de validação de campos
 
 class ticketController {
@@ -23,7 +23,45 @@ class ticketController {
     async index(req, res) {
         let responseTickets = [];
 
-        const tickets = await Ticket.findAll({
+        const menu = req.query.menu;
+
+        let conditionAccountable = '';
+        let conditionStatus = '';
+        let conditionPriority = '';
+        let conditionExp = '';
+
+        if(menu == 1)
+        {
+            conditionAccountable = "id_person_accountable > 0";
+            conditionStatus = "id_status = 1";
+            conditionPriority = "id_priority > 0"
+        }
+        else if(menu == 2)
+        {
+            conditionAccountable = "id_person_accountable = 1";
+            conditionStatus = "id_status = 1";
+            conditionPriority = "id_priority > 0"
+        }
+        else if(menu == 3)
+        {
+            conditionAccountable = "id_person_accountable > 0";
+            conditionStatus = "id_status = 1";
+            conditionPriority = "id_priority = 3"
+        }
+        else if(menu == 4)
+        {
+            conditionAccountable = "id_person_accountable > 0";
+            conditionStatus = "id_status = 1";
+            conditionExp = `DATE(exp_finish_at) BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '3 days'`;
+        }
+        else if(menu == 5)
+        {
+            conditionAccountable = "id_person_accountable > 0";
+            conditionStatus = "id_status = 1";
+            conditionExp = `exp_finish_at <= NOW()`;
+        }
+
+        const include = {
             include: [
                 {
                     model: RelCategorysTickets,
@@ -37,6 +75,7 @@ class ticketController {
                 {
                     model: RelPrioritysTickets,
                     as: 'priority',
+                    where: Sequelize.literal(conditionPriority),
                     include: [{
                         model: PrioritysTickets,
                         as: 'priority',
@@ -46,6 +85,7 @@ class ticketController {
                 {
                     model: RelPersonsTickets,
                     as: 'personsTickets',
+                    where: Sequelize.literal(conditionAccountable),
                     include: [{
                         model: Person,
                         as: 'accountable',
@@ -79,10 +119,31 @@ class ticketController {
                         }]
                     }]
                 },
+                {
+                    model: RelStatusTickets,
+                    as: 'status',
+                    where: Sequelize.literal(conditionStatus),
+                    include: [{
+                        model: StatusTickets,
+                        as: 'status',
+                        attributes: ['status']
+                    }]
+                }
             ]
-        });
+        };
 
-        responseTickets = formatResponseMenuTicket(tickets, 1);
+        const tickets = await Ticket.findAll({
+            ...include,
+            where: Sequelize.literal(conditionExp)
+        });
+        console.log(tickets);
+
+        console.log(conditionStatus);
+        console.log(conditionAccountable);
+        
+        responseTickets = formatResponseMenuTicket(tickets, menu);
+        console.log(responseTickets);
+
         return res.json(responseTickets);
     }
 
@@ -137,6 +198,25 @@ class ticketController {
         });
 
         return res.json(ticket);
+    }
+
+    async update(req, res){
+
+        let response = {
+            msg: ""
+        };
+
+        if(req.body.id_status == 3)
+        {
+            response.msg = "Chamado Finalizado!"
+        }
+
+        const statusUpdate = await RelStatusTickets.update(
+            { id_status: req.body.id_status },
+            { where: { id_ticket: req.body.id_ticket }}
+        );
+
+        return res.json(response);
     }
 }
 

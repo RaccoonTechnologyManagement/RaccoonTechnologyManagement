@@ -53,7 +53,6 @@ function RedefinirSenha() {
     })
     .then(response => {
         localStorage.setItem('token', response.data.token);
-        console.log(response);
         setMessage("Senha redefinida com sucesso!");
         setMessageType("success");
          
@@ -62,7 +61,6 @@ function RedefinirSenha() {
         }, 3000);
     })
     .catch(error => {
-      console.log(error)
         setMessage(error.response.data.error);
         setMessageType("error"); 
     });

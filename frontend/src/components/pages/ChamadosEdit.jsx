@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { getComments, insertComments } from '../data/api'
+import { getComments, insertComments, finalizeTikcet } from '../data/api'
 import styles from '../pages/ChamadosEdit.module.css'
 import Container from '../layout/Container'
 import { useEffect, useRef, useState } from 'react';
-import iconeInput from '../../img/enviar-mensagem.png'
-import iconeExcluir from '../../img/excluir.png'
+import iconeInput from '../../img/enviar-mensagem.png';
+import iconeExcluir from '../../img/excluir.png';
+import { useNavigate} from 'react-router-dom';
 
 
 function ChamadosEdit(){
@@ -21,6 +22,8 @@ function ChamadosEdit(){
   }, []);
 
   const [novaMensagem, setNovaMensagem] = useState('');
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); 
 
   const [ticket, setTicket] = useState({
       id: 123,
@@ -35,14 +38,13 @@ function ChamadosEdit(){
       dataprazo: '26/07/2024',
       status: 'Em andamento',
       descricao: 'Estou enfrentando dificuldades para acessar o sistema da empresa. Já tentei redefinir minha senha, mas o problema persiste.'
-  })
+  });
 
+  const navigate = useNavigate();
   const dataFormatada = parseDate(ticket.data);
   const dataPrazoFormatada = parseDate(ticket.dataprazo);
 
-  const id_ticket = 5;
-
-  console.log(localStorage.getItem('idTicket'))
+  const id_ticket = localStorage.getItem('idTicket');
 
   async function inserirComentarios(data)
   {
@@ -75,9 +77,9 @@ function ChamadosEdit(){
   {
     try
     {
-      return axios.get(`http://localhost:3333/persons`, {
+      return axios.get(`http://localhost:3334/persons`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzI4NjA0MjE5LCJleHAiOjE3Mjg2OTA2MTl9.8CLLcC5g74GiPAQPq2TxrVpjGgSFqLf-rkzbyNTDYyk`
+            Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         })
         .then(response => {
@@ -108,6 +110,32 @@ function ChamadosEdit(){
     else
     {
       return false;
+    }
+  }
+
+  async function finalizarTicket()
+  {
+    try
+    {
+      console.log(id_ticket)
+      let data = {
+        id_ticket: id_ticket,
+        id_status: 3
+      }
+
+      let ticketFinalizado = await finalizeTikcet(data);
+      console.log(ticketFinalizado.msg);
+
+      setMessage(ticketFinalizado.msg);
+      setMessageType("success");
+
+      setTimeout(() => {
+        navigate('/chamados/abertos');
+      }, 3000);
+    }
+    catch(erro)
+    {
+
     }
   }
 
@@ -315,7 +343,12 @@ function ChamadosEdit(){
           </div>
           <div className={styles.buttonGroup}>
             <div className={styles.boxLeftButtonGroup}>
-              <button className={styles.createButton}>FINALIZAR</button>
+              <button 
+                className={styles.createButton}
+                onClick={() => {
+                  finalizarTicket()
+                }}
+                >FINALIZAR</button>
               <img
                 className={styles.deleteButton}
                 src={iconeExcluir}>

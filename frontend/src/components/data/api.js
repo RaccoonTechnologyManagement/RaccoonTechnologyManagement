@@ -6,7 +6,7 @@ export async function getComments(id_ticket)
     {
         let response = await axios.get(`http://localhost:3334/commentsTickets?id_ticket=${id_ticket}`, {
             headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzI4NjA0MjE5LCJleHAiOjE3Mjg2OTA2MTl9.8CLLcC5g74GiPAQPq2TxrVpjGgSFqLf-rkzbyNTDYyk`
+                Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         });
 
@@ -24,7 +24,7 @@ export async function insertComments(data)
     {
         let response = await axios.post(`http://localhost:3334/commentsTickets`, data , {
             headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzI4NjA0MjE5LCJleHAiOjE3Mjg2OTA2MTl9.8CLLcC5g74GiPAQPq2TxrVpjGgSFqLf-rkzbyNTDYyk`
+                Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         });
 
@@ -36,11 +36,32 @@ export async function insertComments(data)
     }
 }
 
-export async function getTickets()
+export async function getTickets(menu)
 {
     try
     {
         let response = await axios.get(`http://localhost:3334/tickets`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            params: {
+                menu: menu
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
+
+export async function finalizeTikcet(data)
+{
+    try
+    {
+        let response = await axios.put(`http://localhost:3334/tickets`, data, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

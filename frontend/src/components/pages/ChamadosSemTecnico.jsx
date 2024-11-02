@@ -1,19 +1,44 @@
-import { IoMdArrowRoundBack } from "react-icons/io"
+import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoMdArrowRoundForward } from "react-icons/io";
-import styles from '../pages/ChamadosAbertos.module.css'
-import editar from '../../img/editar.png'
-import { tickets } from '../data/ChamadosDataBase'
-import Chamados from '../layout/Chamados'
-import { useState } from 'react'
-import {InfoSearch} from '../component/Search'
+import styles from '../pages/ChamadosAbertos.module.css';
+import editar from '../../img/editar.png';
+import Chamados from '../layout/Chamados';
+import { useState, useEffect } from 'react';
+import { InfoSearch } from '../component/Search';
+import { getTickets } from '../data/api';
 
-function ChamadosSemTecnico(){
-  const cabecalho = [
-    'ID','Título','Categoria','Prioridade','Empresa','Técnico',''
-  ]
-  const itemsPerPage = 10;
+async function carregarTickets() {
+  try {
+    let tickets = await getTickets(2);
+    return tickets;
+  } catch (erro) {
+    return [];
+  }
+}
+
+function ChamadosSemTecnico() {
+  const [tickets, setTickets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState("");
 
+  useEffect(() => {
+    const fetchTickets = async () => {
+      const ticketsData = await carregarTickets();
+      setTickets(ticketsData);
+    };
+    fetchTickets();
+  }, []);
+
+  const cabecalho = ['ID', 'Título', 'Categoria', 'Prioridade', 'Empresa', 'Técnico', ''];
+
+  const itemsPerPage = 10;
+
+  const verificarSearch = tickets.filter((item) => {
+    return Object.values(item)
+      .some((prop) => prop && prop.toString().toLowerCase().includes(search.toLowerCase()));
+  });
+
+  const totalPages = Math.ceil(verificarSearch.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
@@ -22,60 +47,50 @@ function ChamadosSemTecnico(){
       setCurrentPage(newPage);
     }
   };
-  const [search, setSearch] = useState("")
 
-  const verificarSearch = tickets 
-  .filter((item) =>{
-    return Object.values(item)
-    .some((prop) => prop && prop
-    .toString().toLowerCase()
-    .includes(search.toLowerCase()));
-  })
-
-  const filteredItems = verificarSearch.filter((item) => item.tecnico === '');
-  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-
-  return(
+  return (
     <Chamados>
-      <InfoSearch setSearch={setSearch} />  
+      <InfoSearch setSearch={setSearch} />
       <table className={styles.Tabela}>
         <thead>
           <tr className={styles.tabelaCabecalho}>
-            {cabecalho.map((item, index)=>(
+            {cabecalho.map((item, index) => (
               <th key={index} className={styles.tabelaCabecalhoItens}>{item}</th>
             ))}
           </tr>
         </thead>
-        <tbody >
-          {filteredItems.length > 0 ? filteredItems
-          .slice(startIndex, endIndex).map((item,index) =>(
-            <tr key={index} >
-              <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
-              <td className={styles.tabelaCabecalhoItens}>{item.titulo}</td>
-              <td className={styles.tabelaCabecalhoItens}>{item.categoria}</td>
-              <td className={styles.prioridade}>
-                {item.prioridade === 'Alta'? 
-                <div className={styles.prioridadeAlta}>Alta</div>: ''}
-                {item.prioridade === 'Média'? 
-                <div className={styles.prioridadeMedia}>Média</div>: ''}
-                {item.prioridade === 'Baixa'? 
-                <div className={styles.prioridadeBaixa}>Baixa</div>: ''}
-              </td>
-              <td className={styles.tabelaCabecalhoItens}>{item.empresa}</td>
-              <td className={styles.tabelaCabecalhoItensTecnico}>{item.tecnico}</td>
-              <td className={styles.tabelaCabecalhoItens}>
-                <img 
-                alt="Editar"
-                src={editar}/>
+        <tbody>
+          {verificarSearch.length > 0 ? verificarSearch
+            .slice(startIndex, endIndex).map((item, index) => (
+              <tr key={index}>
+                <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
+                <td className={styles.tabelaCabecalhoItens}>{item.title}</td>
+                <td className={styles.tabelaCabecalhoItens}>{item.category}</td>
+                <td className={styles.priority}>
+                  {item.priority === 'Alta' ? <div className={styles.prioridadeAlta}>Alta</div> : ''}
+                  {item.priority === 'Média' ? <div className={styles.prioridadeMedia}>Média</div> : ''}
+                  {item.priority === 'Baixa' ? <div className={styles.prioridadeBaixa}>Baixa</div> : ''}
+                </td>
+                <td className={styles.tabelaCabecalhoItens}>{item.company.company}</td>
+                <td className={styles.tabelaCabecalhoItens}>{item.accountable}</td>
+                <td className={styles.tabelaCabecalhoItens}>
+                  <img 
+                    src={editar} 
+                    alt="Editar" 
+                    onClick={() => {
+                      localStorage.setItem('idTicket', item.id);
+                      window.location.href = '/chamados/edit';
+                    }} 
+                  />
+                </td>
+              </tr>
+            ))
+            :
+            <tr>
+              <td colSpan="7">
+                <h3>Nenhum resultado para '{search}'</h3>
               </td>
             </tr>
-          ))
-          :
-          <tr>
-            <td colSpan="7">
-              <h3>Nenhum resultado para '{search}'</h3>
-            </td>
-          </tr>
           }
         </tbody>
       </table>
@@ -92,8 +107,7 @@ function ChamadosSemTecnico(){
         </div>
       )}
     </Chamados>
-    )
+  );
 }
 
-export default ChamadosSemTecnico
-
+export default ChamadosSemTecnico;

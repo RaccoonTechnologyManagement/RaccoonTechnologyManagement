@@ -22,6 +22,7 @@ class Ticket extends Model {
         this.hasMany(models.RelPrioritysTickets, { foreignKey: 'id_ticket', as: 'priority' });
         this.hasMany(models.RelPersonsTickets, { foreignKey: 'id_ticket', as: 'personsTickets' });
         this.hasMany(models.RelDepartamentsTickets, { foreignKey: 'id_ticket', as: 'departaments' });
+        this.hasMany(models.RelStatusTickets, { foreignKey: 'id_ticket', as: 'status' });
     }
 }
 

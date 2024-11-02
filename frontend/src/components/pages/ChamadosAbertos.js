@@ -9,7 +9,7 @@ import { getTickets } from '../data/api';
 
 async function carregarTickets() {
   try {
-    let tickets = await getTickets();
+    let tickets = await getTickets(1);
     return tickets;
   } catch (erro) {
     return [];
@@ -79,7 +79,7 @@ function ChamadosAbertos() {
                     alt="Editar" 
                     onClick={() => {
                       localStorage.setItem('idTicket', item.id);
-                      window.location.href = '/chamados/edit'; // substitua '/nova-pagina' pela URL desejada
+                      window.location.href = '/chamados/edit';
                     }} 
                   />
                 </td>
