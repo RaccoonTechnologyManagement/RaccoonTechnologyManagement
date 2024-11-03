@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getComments, insertComments, finalizeTikcet } from '../data/api'
+import { getComments, insertComments, updateTicket, getInfoTicket } from '../data/api'
 import styles from '../pages/ChamadosEdit.module.css'
 import Container from '../layout/Container'
 import { useEffect, useRef, useState } from 'react';
@@ -12,8 +12,11 @@ function ChamadosEdit(){
   const chatRef = useRef();
 
   const scrollBelow = () => {
-    chatRef.current.scrollTop = chatRef.current.scrollHeight;
-  };
+    if(chatRef.current)
+    {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,25 +27,11 @@ function ChamadosEdit(){
   const [novaMensagem, setNovaMensagem] = useState('');
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState(""); 
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [ticket, setTicket] = useState({
-      id: 123,
-      titulo: 'Impressora com problema',
-      empresa: 'Sigma Saúde e Bem-Estar Ltda',
-      departamento: 'Vendas',
-      sede:'Filial São Paulo',
-      user: 'asd.dummont',
-      prioridade:'Alta',
-      categoria:'Hardware',
-      data: '24/07/2024',
-      dataprazo: '26/07/2024',
-      status: 'Em andamento',
-      descricao: 'Estou enfrentando dificuldades para acessar o sistema da empresa. Já tentei redefinir minha senha, mas o problema persiste.'
-  });
+  const [ticket, setTicket] = useState({});
 
   const navigate = useNavigate();
-  const dataFormatada = parseDate(ticket.data);
-  const dataPrazoFormatada = parseDate(ticket.dataprazo);
 
   const id_ticket = localStorage.getItem('idTicket');
 
@@ -51,6 +40,20 @@ function ChamadosEdit(){
     try
     {
         insertComments(data);
+    }
+    catch(erro)
+    {
+        return [];
+    }
+  }
+
+  async function carregarTicket()
+  {
+    try
+    {
+        let ticket = await getInfoTicket(id_ticket);
+        console.log(ticket)
+        return ticket;
     }
     catch(erro)
     {
@@ -113,25 +116,35 @@ function ChamadosEdit(){
     }
   }
 
-  async function finalizarTicket()
+  async function atualizarChamado(status)
   {
     try
     {
-      console.log(id_ticket)
-      let data = {
-        id_ticket: id_ticket,
-        id_status: 3
+      let data = {};
+
+      if(status == 4)
+      {
+        data = {
+          id_ticket: id_ticket,
+          id_status: status
+        }
+      }
+      else
+      {
+        data = {
+          id_ticket: id_ticket,
+          id_status: status,
+          id_priority: ticket.priority,
+          id_category: ticket.category,
+          dateExp: ticket.dateExp 
+        }
       }
 
-      let ticketFinalizado = await finalizeTikcet(data);
-      console.log(ticketFinalizado.msg);
-
-      setMessage(ticketFinalizado.msg);
-      setMessageType("success");
+      let ticketAtualizado = await updateTicket(data);
 
       setTimeout(() => {
         navigate('/chamados/abertos');
-      }, 3000);
+      }, 50);
     }
     catch(erro)
     {
@@ -139,48 +152,47 @@ function ChamadosEdit(){
     }
   }
 
-  function parseDate(dateString) {
-    const parts = dateString.split('/');
-    if (parts.length === 3) {
-      const [day, month, year] = parts;
-      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-    }
-    return dateString; // Retorna a data original se o formato estiver incorreto
-  }
-
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setTicket({ ...ticket, [name]: value });
-    };
-  
-/*COMENTARIO FANTASMA
-        const [mensagens, setMensagens] = useState([
+  const formatDateToISO = (dateStr) => {
+    console.log(dateStr)
+    if(dateStr != '')
     {
-        logged: false,
-        usuario: '',
-        texto: '',
+      const [day, month, year] = dateStr.split('/');
+      return `${year}-${month}-${day}`;
     }
-  ]);
+    else
+    {
+      return '';
+    }
+  };
 
-*/
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setTicket({ ...ticket, [name]: value });
+  };
 
-const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA. VERIFICAR SE ALTEROU ALGUMA FUNCIONALIDADE
+  const [mensagens, setMensagens] = useState([]);
 
   useEffect(() => {
-    const inserirComentariosCarregados = async () => {
+    const inserirInformacoesTicket = async () => {
+      const info = await carregarTicket();
+      setTicket(info);
+
       const comentarios = await carregarComentarios();
-      if(comentarios.length > 0)
-      {
+      if (comentarios.length > 0) {
         setMensagens(comentarios);
+        scrollBelow();
       }
+      
+      setIsLoading(false);
     };
 
-    inserirComentariosCarregados();
+    inserirInformacoesTicket();
   }, []);
 
-  const userLogged = 'gui.araujo' //puxar do login
+
+  const userLogged = 'gui.araujo'
   const handleEnviarMensagem = () => {
-    if (novaMensagem.trim() === '') return; // Ignora mensagens vazias
+    if (novaMensagem.trim() === '') return;
 
     const novoComentario = {
       logged: true,
@@ -195,11 +207,14 @@ const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA.
 
     inserirComentarios(data);
 
-    setMensagens([...mensagens, novoComentario]); // Atualiza o estado com a nova mensagem
-    setNovaMensagem(''); // Limpa o input
+    setMensagens([...mensagens, novoComentario]);
+    setNovaMensagem('');
     chatRef.current.scrollTop = chatRef.current.scrollHeight;
   };
 
+  if (isLoading) {
+    return <p>Carregando...</p>;
+  }
 
   return(
     <Container>
@@ -214,15 +229,15 @@ const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA.
               <input 
                 type="text"
                 name="titulo"
-                value={ticket.titulo}
+                value={ticket.title}
                 onChange={handleChange}
               />
             </div>
             <div className={styles.ticketInputs}>
               <label className={styles.title}>STATUS</label>
-              <select name="status">
-                <option selected={ticket.status === 'Em andamento'}>Em andamento</option>
-                <option selected={ticket.status === 'Encerrado'}>Encerrado</option>
+              <select name="status" onChange={handleChange} value={ticket.status || ''}>
+                <option value="1">Aberto</option>
+                <option value="2">Em andamento</option>
               </select>
             </div>
             <div className={styles.ticketInputs}>
@@ -230,7 +245,7 @@ const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA.
               <input 
                 type="text"
                 name="empresa"
-                value={ticket.empresa}
+                value={ticket.company.company}
                 onChange={handleChange}
                 disabled
               />
@@ -240,7 +255,7 @@ const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA.
               <input 
                 type="text"
                 name="departamento"
-                value={ticket.departamento}
+                value={ticket.company.departament}
                 onChange={handleChange}
                 disabled
               />
@@ -250,7 +265,7 @@ const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA.
               <input 
                 type="text"
                 name="sede"
-                value={ticket.sede}
+                value={ticket.company.branch}
                 onChange={handleChange}
                 disabled
               />
@@ -260,25 +275,27 @@ const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA.
               <input 
                 type="text"
                 name="user"
-                value={ticket.user}
+                value={ticket.creator}
                 onChange={handleChange}
                 disabled
               />
             </div>
             <div className={styles.ticketInputs}>
               <label className={styles.title}>PRIORIDADE</label>
-              <select name="prioridade">
-                <option selected={ticket.status === 'Alta'}>Alta</option>
-                <option selected={ticket.status === 'Média'}>Média</option>
-                <option selected={ticket.status === 'Baixa'}>Baixa</option>
+              <select name="prioridade" onChange={handleChange} value={ticket.priority || ''}>
+                <option value="1">Baixa</option>
+                <option value="2">Média</option>
+                <option value="3">Alta</option>
               </select>
             </div>
             <div className={styles.ticketInputs}>
               <label className={styles.title}>CATEGORIA</label>
-              <select name="categoria">
-                <option selected={ticket.status === 'Hardware'}>Hardware</option>
-                <option selected={ticket.status === 'Software'}>Software</option>
-                <option selected={ticket.status === 'Office 365'}>Office 365</option>
+              <select name="categoria" onChange={handleChange} value={ticket.category || ''}>
+                <option value="">Selecione</option>
+                <option value="1">Hardware</option>
+                <option value="2">Rede</option>
+                <option value="3">Servidor</option>
+                <option value="4">Software</option>
               </select>
             </div>
             <div className={styles.ticketInputs}>
@@ -286,9 +303,9 @@ const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA.
               <input 
                 type="date"
                 name="data"
-                value={dataFormatada}
+                value={formatDateToISO(ticket.dateCreated)}
                 onChange={handleChange}
-                disabled
+                disabledc
               />
             </div>
             <div className={styles.ticketInputs}>
@@ -296,14 +313,14 @@ const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA.
               <input 
                 type="date"
                 name="dataprazo"
-                value={dataPrazoFormatada}
+                value={formatDateToISO(ticket.dateExp)}
                 onChange={handleChange}
               />
             </div>
             
             <div className={styles.assetFormGroupFullWidth}>
               <label htmlFor="descricao">DESCRIÇÃO</label>
-              <textarea name="descricao" rows="5" className={styles.fullWidth} value={ticket.descricao} disabled></textarea>
+              <textarea name="descricao" rows="5" className={styles.fullWidth} value={ticket.description} disabled></textarea>
             </div>
           </form>
 
@@ -351,16 +368,24 @@ const [mensagens, setMensagens] = useState([]); // REMOVI O COMENTARIO FANTASMA.
               <button 
                 className={styles.createButton}
                 onClick={() => {
-                  finalizarTicket()
+                  atualizarChamado(3)
                 }}
                 >FINALIZAR</button>
               <img
                 className={styles.deleteButton}
+                onClick={() => {
+                  atualizarChamado(4)
+                }}
                 src={iconeExcluir}>
               </img>
             </div>
             <div className={styles.boxRightButtonGroup}>
-              <button className={styles.saveButton}>SALVAR</button>
+              <button 
+                className={styles.saveButton}
+                onClick={() => {
+                  atualizarChamado(ticket.status)
+                }
+                }>SALVAR</button>
               <button className={styles.cancelButton}>CANCELAR</button>
             </div>
           </div>

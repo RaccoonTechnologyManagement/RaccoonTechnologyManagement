@@ -45,6 +45,7 @@ routes.get('/persons', personController.index);
 
 routes.post('/tickets', ticketController.store);
 routes.get('/tickets', ticketController.index);
+routes.get('/getInfoTicket', ticketController.getOneTicket);
 routes.put('/tickets', ticketController.update);
 
 routes.post('/categorysTickets', categorysTicketsController.store);

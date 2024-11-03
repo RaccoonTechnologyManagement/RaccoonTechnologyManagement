@@ -11,11 +11,12 @@ import RelCompanysBranches from '../models/relCompanysBranches';
 import Companys from '../models/companys';
 import RelCategorysTickets from '../models/relCategorysTickets';
 import CategorysTickets from '../models/categorysTickets';
-import RelStatusTickets from '../models/relStatusTickets';
+import RelStatusTickets from '../models/relStatusTickets'
 import StatusTickets from '../models/statusTickets';
+import personController from './personController';
 
 import Sequelize from 'sequelize';
-import { formatResponseMenuTicket, queryGetTickets } from '../../functions/functions';
+import { formatResponseMenuTicket, formatResponseTicket, transformarDataEmTimestamp } from '../../functions/functions';
 import * as Yup from 'yup'; // biblioteca de validação de campos
 
 class ticketController {
@@ -33,31 +34,31 @@ class ticketController {
         if(menu == 1)
         {
             conditionAccountable = "id_person_accountable > 0";
-            conditionStatus = "id_status = 1";
+            conditionStatus = "id_status IN (1,2)";
             conditionPriority = "id_priority > 0"
         }
         else if(menu == 2)
         {
             conditionAccountable = "id_person_accountable = 1";
-            conditionStatus = "id_status = 1";
+            conditionStatus = "id_status IN (1,2)";
             conditionPriority = "id_priority > 0"
         }
         else if(menu == 3)
         {
             conditionAccountable = "id_person_accountable > 0";
-            conditionStatus = "id_status = 1";
+            conditionStatus = "id_status IN (1,2)";
             conditionPriority = "id_priority = 3"
         }
         else if(menu == 4)
         {
             conditionAccountable = "id_person_accountable > 0";
-            conditionStatus = "id_status = 1";
+            conditionStatus = "id_status IN (1,2)";
             conditionExp = `DATE(exp_finish_at) BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '3 days'`;
         }
         else if(menu == 5)
         {
             conditionAccountable = "id_person_accountable > 0";
-            conditionStatus = "id_status = 1";
+            conditionStatus = "id_status IN (1,2)";
             conditionExp = `DATE(exp_finish_at) < DATE(NOW())`;
         }
 
@@ -143,6 +144,8 @@ class ticketController {
     }
 
     async store(req, res) {
+
+        console.log(req.body)
         const schema = Yup.object().shape({
             title: Yup.string().required(),
             description: Yup.string().required(),
@@ -186,10 +189,12 @@ class ticketController {
             id_status: 1
         });
 
+        const id_person = await personController.getPersonByUserId(req.userId);
+
         await RelPersonsTickets.create({
             id_ticket: ticket.id,
-            id_person_creator: req.body.id_person_creator,
-            id_person_accountable: req.body.id_person_accountable
+            id_person_creator: id_person,
+            id_person_accountable: 1
         });
 
         return res.json(ticket);
@@ -197,22 +202,134 @@ class ticketController {
 
     async update(req, res){
 
-        let response = {
-            msg: ""
-        };
-
-        if(req.body.id_status == 3)
+        if(req.body.id_status == 4)
         {
-            response.msg = "Chamado Finalizado!"
+            console.log("finalizar")
+            const statusUpdate = await RelStatusTickets.update(
+                { id_status: req.body.id_status },
+                { where: { id_ticket: req.body.id_ticket }}
+            );
+
+            return res.json(statusUpdate);
         }
 
-        const statusUpdate = await RelStatusTickets.update(
+        await Ticket.update(
+            {
+                exp_finish_at: transformarDataEmTimestamp(req.body.dateExp),
+            },
+            { where: { id: req.body.id_ticket }}
+        );
+
+        await RelPrioritysTickets.update(
+            { id_priority: req.body.id_priority },
+            { where: { id_ticket: req.body.id_ticket }}
+        );
+
+        await RelCategorysTickets.update(
+            { id_category: req.body.id_category },
+            { where: { id_ticket: req.body.id_ticket }}
+        );
+
+        await RelStatusTickets.update(
             { id_status: req.body.id_status },
             { where: { id_ticket: req.body.id_ticket }}
         );
 
-        return res.json(response);
+        return res.json("ok");
     }
+
+    async getOneTicket(req, res) {
+        let responseTickets = [];
+
+        const include = {
+            include: [
+                {
+                    model: RelCategorysTickets,
+                    as: 'category',
+                    include: [{
+                        model: CategorysTickets,
+                        as: 'category',
+                        attributes: ['id']
+                    }]
+                },
+                {
+                    model: RelPrioritysTickets,
+                    as: 'priority',
+                    include: [{
+                        model: PrioritysTickets,
+                        as: 'priority',
+                        attributes: ['id']
+                    }]
+                },
+                {
+                    model: RelPersonsTickets,
+                    as: 'personsTickets',
+                    include: [{
+                        model: Person,
+                        as: 'accountable',
+                        attributes: ['id']
+                    }]
+                },
+                {
+                    model: RelPersonsTickets,
+                    as: 'personsTickets',
+                    include: [{
+                        model: Person,
+                        as: 'creator',
+                        attributes: ['name']
+                    }]
+                },
+                {
+                    model: RelDepartamentsTickets,
+                    as: 'departaments',
+                    include: [{
+                        model: Departaments,
+                        as: 'departament',
+                        attributes: ['department_name'],
+                        include: [{
+                            model: RelBranchesDepartaments,
+                            as: 'relDepartament',
+                            include: [{
+                                model: Branches,
+                                as: 'branch',
+                                attributes: ['branch_name'],
+                                include: [{
+                                    model: RelCompanysBranches,
+                                    as: 'relBranch',
+                                    include: [{
+                                        model: Companys,
+                                        as: 'company',
+                                        attributes: ['name']
+                                    }]
+                                }]
+                            }]
+                        }]
+                    }]
+                },
+                {
+                    model: RelStatusTickets,
+                    as: 'status',
+                    include: [{
+                        model: StatusTickets,
+                        as: 'status',
+                        attributes: ['id']
+                    }]
+                }
+            ]
+        };
+
+        const tickets = await Ticket.findOne({
+            ...include,
+            where: {
+                id: req.query.id_ticket,
+            }
+        });
+
+        responseTickets = formatResponseTicket(tickets);
+        console.log(responseTickets);
+        return res.json(responseTickets);
+    }
+
 }
 
 export default new ticketController();
