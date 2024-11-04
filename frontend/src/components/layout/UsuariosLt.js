@@ -10,7 +10,7 @@ function UsuariosLt (props){
 
             <h2 className={styles.title}>USUARIOS</h2>
             <div className={styles.borderButton}>
-                <NavLink to={`/ativos/criar/hardware`}>
+                <NavLink to={`/CriarAviso`}>
                     <button className={styles.buttonCreate}>CRIAR AVISO</button>
                 </NavLink> 
                 <NavLink>

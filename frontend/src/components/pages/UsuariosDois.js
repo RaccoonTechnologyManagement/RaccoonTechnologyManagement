@@ -54,10 +54,9 @@ function UsuariosDois () {
                 <tr key={index}>
                   <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
                   <td className={styles.tabelaCabecalhoItens}>{item.user}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>                
-                  <td className={styles.tabelaCabecalhoItens}>{item.setor}</td>                  
+                  <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>                             
                   <td className={styles.tabelaCabecalhoItensEmpresa}>{item.empresa}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.sede}</td>
+                  
                   <td className={styles.status}>
                     {item.status === 'Ativo'? 
                     <div className={styles.userativo}>Ativo</div>: ''}

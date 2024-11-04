@@ -29,6 +29,7 @@ import RedefinirSenha from './components/pages/RedefinirSenha';
 import ChamadosEdit from './components/pages/ChamadosEdit';
 import ChamadosCriar from './components/pages/ChamadosCriar';
 import ChamadosHistorico from './components/pages/ChamadosHistorico';
+import CriarAviso from './components/pages/CriarAviso';
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
           <Route path="/monitorar/historicoalerta" element={<HistoricoAlerta/>}/>
           <Route path="/monitorar/visaogeral" element={<VisaoGeral/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/CriarAviso" element={<CriarAviso/>}/>
           <Route path="/usuarios" element={<Usuarios/>}/>
           <Route path="/user" element={<User/>}/>
 
