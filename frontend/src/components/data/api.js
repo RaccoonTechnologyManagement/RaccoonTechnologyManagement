@@ -110,3 +110,21 @@ export async function createTicket(data)
         return [];
     }
 }
+
+export async function getInfoPerson()
+{
+    try
+    {
+        let response = await axios.get(`http://localhost:3334/getInfoPerson`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}

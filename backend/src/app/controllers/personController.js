@@ -1,10 +1,21 @@
 import Person from '../models/person';
+import RelCategorysPersons from '../models/relCategorysPersons';
+import CategorysPersons from '../models/categorysPersons';
+import RelPersonsDepartaments from '../models/relPersonsDepartaments';
+import RelBranchesDepartaments from '../models/relBranchesDepartaments';
+import RelCompanysBranches from '../models/relCompanysBranches';
+import Branches from '../models/branches';
+import Departaments from '../models/departaments';
+import Companys from '../models/companys';
+import User from '../models/user';
 import * as Yup from 'yup';
+
+import { formatResponsePerson } from '../../functions/functions';
 
 class personController {
 
     async index(req, res) {
-        const persons = await Person.findAll({
+        const persons = await Person.findOne({
             where: { id_user: req.userId }
         });
 
@@ -48,6 +59,65 @@ class personController {
         });
 
         return res.json(persons);
+    }
+
+    async getPerson(req, res) {
+
+        const include = {
+            include: [
+                {
+                    model: RelCategorysPersons,
+                    as: 'category',
+                    include: [{
+                        model: CategorysPersons,
+                        as: 'category',
+                        attributes: ['category']
+                    }]
+                },
+                {
+                    model: RelPersonsDepartaments,
+                    as: 'departaments',
+                    include: [{
+                        model: Departaments,
+                        as: 'departaments',
+                        attributes: ['department_name'],
+                        include: [{
+                            model: RelBranchesDepartaments,
+                            as: 'relDepartament',
+                            include: [{
+                                model: Branches,
+                                as: 'branch',
+                                attributes: ['branch_name'],
+                                include: [{
+                                    model: RelCompanysBranches,
+                                    as: 'relBranch',
+                                    include: [{
+                                        model: Companys,
+                                        as: 'company',
+                                        attributes: ['corporate_name']
+                                    }]
+                                }]
+                            }]
+                        }]
+                    }]
+                },
+                {
+                    model: User,
+                    as: 'user',
+                }
+            ]
+        };
+
+        const persons = await Person.findOne({
+            ...include,
+            where: {
+                id_user: req.userId,
+            }
+        });
+
+        console.log(persons);
+
+        return res.json(formatResponsePerson(persons));
     }
 }
 

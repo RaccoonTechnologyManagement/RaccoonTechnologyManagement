@@ -18,7 +18,7 @@ class RelPersonsDepartaments extends Model {
 
     static associate(models){
         this.belongsTo(models.Person, {foreignKey: 'id_person', as: 'person'});
-        this.belongsTo(models.Departaments, {foreignKey: 'id_departament', as: 'departament'});
+        this.belongsTo(models.Departaments, {foreignKey: 'id_departament', as: 'departaments'});
     }
 }
 

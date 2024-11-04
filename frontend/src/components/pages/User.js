@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import Container from "../layout/Container";
+import { getInfoPerson } from '../data/api'
 import Racoon from "../../img/RACOON.svg";
 import styles from "../pages/User.module.css";
 import { NavLink } from "react-router-dom";
@@ -7,30 +8,24 @@ import InputMask from "react-input-mask";
 
 
 function User(){
-    const [user, setUser] = useState({
-        username: "",
-        firstName: "",
-        lastName: "",
-        company: "",
-        branch: "",
-        department: "",
-        category: "",
-        position: "",
-        email: "",
-        phone: "",
-      });
+      const [user, setUser] = useState({});
 
-      function User() {
-        const [user, setUser] = useState({
-          phone: "",
-        });
-      
-        const handleChange = (e) => {
-          const { name, value } = e.target;
-          setUser({ ...user, [name]: value });
-        };
-      }      
-    
+      async function carregarInfoPessoa()
+      {
+        try
+        {
+            let person = await getInfoPerson();
+
+            return person;
+        }
+        catch(erro)
+        {
+            return [];
+        }
+      }
+
+      const [isLoading, setIsLoading] = useState(true);
+
       const handleChange = (e) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
@@ -43,6 +38,22 @@ function User(){
       const handleResetPassword = () => {
         console.log("Botão Redefinir Senha clicado");
       };
+
+      useEffect(() => {
+        const inserirInfoPessoa = async () => {
+          const info = await carregarInfoPessoa();
+          console.log(info)
+          setUser(info);
+          
+          setIsLoading(false);
+        };
+    
+        inserirInfoPessoa();
+      }, []);
+
+      if (isLoading) {
+        return <p>Carregando...</p>;
+      }
     
       return (
         <Container>
@@ -58,7 +69,7 @@ function User(){
                   <input
                     type="text"
                     name="username"
-                    value={user.username}
+                    value={user.user.username}
                     onChange={handleChange}
                   />
                 </div>
@@ -67,7 +78,7 @@ function User(){
                   <input
                     type="text"
                     name="firstName"
-                    value={user.firstName}
+                    value={user.name}
                     onChange={handleChange}
                   />
                 </div>
@@ -76,7 +87,7 @@ function User(){
                   <input
                     type="text"
                     name="lastName"
-                    value={user.lastName}
+                    value={user.lastname}
                     onChange={handleChange}
                   />
                 </div>
@@ -86,7 +97,7 @@ function User(){
               <aside className={styles.profileAvatar}>
                 <img src={Racoon} alt="Profile" />
                 <div className={styles.active}>
-                <span >ATIVO</span>
+                <span >{user.person_activy ? "ATIVO" : "DESATIVADO"}</span>
                 </div>
               </aside>
               </div>
@@ -105,7 +116,7 @@ function User(){
                 <input
                   type="text"
                   name="company"
-                  value={user.company}
+                  value={user.company.company}
                   onChange={handleChange}
                 /></div>
 
@@ -114,7 +125,7 @@ function User(){
                   <input
                     type="text"
                     name="branch"
-                    value={user.branch}
+                    value={user.company.branch}
                     onChange={handleChange}
                   /></div>
 
@@ -123,7 +134,7 @@ function User(){
                   <input
                     type="text"
                     name="department"
-                    value={user.department}
+                    value={user.company.departament}
                     onChange={handleChange}
                   /></div>
 
@@ -144,7 +155,7 @@ function User(){
                 <input
                   type="text"
                   name="position"
-                  value={user.position}
+                  value={user.office}
                   onChange={handleChange}
                 /></div>
 
@@ -154,7 +165,7 @@ function User(){
                 <input
                   type="email"
                   name="email"
-                  value={user.email}
+                  value={user.user.email}
                   onChange={handleChange}
                 />
               </div>
@@ -166,7 +177,7 @@ function User(){
               mask="(99) 99999-9999"
               type="tel"
               name="phone"
-              value={user.phone}
+              value={user.telephone}
               onChange={handleChange}
             /></div>
 

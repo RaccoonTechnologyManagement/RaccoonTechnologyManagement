@@ -7,6 +7,8 @@ import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 
 function User() {
+  console.log("aqui")
+
   const [user, setUser] = useState({
     username: "",
     firstName: "",

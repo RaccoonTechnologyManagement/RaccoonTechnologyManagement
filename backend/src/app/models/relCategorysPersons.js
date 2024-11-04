@@ -16,7 +16,7 @@ class RelCategorysPersons extends Model {
     }
 
     static associate(models){
-        this.belongsTo(models.Person, {foreignKey: 'id_person', as: 'ticket'});
+        this.belongsTo(models.Person, {foreignKey: 'id_person', as: 'person'});
         this.belongsTo(models.CategorysPersons, {foreignKey: 'id_category', as: 'category'});
     }
 }

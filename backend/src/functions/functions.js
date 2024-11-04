@@ -74,5 +74,31 @@ export function transformarDataEmTimestamp(dataStr)
     const ano = partes[2];
 
     return `${ano}-${mes}-${dia}`;
+}
 
+export function formatResponsePerson(personResponse)
+{
+    let response = [];
+
+    response = {
+        id: personResponse['dataValues']['id'],
+        name: personResponse['dataValues']['name'],
+        lastname: personResponse['dataValues']['lastname'],
+        telephone: personResponse['dataValues']['telephone'],
+        office: personResponse['dataValues']['office'],
+        profile_photo: personResponse['dataValues']['profile_photo'],
+        person_activy: personResponse['dataValues']['person_activy'],
+        user: {
+            username: personResponse['dataValues']['user']['username'],
+            email: personResponse['dataValues']['user']['email'],
+        },
+        category: personResponse['dataValues']['category'][0]['dataValues']['category']['dataValues']['category'],
+        company: {
+            company: personResponse['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['relDepartament'][0]['dataValues']['branch']['relBranch'][0]['dataValues']['compa'],
+            departament: personResponse['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['department_name'],
+            branch: personResponse['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['relDepartament'][0]['dataValues']['branch']['branch_name']
+        }
+    };
+
+    return response;
 }

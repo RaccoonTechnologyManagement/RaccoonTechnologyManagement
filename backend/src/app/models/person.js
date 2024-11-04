@@ -22,6 +22,8 @@ class Person extends Model {
 
     static associate(models){
         this.belongsTo(models.User, { foreignKey: 'id_user', as: 'user'});
+        this.hasMany(models.RelCategorysPersons, { foreignKey: 'id_person', as: 'category' });
+        this.hasMany(models.RelPersonsDepartaments, { foreignKey: 'id_person', as: 'departaments' });
     }
 }
 

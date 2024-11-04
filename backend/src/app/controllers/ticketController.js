@@ -17,7 +17,7 @@ import personController from './personController';
 
 import Sequelize from 'sequelize';
 import { formatResponseMenuTicket, formatResponseTicket, transformarDataEmTimestamp } from '../../functions/functions';
-import * as Yup from 'yup'; // biblioteca de validação de campos
+import * as Yup from 'yup';
 
 class ticketController {
 
@@ -60,6 +60,10 @@ class ticketController {
             conditionAccountable = "id_person_accountable > 0";
             conditionStatus = "id_status IN (1,2)";
             conditionExp = `DATE(exp_finish_at) < DATE(NOW())`;
+        }
+        else if(menu == 6)
+        {
+            conditionStatus = "id_status = 3";
         }
 
         const include = {
@@ -204,7 +208,6 @@ class ticketController {
 
         if(req.body.id_status == 4)
         {
-            console.log("finalizar")
             const statusUpdate = await RelStatusTickets.update(
                 { id_status: req.body.id_status },
                 { where: { id_ticket: req.body.id_ticket }}

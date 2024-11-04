@@ -42,6 +42,8 @@ routes.get('/commentsTickets', commentsTicketsController.index);
 routes.put('/users', UserController.update);
 routes.post('/persons', personController.store);
 routes.get('/persons', personController.index);
+routes.get('/getInfoPerson', personController.getPerson);
+
 
 routes.post('/tickets', ticketController.store);
 routes.get('/tickets', ticketController.index);

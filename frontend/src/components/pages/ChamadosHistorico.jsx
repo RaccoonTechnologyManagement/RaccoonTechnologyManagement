@@ -10,7 +10,7 @@ import RedirectButton from "../component/RedirectButton";
 
 async function carregarTickets() {
   try {
-    let tickets = await getTickets();
+    let tickets = await getTickets(6);
     return tickets;
   } catch (erro) {
     return [];
