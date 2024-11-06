@@ -22,6 +22,12 @@ import RelBranchesDepartaments from '../app/models/relBranchesDepartaments';
 import RelCompanysBranches from '../app/models/relCompanysBranches';
 import RelPersonsDepartaments from '../app/models/relPersonsDepartaments';
 import RelDepartamentsTickets from '../app/models/relDepartamentsTickets';
+import CategoriesHardware from '../app/models/categoriesHardware';
+import SubCategoriesHardware from '../app/models/subcategoriesHardware';
+import CategoriesServer from '../app/models/categoriesServer';
+import StatusAsset from '../app/models/statusAsset';
+import ServerAsset from '../app/models/serverAsset';
+import HardwareAsset from '../app/models/hardwareAsset';
 
 const models = [
 	User,
@@ -43,7 +49,13 @@ const models = [
 	RelBranchesDepartaments,
 	RelCompanysBranches,
 	RelPersonsDepartaments,
-	RelDepartamentsTickets
+	RelDepartamentsTickets,
+	CategoriesHardware,
+	SubCategoriesHardware,
+	CategoriesServer,
+	StatusAsset,
+	ServerAsset,
+	HardwareAsset
 ]
 
 // Carregando nossos Models

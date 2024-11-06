@@ -1,0 +1,22 @@
+.jsonBox {
+    background-color:  #292929; /* Cor de fundo */
+    padding: 20px;
+    border-radius: 8px;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 600px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white; /* Cor do texto */
+}
+
+.title {
+    margin-top: 20px;
+    font-family: "Inter", sans-serif;
+    text-align: left;
+    font-size: 14px;
+}
+
+

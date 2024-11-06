@@ -1,15 +1,12 @@
 import styles from '../pages/ChamadosCriar.module.css';
-import { createTicket } from '../data/api'
+import { createTicket, getInfoPerson } from '../data/api';
 import Container from '../layout/Container';
-import { useState } from 'react';
+import React, { useState, useEffect  } from "react";
 import { useNavigate} from 'react-router-dom';
 
 function ChamadosCriar() {
     const [ticket, setTicket] = useState({
         titulo: '',
-        empresa: 'Sigma Saúde e Bem-Estar Ltda', //Já puxa de acordo com o usuario logado
-        departamento: '1', //Já puxa de acordo com o usuario logado
-        sede: 'Filial São Paulo', //Já puxa de acordo com o usuario logado
         user: '', //Já puxa de acordo com o usuario logado
         prioridade: '',
         categoria: '',
@@ -18,7 +15,23 @@ function ChamadosCriar() {
         descricao: ''
     });
 
+    const [isLoading, setIsLoading] = useState(true);
+
     const navigate = useNavigate();
+
+    async function carregarInfoPessoa()
+    {
+      try
+      {
+          let person = await getInfoPerson();
+
+          return person;
+      }
+      catch(erro)
+      {
+          return [];
+      }
+    }
     
     async function criarTicket()
     {
@@ -29,7 +42,7 @@ function ChamadosCriar() {
           description: ticket.descricao,
           id_category: ticket.categoria,
           id_priority: ticket.prioridade,
-          id_departament: ticket.departamento
+          id_departament: ticket.company.departament.id
         }
   
         let ticketCriado = await createTicket(data);
@@ -71,6 +84,17 @@ function ChamadosCriar() {
         });
         window.location.href = '/chamados/abertos';
     };
+
+    useEffect(() => {
+        const inserirInfoPessoa = async () => {
+          const info = await carregarInfoPessoa();
+          setTicket(info);
+
+          setIsLoading(false);
+        };
+    
+        inserirInfoPessoa();
+      }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -116,6 +140,10 @@ function ChamadosCriar() {
       }, 3000);
     };
 
+    if (isLoading) {
+        return <p>Carregando...</p>;
+      }
+    
     return (
         <Container>
             <div className={styles.mainContainerCenter}>
@@ -150,7 +178,7 @@ function ChamadosCriar() {
                             <input
                                 type="text"
                                 name="empresa"
-                                value={ticket.empresa}
+                                value={ticket.company.company}
                                 onChange={handleChange}
                                 className={errors.empresa ? styles.errorInput : ''}
                                 disabled
@@ -162,7 +190,7 @@ function ChamadosCriar() {
                             <input
                                 type="text"
                                 name="departamento"
-                                value={ticket.departamento}
+                                value={ticket.company.departament.name}
                                 onChange={handleChange}
                                 className={errors.departamento ? styles.errorInput : ''}
                                 disabled
@@ -174,7 +202,7 @@ function ChamadosCriar() {
                             <input
                                 type="text"
                                 name="sede"
-                                value={ticket.sede}
+                                value={ticket.company.branch}
                                 onChange={handleChange}
                                 className={errors.sede ? styles.errorInput : ''}
                                 disabled

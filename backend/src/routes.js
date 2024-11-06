@@ -25,6 +25,12 @@ import relBranchesDepartamentsController from './app/controllers/relBranchesDepa
 import relCompanysBranchesController from './app/controllers/relCompanysBranchesController';
 import relPersonsDepartamentsController from './app/controllers/relPersonsDepartamentsController';
 import relDepartamentsTicketsController from './app/controllers/relDepartamentsTicketsController';
+import categoriesHardwareController from './app/controllers/categoriesHardwareController';
+import subCategoriesHardwareController from './app/controllers/subCategoriesHardwareController';
+import categoriesServerController from './app/controllers/categoriesServerController';
+import statusAssetController from './app/controllers/statusAssetController';
+import serverAssetController from './app/controllers/serverAssetController';
+import hardwareAssetController from './app/controllers/hardwareAssetController';
 
 const routes = new Router();
 
@@ -43,7 +49,6 @@ routes.put('/users', UserController.update);
 routes.post('/persons', personController.store);
 routes.get('/persons', personController.index);
 routes.get('/getInfoPerson', personController.getPerson);
-
 
 routes.post('/tickets', ticketController.store);
 routes.get('/tickets', ticketController.index);
@@ -104,6 +109,27 @@ routes.get('/relPersonsDepartaments', relPersonsDepartamentsController.index);
 
 routes.post('/relDepartamentsTickets', relDepartamentsTicketsController.store);
 routes.get('/relDepartamentsTickets', relDepartamentsTicketsController.index);
+
+routes.post('/categorieshardware', categoriesHardwareController.store);
+routes.get('/categorieshardware', categoriesHardwareController.index);
+
+routes.post('/subCategoriesHardware', subCategoriesHardwareController.store);
+routes.get('/subCategoriesHardware', subCategoriesHardwareController.index);
+
+routes.post('/categoriesServer', categoriesServerController.store);
+routes.get('/categoriesServer', categoriesServerController.index);
+
+routes.post('/statusAsset', statusAssetController.store);
+routes.get('/statusAsset', statusAssetController.index);
+
+routes.post('/serverAsset', serverAssetController.store);
+routes.get('/serverAsset', serverAssetController.index);
+
+routes.post('/hardwareAsset', hardwareAssetController.store);
+routes.get('/hardwareAsset', hardwareAssetController.index);
+
+routes.post('/hardwareAsset', hardwareAssetController.store);
+routes.get('/hardwareAsset', hardwareAssetController.index);
 
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);

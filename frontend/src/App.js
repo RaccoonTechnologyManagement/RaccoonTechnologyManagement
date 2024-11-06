@@ -30,6 +30,7 @@ import ChamadosEdit from './components/pages/ChamadosEdit';
 import ChamadosCriar from './components/pages/ChamadosCriar';
 import ChamadosHistorico from './components/pages/ChamadosHistorico';
 import CriarAviso from './components/pages/CriarAviso';
+import GerarTokenMonitoramento from './components/pages/monitorar/gerarTokenMonitoramento';
 
 function App() {
   return (
@@ -61,7 +62,7 @@ function App() {
           <Route path="/redefinir-senha" element={<RedefinirSenha />} />         
           <Route path="/chamados/vencidos" element={<ChamadosVencidos/>}/>
           <Route path="/monitorar" element={<Navigate to="/monitorar/visaogeral" replace />} />
-          <Route path="/monitorar/historicoalerta" element={<HistoricoAlerta/>}/>
+          <Route path="/monitorar/GerarTokenMonitoramento" element={<HistoricoAlerta/>}/>
           <Route path="/monitorar/visaogeral" element={<VisaoGeral/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/CriarAviso" element={<CriarAviso/>}/>

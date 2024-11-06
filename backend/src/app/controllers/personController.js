@@ -80,7 +80,7 @@ class personController {
                     include: [{
                         model: Departaments,
                         as: 'departaments',
-                        attributes: ['department_name'],
+                        attributes: ['id','department_name'],
                         include: [{
                             model: RelBranchesDepartaments,
                             as: 'relDepartament',

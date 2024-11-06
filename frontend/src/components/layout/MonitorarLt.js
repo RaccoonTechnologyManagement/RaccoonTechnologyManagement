@@ -9,8 +9,8 @@ function MonitorarLt (props) {
                 <NavLink to={`/monitorar/visaogeral`}>
                     <button>VISÃO GERAL</button>
                 </NavLink> 
-                <NavLink to={`/monitorar/historicoalerta`}>
-                    <button>HISTORICO ALERTAS</button>
+                <NavLink to={`/monitorar/GerarTokenMonitoramento`}>
+                    <button>INTEGRAÇÃO API</button>
                 </NavLink>                                             
             </div>
             <div>{props.children}</div>

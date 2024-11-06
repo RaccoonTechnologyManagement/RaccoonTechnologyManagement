@@ -1,10 +1,10 @@
 import MonitorarLt from "../../layout/MonitorarLt"
-import CriarHistoricoAlerta from "./CriarHistoricoAlerta"
+import GerarTokenMonitoramento from "./gerarTokenMonitoramento"
 
 function HistoricoAlerta () {
     return (
         <MonitorarLt>
-            <CriarHistoricoAlerta/>
+            <GerarTokenMonitoramento/>
         </MonitorarLt>
     )
 

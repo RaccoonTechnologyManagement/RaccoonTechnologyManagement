@@ -134,7 +134,7 @@ function User(){
                   <input
                     type="text"
                     name="department"
-                    value={user.company.departament}
+                    value={user.company.departament.name}
                     onChange={handleChange}
                   /></div>
 

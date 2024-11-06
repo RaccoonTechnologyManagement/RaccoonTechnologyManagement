@@ -95,7 +95,10 @@ export function formatResponsePerson(personResponse)
         category: personResponse['dataValues']['category'][0]['dataValues']['category']['dataValues']['category'],
         company: {
             company: personResponse['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['relDepartament'][0]['dataValues']['branch']['relBranch'][0]['dataValues']['compa'],
-            departament: personResponse['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['department_name'],
+            departament: {
+                name: personResponse['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['department_name'],
+                id: personResponse['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['id']
+            },
             branch: personResponse['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['relDepartament'][0]['dataValues']['branch']['branch_name']
         }
     };
