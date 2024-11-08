@@ -31,6 +31,7 @@ import ChamadosCriar from './components/pages/ChamadosCriar';
 import ChamadosHistorico from './components/pages/ChamadosHistorico';
 import CriarAviso from './components/pages/CriarAviso';
 import GerarTokenMonitoramento from './components/pages/monitorar/gerarTokenMonitoramento';
+import ChamadosTecnico from './components/pages/ChamadosTecnico';
 
 function App() {
   return (
@@ -50,7 +51,8 @@ function App() {
           <Route path="/ativos/criar/servidor" element={<AtivosCriarServidores/>}/>
           <Route path="/ativos/criar/software" element={<AtivosCriarSoftwares/>}/>
           <Route path="/ativos/criar/licenca" element={<AtivosCriarLicencas/>}/>
-          <Route path="/chamados" element={<Navigate to="/chamados/abertos" replace />} />
+          <Route path="/chamados" element={<Navigate to="/chamados/meus-chamados" replace />} />
+          <Route path="/chamados/meus-chamados" element={<ChamadosTecnico/>}/>
           <Route path="/chamados/abertos" element={<ChamadosAbertos/>}/>
           <Route path="/chamados/sem-tecnico" element={<ChamadosSemTecnico/>}/>
           <Route path="/chamados/prioridade-alta" element={<ChamadosPrioridadeAlta/>}/>

@@ -17,6 +17,9 @@ function Chamados(props){
                 </NavLink> 
             </div>
             <div id="selecionado" className={styles.notBorderButton}>
+                <NavLink to={`/chamados/meus-chamados`}>
+                    <button>MEUS CHAMADOS</button>
+                </NavLink> 
                 <NavLink to={`/chamados/abertos`}>
                     <button>ABERTOS</button>
                 </NavLink> 

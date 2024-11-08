@@ -251,6 +251,16 @@ function ChamadosEdit(){
               />
             </div>
             <div className={styles.ticketInputs}>
+              <label className={styles.title}>TÉCNICO</label>
+              <select name="tecnico" onChange={handleChange}>
+                <option value="">Selecione</option>
+                <option value="1">Tecnico 1</option>
+                <option value="2">Tecnico 2</option>
+                <option value="3">Tecnico 3</option>
+                <option value="4">Tecnico 4</option>
+              </select>
+            </div>
+            <div className={styles.ticketInputs}>
               <label className={styles.title}>DEPARTAMENTO</label>
               <input 
                 type="text"

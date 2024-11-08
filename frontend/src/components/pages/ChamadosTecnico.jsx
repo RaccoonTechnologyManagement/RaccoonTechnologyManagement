@@ -9,14 +9,14 @@ import { getTickets } from '../data/api';
 
 async function carregarTickets() {
   try {
-    let tickets = await getTickets(5);
+    let tickets = await getTickets(2);
     return tickets;
   } catch (erro) {
     return [];
   }
 }
 
-function ChamadosVencidos() {
+function ChamadosTecnico() {
   const [tickets, setTickets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -29,7 +29,7 @@ function ChamadosVencidos() {
     fetchTickets();
   }, []);
 
-  const cabecalho = ['ID', 'Título', 'Prazo', 'Prioridade', 'Empresa', 'Técnico'];
+  const cabecalho = ['ID', 'Título', 'Categoria', 'Prioridade', 'Empresa', 'Técnico', ''];
 
   const itemsPerPage = 10;
 
@@ -65,7 +65,7 @@ function ChamadosVencidos() {
               <tr key={index}>
                 <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
                 <td className={styles.tabelaCabecalhoItens}>{item.title}</td>
-                <td className={styles.tabelaCabecalhoItens}>{item.dateExp}</td>
+                <td className={styles.tabelaCabecalhoItens}>{item.category}</td>
                 <td className={styles.tabelaCabecalhoItens}>
                   {item.priority === 'Alta' ? <div className={styles.prioridadeAlta}>Alta</div> : ''}
                   {item.priority === 'Média' ? <div className={styles.prioridadeMedia}>Média</div> : ''}
@@ -110,4 +110,4 @@ function ChamadosVencidos() {
   );
 }
 
-export default ChamadosVencidos;
+export default ChamadosTecnico;

@@ -66,7 +66,7 @@ function ChamadosPrioridadeAlta() {
                 <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
                 <td className={styles.tabelaCabecalhoItens}>{item.title}</td>
                 <td className={styles.tabelaCabecalhoItens}>{item.category}</td>
-                <td className={styles.priority}>
+                <td className={styles.tabelaCabecalhoItens}>
                   {item.priority === 'Alta' ? <div className={styles.prioridadeAlta}>Alta</div> : ''}
                   {item.priority === 'Média' ? <div className={styles.prioridadeMedia}>Média</div> : ''}
                   {item.priority === 'Baixa' ? <div className={styles.prioridadeBaixa}>Baixa</div> : ''}
