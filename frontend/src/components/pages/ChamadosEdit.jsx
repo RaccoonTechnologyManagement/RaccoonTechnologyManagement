@@ -80,7 +80,7 @@ function ChamadosEdit(){
   {
     try
     {
-      return axios.get(`http://localhost:3334/persons`, {
+      return axios.get(`http://localhost:3334/getInfoPerson`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -89,7 +89,7 @@ function ChamadosEdit(){
           let mensagensFormatadas = messagens.map(mensagem => 
             {
               return {
-                logged: validaUsuarioLogado(mensagem.id_person, response.data[0]['id']),
+                logged: validaUsuarioLogado(mensagem.id_person, response.data.id),
                 usuario: mensagem.person.name,
                 texto: mensagem.comment
               };
