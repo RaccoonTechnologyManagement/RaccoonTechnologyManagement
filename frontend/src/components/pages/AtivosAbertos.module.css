@@ -41,6 +41,42 @@
     align-items: center;
 }
 
+.ativoEmUso{
+    font-weight: bold;
+    width: 7em;
+    height: 2em;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00DC82;
+    color: #f6f6f6;
+}
+
+.ativoManutencao{
+    font-weight: bold;
+    width: 7em;
+    height: 2em;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EE8282;
+    color: #f6f6f6;
+}
+
+.ativoAramazenado{
+    font-weight: bold;
+    width: 7em;
+    height: 2em;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #398bce;
+    color: #f6f6f6;
+}
+
 .userativo{
     background-color: #00DC82;
     color: #f6f6f6;

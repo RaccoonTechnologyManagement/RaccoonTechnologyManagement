@@ -18,6 +18,7 @@ class SubCategoriesHardware extends Model {
 
     static associate(models){
         this.belongsTo(models.CategoriesHardware, {foreignKey: 'id_category', as: 'category'});
+        this.hasMany(models.HardwareAsset, { foreignKey: 'id_subcategory', as: 'subcategoryHardware' });
     }
 }
 

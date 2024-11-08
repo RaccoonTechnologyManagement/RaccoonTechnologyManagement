@@ -10,16 +10,69 @@ import Companys from '../models/companys';
 import User from '../models/user';
 import * as Yup from 'yup';
 
-import { formatResponsePerson } from '../../functions/functions';
+import { formatResponsePerson, formatResponsePersonByBranch } from '../../functions/functions';
+import Sequelize from 'sequelize';
+
 
 class personController {
 
     async index(req, res) {
-        const persons = await Person.findOne({
-            where: { id_user: req.userId }
+
+        const include = {
+            include: [
+                {
+                    model: RelCategorysPersons,
+                    as: 'category',
+                    include: [{
+                        model: CategorysPersons,
+                        as: 'category',
+                        attributes: ['category']
+                    }]
+                },
+                {
+                    model: RelPersonsDepartaments,
+                    as: 'departaments',
+                    include: [{
+                        model: Departaments,
+                        as: 'departaments',
+                        attributes: ['id','department_name'],
+                        include: [{
+                            model: RelBranchesDepartaments,
+                            as: 'relDepartament',
+                            include: [{
+                                model: Branches,
+                                as: 'branch',
+                                attributes: ['branch_name'],
+                                include: [{
+                                    model: RelCompanysBranches,
+                                    as: 'relBranch',
+                                    include: [{
+                                        model: Companys,
+                                        as: 'company',
+                                        attributes: ['corporate_name']
+                                    }]
+                                }]
+                            }]
+                        }]
+                    }]
+                },
+                {
+                    model: User,
+                    as: 'user',
+                }
+            ],
+            where: Sequelize.where(
+                Sequelize.col('departaments->departaments->relDepartament->branch.id'),
+                req.query.id_branch
+            )
+        };
+
+        const persons = await Person.findAll({
+            ...include,
+
         });
 
-        return res.json(persons);
+        return res.json(formatResponsePersonByBranch(persons));
     }
 
     async getPersonByUserId(userId) {
@@ -114,8 +167,6 @@ class personController {
                 id_user: req.userId,
             }
         });
-
-        console.log(persons);
 
         return res.json(formatResponsePerson(persons));
     }

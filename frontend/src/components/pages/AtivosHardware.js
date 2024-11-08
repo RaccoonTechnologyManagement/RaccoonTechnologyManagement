@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { getAssetHardware } from '../data/api';
+import { useState, useEffect } from 'react'
 import { IoMdArrowRoundBack } from "react-icons/io"
 import { IoMdArrowRoundForward } from "react-icons/io";
 import styles from '../pages/AtivosAbertos.module.css'
@@ -10,13 +11,35 @@ import AtivosLt from '../layout/AtivosLt';
 function AtivosHardware (){
 
     const cabecalho = [
-        'N° Pat','Categoria','Marca','Modelo','Empresa','Sede','Status',
+        'Patrimônio', 'Categoria', 'Marca', 'Modelo', 'Empresa', 'Sede', 'Status'
       ]
+
       const itemsPerPage = 15;
       const totalPages = Math.ceil(ativos.length / itemsPerPage);
       const [currentPage, setCurrentPage] = useState(1);
-      
     
+      async function carregarAtivosHardware()
+      {
+        try
+        {
+          return getAssetHardware();
+        }
+        catch(erro)
+        {
+            return [];
+        }
+      }
+
+      const [assets, setAssets] = useState([]);
+    
+      useEffect(() => {
+        const fetchAssets = async () => {
+          const data = await carregarAtivosHardware();
+          setAssets(data);
+        };
+        fetchAssets();
+      }, []);
+
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
     
@@ -27,7 +50,7 @@ function AtivosHardware (){
       };
       const [search, setSearch] = useState("");
     
-      const verificarSearch = ativos 
+      const verificarSearch = assets 
       .filter((item) =>{
         return Object.values(item)
         .some((prop) => prop && prop
@@ -50,18 +73,20 @@ function AtivosHardware (){
               {verificarSearch.length > 0 ? verificarSearch
               .slice(startIndex, endIndex).map((item,index) =>(
                 <tr key={index}>
-                  <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.marca}</td>                
-                  <td className={styles.tabelaCabecalhoItens}>{item.modelo}</td>                  
-                  <td className={styles.tabelaCabecalhoItensEmpresa}>{item.empresa}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.sede}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.patrimony_number}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.category}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.brand}</td>                
+                  <td className={styles.tabelaCabecalhoItens}>{item.model}</td>                  
+                  <td className={styles.tabelaCabecalhoItensEmpresa}>{item.company.company}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.company.branch}</td>
 
                   <td className={styles.status}>
-                    {item.status === 'Ativo'? 
-                    <div className={styles.userativo}>Ativo</div>: ''}
-                    {item.status === 'Inativo'? 
-                    <div className={styles.userinativo}>Inativo</div>: ''}
+                    {item.status === 'Em uso'? 
+                    <div className={styles.ativoEmUso}>{item.status}</div>: ''}
+                    {item.status === 'Em manutenção'? 
+                    <div className={styles.ativoManutencao}>Manutenção</div>: ''}
+                    {item.status === 'Armazenado'? 
+                    <div className={styles.ativoAramazenado}>{item.status}</div>: ''}
                   </td>
                   <td className={styles.tabelaCabecalhoItens}>
                     <img 

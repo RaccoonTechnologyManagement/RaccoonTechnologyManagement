@@ -4,9 +4,13 @@ import * as Yup from 'yup'; // biblioteca de validação de campos
 class companysController {
     
     async index(req, res) {
-        const companys = await Companys.findAll();
+        const companys = await Companys.findAll({
+            attributes: ['id', 'name']
+        });
+
         return res.json(companys);
     }
+    
 
     async store(req, res) {
 

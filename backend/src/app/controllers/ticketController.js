@@ -329,7 +329,6 @@ class ticketController {
         });
 
         responseTickets = formatResponseTicket(tickets);
-        console.log(responseTickets);
         return res.json(responseTickets);
     }
 

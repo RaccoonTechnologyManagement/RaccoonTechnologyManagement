@@ -97,6 +97,7 @@ routes.get('/departaments', departamentsController.index);
 
 routes.post('/branches', branchesController.store);
 routes.get('/branches', branchesController.index);
+routes.get('/getBranchesByCompany', branchesController.getBranchesByCompany);
 
 routes.post('/relBranchesDepartaments', relBranchesDepartamentsController.store);
 routes.get('/relBranchesDepartaments', relBranchesDepartamentsController.index);
@@ -124,9 +125,6 @@ routes.get('/statusAsset', statusAssetController.index);
 
 routes.post('/serverAsset', serverAssetController.store);
 routes.get('/serverAsset', serverAssetController.index);
-
-routes.post('/hardwareAsset', hardwareAssetController.store);
-routes.get('/hardwareAsset', hardwareAssetController.index);
 
 routes.post('/hardwareAsset', hardwareAssetController.store);
 routes.get('/hardwareAsset', hardwareAssetController.index);

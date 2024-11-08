@@ -105,3 +105,62 @@ export function formatResponsePerson(personResponse)
 
     return response;
 }
+
+export function formatResponsePersonByBranch(personResponse)
+{
+    let response = [];
+
+    personResponse.forEach((data, index) => {
+
+        response[index] = {
+            id: data['dataValues']['id'],
+            name: data['dataValues']['name'],
+            lastname: data['dataValues']['lastname'],
+            telephone: data['dataValues']['telephone'],
+            office: data['dataValues']['office'],
+            profile_photo: data['dataValues']['profile_photo'],
+            person_activy: data['dataValues']['person_activy'],
+            user: {
+                username: data['dataValues']['user']['username'],
+                email: data['dataValues']['user']['email'],
+            },
+            category: data['dataValues']['category'][0]['dataValues']['category']['dataValues']['category'],
+            company: {
+                company: data['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['relDepartament'][0]['dataValues']['branch']['relBranch'][0]['dataValues']['compa'],
+                departament: {
+                    name: data['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['department_name'],
+                    id: data['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['id']
+                },
+                branch: data['dataValues']['departaments'][0]['dataValues']['departaments']['dataValues']['relDepartament'][0]['dataValues']['branch']['branch_name']
+            }
+        };
+     });
+
+
+    return response;
+}
+
+export function formatResponseHardwareAsset(hardwareAssetResponse)
+{
+    let response = [];
+
+    hardwareAssetResponse.forEach((data, index) => {
+
+        // console.log(data['dataValues']['branch']['relBranch'][0]['dataValues']['company']['name'])
+
+        response[index] = {
+            patrimony_number: data['dataValues']['patrimony_number'],
+            brand: data['dataValues']['brand'],
+            model: data['dataValues']['model'],
+            status: data['dataValues']['statusAsset']['status'],
+            category: data['dataValues']['subcategoryHardware']['subcategory'],
+            company: {
+                company: data['dataValues']['branch']['relBranch'][0]['dataValues']['company']['name'],
+                branch: data['dataValues']['branch']['branch_name']
+            }
+        }
+     });
+
+
+    return response;
+}

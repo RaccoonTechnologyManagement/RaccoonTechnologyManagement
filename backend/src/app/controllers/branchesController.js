@@ -1,10 +1,36 @@
 import Branches from '../models/branches';
+import RelCompanysBranches from '../models/relCompanysBranches';
 import * as Yup from 'yup'; // biblioteca de validação de campos
 
 class branchesController {
     
     async index(req, res) {
         const branches = await Branches.findAll();
+        return res.json(branches);
+    }
+
+    async getBranchesByCompany(req, res) {
+        console.log(req.query.id_company)
+
+        const include = {
+            include: [
+                {
+                    model: RelCompanysBranches,
+                    as: 'relBranch',
+                    where: {
+                        id_company: req.query.id_company,
+                    },
+                    attributes: []
+                },
+            ]
+        }
+        const branches = await Branches.findAll({
+            ...include,
+            attributes: ['id', 'branch_name'],
+        });
+
+        console.log(branches)
+
         return res.json(branches);
     }
 

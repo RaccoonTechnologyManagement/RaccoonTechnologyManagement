@@ -23,6 +23,7 @@ class Branches extends Model {
     }
     static associate(models) {
         this.hasMany(models.RelCompanysBranches, { foreignKey: 'id_branch', as: 'relBranch' });
+        this.hasMany(models.HardwareAsset, { foreignKey: 'id_branch', as: 'branch' });
     }
 }
 

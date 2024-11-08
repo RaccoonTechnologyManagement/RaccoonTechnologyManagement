@@ -6,7 +6,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	 up (queryInterface, Sequelize) {
-		return queryInterface.createTable('server_hardware', {
+		return queryInterface.createTable('hardware_asset', {
         id: {
           type: Sequelize.INTEGER,
           allowNull: false,
@@ -36,9 +36,9 @@ module.exports = {
           onDelete: 'SET NULL',
           allowNull: false
         },
-        id_departament: {
+        id_branch: {
           type: Sequelize.INTEGER,
-          references: { model: 'departaments', key: 'id'},
+          references: { model: 'branches', key: 'id'},
           onUpdate: 'CASCADE',
           onDelete: 'SET NULL',
           allowNull: false
@@ -59,8 +59,23 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: true
         },
+        ipv4: {
+          type: Sequelize.STRING,
+          allowNull: true
+        },
+        location: {
+          type: Sequelize.STRING,
+          allowNull: true
+        },
         description: {
           type: Sequelize.STRING,
+          allowNull: true
+        },
+        id_person: {
+          type: Sequelize.INTEGER,
+          references: { model: 'persons', key: 'id'},
+          onUpdate: 'CASCADE',
+          onDelete: 'SET NULL',
           allowNull: true
         },
         id_status: {
@@ -82,6 +97,6 @@ module.exports = {
 	},
 
 	 down (queryInterface) {
-		return queryInterface.dropTable('server_hardware');
+		return queryInterface.dropTable('hardware_asset');
 	}
 };

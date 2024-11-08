@@ -13,6 +13,9 @@ class StatusAsset extends Model {
         );
         return this;
     }
+    static associate(models) {
+        this.hasMany(models.HardwareAsset, { foreignKey: 'id_status', as: 'statusAsset' });
+    }
 }
 
 export default StatusAsset;

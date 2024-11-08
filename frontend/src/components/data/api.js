@@ -128,3 +128,93 @@ export async function getInfoPerson()
         return [];
     }
 }
+
+export async function getCompanys()
+{
+    try
+    {
+        let response = await axios.get(`http://localhost:3334/companys`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
+
+export async function getBranchesByCompany(id_company)
+{
+    try
+    {
+        let response = await axios.get(`http://localhost:3334/getBranchesByCompany?id_company=${id_company}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
+
+export async function getPersonByBranch(id_branch)
+{
+    try
+    {
+        let response = await axios.get(`http://localhost:3334/persons?id_branch=${id_branch}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
+
+export async function createAssetHardware(data)
+{
+    try
+    {
+        let response = await axios.post(`http://localhost:3334/hardwareAsset`, data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
+
+export async function getAssetHardware()
+{
+    try
+    {
+        let response = await axios.get(`http://localhost:3334/hardwareAsset`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
