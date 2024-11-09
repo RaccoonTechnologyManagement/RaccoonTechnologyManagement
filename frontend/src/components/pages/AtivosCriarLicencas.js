@@ -5,9 +5,7 @@ import CriarLicencaComp from "./CriarLicencaComp";
 function AtivosCriarLicencas () {
     return (
         <CriarAtivo>
-
             <CriarLicencaComp/>
-
         </CriarAtivo>
     )
 }

@@ -12,12 +12,18 @@ function CriarAtivo (props){
                 <NavLink to={`/ativos/criar/servidor`}>
                     <button>SERVIDORES</button>
                 </NavLink>
-                <NavLink to={`/ativos/criar/software`}>
+
+                {/*Ess trecho comentado direciona para criação dos ativos, para aticar tbm mecher nas rotas no App.js*/}
+                {/*s
+               <NavLink to={`/ativos/criar/software`}> 
                     <button>SOFTWARE</button>
                 </NavLink>
                 <NavLink to={`/ativos/criar/licenca`}>
                     <button>LICENÇAS</button>
-                </NavLink>                                              
+                </NavLink>  
+                */}
+
+
             </div>
 
             <div>{props.children}</div>

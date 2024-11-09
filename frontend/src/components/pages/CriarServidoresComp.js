@@ -19,11 +19,8 @@ function CriarServidoresComp() {
         document.getElementById('categoria').value = '';
         document.getElementById('patrimonio').value = '';
         document.getElementById('nome').value = '';
-        document.getElementById('marca').value = '';
-        document.getElementById('modelo').value = '';
-        document.getElementById('serie').value = '';
         document.getElementById('ipv4').value = '';
-        document.getElementById('ipv6').value = '';
+        document.getElementById('porta').value = '';
         document.getElementById('mac-rede').value = '';
         document.getElementById('mac-wifi').value = '';
         document.getElementById('empresa').value = '';
@@ -66,11 +63,8 @@ function CriarServidoresComp() {
             categoria,
             patrimonio: document.getElementById('patrimonio').value,
             nome,
-            marca: document.getElementById('marca').value,
-            modelo: document.getElementById('modelo').value,
-            serie: document.getElementById('serie').value,
             ipv4,
-            ipv6: document.getElementById('ipv6').value,
+            porta: document.getElementById('porta').value,
             macRede: document.getElementById('mac-rede').value,
             macWifi: document.getElementById('mac-wifi').value,
             empresa,
@@ -131,6 +125,7 @@ function CriarServidoresComp() {
                         <input type="text" id="nome" name="nome" className={errors.nome ? styles.errorInput : ''} />
                         {errors.nome && <span className={styles.errorText}>{errors.nome}</span>}
                     </div>
+                    
                     <div className={styles.assetFormGroup}>
                         <label htmlFor="marca">MARCA</label>
                         <input type="text" id="marca" name="marca" />
@@ -139,18 +134,20 @@ function CriarServidoresComp() {
                         <label htmlFor="modelo">MODELO</label>
                         <input type="text" id="modelo" name="modelo" />
                     </div>
+                    {/*
                     <div className={styles.assetFormGroup}>
                         <label htmlFor="serie">NUMERO DE SÉRIE</label>
                         <input type="text" id="serie" name="serie" />
                     </div>
+                    */}
                     <div className={styles.assetFormGroup}>
                         <label htmlFor="ipv4">IPV4</label>
                         <input type="text" id="ipv4" name="ipv4" className={errors.ipv4 ? styles.errorInput : ''} onChange={handleIPv4Change} />
                         {errors.ipv4 && <span className={styles.errorText}>{errors.ipv4}</span>}
                     </div>
                     <div className={styles.assetFormGroup}>
-                        <label htmlFor="ipv6">IPV6</label>
-                        <input type="text" id="ipv6" name="ipv6" />
+                        <label htmlFor="porta">PORTA</label>
+                        <input type="text" id="porta" name="porta" />
                     </div>
                     <div className={styles.assetFormGroup}>
                         <label htmlFor="mac-rede">MAC REDE</label>

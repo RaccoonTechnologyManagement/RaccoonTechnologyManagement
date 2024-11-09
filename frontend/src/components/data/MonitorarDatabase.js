@@ -1,0 +1,58 @@
+
+export const monitorar = [
+    {
+      id: 10,
+      nome: 'Desktop',
+      ipv4: '192.168.0.15',
+      mac: 'E6-A4-1B-BE-84-3E',
+      departamento: 'RH',
+      alerta: 'N/A',
+      status: 'Online',
+    },
+    {
+      id: 11,
+      nome: 'Notebook',
+      ipv4: '192.168.0.16',
+      mac: '46-A3-E1-73-31-1E',
+      departamento: 'CPS',
+      alerta: 'Sem conexão com a rede',
+      status: 'Offline',
+    },
+    {
+      id: 12,
+      nome: 'Smartphone',
+      ipv4: '192.168.0.17',
+      mac: 'B8-61-DF-4A-BF-12',
+      departamento: 'FIS',
+      alerta: 'N/A',
+      status: 'Online',
+    },
+    {
+      id: 13,
+      nome: 'Impressora',
+      ipv4: '192.168.0.17',      
+      mac: '17-F2-B4-FD-88-06',
+      departamento: 'PRD',
+      alerta: 'Obstrução na bandeja manual',
+      status: 'Offline',
+    },
+    {
+      id: 14,
+      nome: 'Switch',
+      ipv4: '192.168.0.18',
+      mac: 'DB-E7-01-FF-08-57',
+      departamento: 'TI',
+      alerta: 'Falha ao obter IPV4',
+      status: 'Offline',
+    },
+    {
+      id: 15,
+      nome: 'Servidor',
+      ipv4: '192.168.0.19',
+      mac: '46-FA-D4-B1-53-E0',
+      departamento: 'TI',
+      alerta: 'N/A',
+      status: 'Online',
+    },
+
+  ]

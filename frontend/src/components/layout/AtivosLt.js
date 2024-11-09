@@ -24,6 +24,8 @@ function AtivosLt (props){
                 <NavLink to={`/ativos/servidores`}>
                     <button>SERVIDORES</button>
                 </NavLink>
+                
+                {/* 
                 <NavLink to={`/ativos/software`}>
                     <button>SOFTWARE</button>
                 </NavLink>
@@ -33,6 +35,8 @@ function AtivosLt (props){
                 <NavLink to={`/ativos/excluidos`}>
                     <button>EXCLUIDOS</button>
                 </NavLink>
+                */}
+
             </div>
 
             <div>{props.children}</div>

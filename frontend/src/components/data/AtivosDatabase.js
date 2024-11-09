@@ -190,5 +190,4 @@ export const ativos = [
         status: 'Ativo',
     },
 
-    
   ]

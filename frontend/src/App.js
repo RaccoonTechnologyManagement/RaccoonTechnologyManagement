@@ -43,14 +43,14 @@ function App() {
           <Route path="/ativos/todos" element={<AtivosInicial/>}/>
           <Route path="/ativos/hardware" element={<AtivosHardware/>}/>
           <Route path="/ativos/servidores" element={<AtivosServidores/>}/>
-          <Route path="/ativos/software" element={<AtivosSoftware/>}/>
+          {/*<Route path="/ativos/software" element={<AtivosSoftware/>}/>
           <Route path="/ativos/licencas" element={<AtivosLicencas/>}/>
-          <Route path="/ativos/excluidos" element={<AtivosExcluidos/>}/>
+          <Route path="/ativos/excluidos" element={<AtivosExcluidos/>}/>*/}
           <Route path="/ativos/criar" element={<Navigate to="/ativos/criar/hardware" replace />} />
           <Route path="/ativos/criar/hardware" element={<AtivosCriarHardware/>}/>
           <Route path="/ativos/criar/servidor" element={<AtivosCriarServidores/>}/>
-          <Route path="/ativos/criar/software" element={<AtivosCriarSoftwares/>}/>
-          <Route path="/ativos/criar/licenca" element={<AtivosCriarLicencas/>}/>
+          {/*<Route path="/ativos/criar/software" element={<AtivosCriarSoftwares/>}/>
+          <Route path="/ativos/criar/licenca" element={<AtivosCriarLicencas/>}/>*/}
           <Route path="/chamados" element={<Navigate to="/chamados/meus-chamados" replace />} />
           <Route path="/chamados/meus-chamados" element={<ChamadosTecnico/>}/>
           <Route path="/chamados/abertos" element={<ChamadosAbertos/>}/>

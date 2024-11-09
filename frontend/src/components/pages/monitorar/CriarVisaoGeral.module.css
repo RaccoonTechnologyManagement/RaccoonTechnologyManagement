@@ -30,8 +30,8 @@
 }
 
 .totallicencas,
-.userativo,
-.userinativo{
+.useronline,
+.useroffline{
     font-weight: bold;
     width: 5em;
     height: 2em;
@@ -41,11 +41,11 @@
     align-items: center;
 }
 
-.userativo{
+.useronline{
     background-color: #00DC82;
     color: #f6f6f6;
 }
-.userinativo{
+.useroffline{
     background-color: #EE8282;
     color: #f6f6f6;
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { IoMdArrowRoundBack } from "react-icons/io"
 import { IoMdArrowRoundForward } from "react-icons/io";
-import { ativos } from '../../data/AtivosDatabase';
+import { monitorar } from '../../data/MonitorarDatabase';
 import { InfoSearch } from '../../component/Search';
 import styles from '../monitorar/CriarVisaoGeral.module.css'
 
@@ -9,9 +9,9 @@ import styles from '../monitorar/CriarVisaoGeral.module.css'
 function CriarVisaoGeral () {
 
   const cabecalho = [
-    'ID','Nome','Status','IPV4','MAC','Sede','Alerta']
+    'N° Pat','Nome','Status','IPV4','MAC','Sede','Alerta']
   const itemsPerPage = 15;
-  const totalPages = Math.ceil(ativos.length / itemsPerPage);
+  const totalPages = Math.ceil(monitorar.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -24,7 +24,7 @@ function CriarVisaoGeral () {
   };
   const [search, setSearch] = useState("")
 
-  const verificarSearch = ativos 
+  const verificarSearch = monitorar 
   .filter((item) =>{
     return Object.values(item)
     .some((prop) => prop && prop
@@ -54,15 +54,15 @@ function CriarVisaoGeral () {
                   <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
                   <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>
                   <td className={styles.status}>
-                    {item.status === 'Ativo'? 
-                    <div className={styles.userativo}>Ativo</div>: ''}
-                    {item.status === 'Inativo'? 
-                    <div className={styles.userinativo}>Inativo</div>: ''}
+                    {item.status === 'Online'? 
+                    <div className={styles.useronline}>Online</div>: ''}
+                    {item.status === 'Offline'? 
+                    <div className={styles.useroffline}>Offline</div>: ''}
                   </td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.marca}</td>                
-                  <td className={styles.tabelaCabecalhoItens}>{item.modelo}</td>                  
-                  <td className={styles.tabelaCabecalhoItensEmpresa}>{item.empresa}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.sede}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.ipv4}</td>                
+                  <td className={styles.tabelaCabecalhoItens}>{item.mac}</td>                  
+                  <td className={styles.tabelaCabecalhoItens}>{item.departamento}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.alerta}</td>
                 </tr>
               ))
               :
