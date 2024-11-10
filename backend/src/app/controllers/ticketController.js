@@ -25,6 +25,7 @@ class ticketController {
         let responseTickets = [];
 
         const menu = req.query.menu;
+        const accountable = await personController.getPersonByUserId(req.userId);
 
         let conditionAccountable = '';
         let conditionStatus = '';
@@ -65,7 +66,12 @@ class ticketController {
         {
             conditionStatus = "id_status = 3";
         }
-
+        else if(menu == 7)
+        {
+            conditionAccountable = `id_person_accountable = ${accountable}`;
+            conditionStatus = "id_status IN (1,2)";
+        }
+    
         const include = {
             include: [
                 {
@@ -143,13 +149,11 @@ class ticketController {
         });
         
         responseTickets = formatResponseMenuTicket(tickets, menu);
-
         return res.json(responseTickets);
     }
 
     async store(req, res) {
 
-        console.log(req.body)
         const schema = Yup.object().shape({
             title: Yup.string().required(),
             description: Yup.string().required(),
@@ -217,14 +221,17 @@ class ticketController {
         }
 
         await Ticket.update(
-            {
-                exp_finish_at: transformarDataEmTimestamp(req.body.dateExp),
-            },
+            { exp_finish_at: req.body.dateExp },
             { where: { id: req.body.id_ticket }}
         );
 
         await RelPrioritysTickets.update(
             { id_priority: req.body.id_priority },
+            { where: { id_ticket: req.body.id_ticket }}
+        );
+
+        await RelPersonsTickets.update(
+            { id_person_accountable: req.body.id_person_accountable },
             { where: { id_ticket: req.body.id_ticket }}
         );
 
@@ -270,7 +277,7 @@ class ticketController {
                     include: [{
                         model: Person,
                         as: 'accountable',
-                        attributes: ['id']
+                        attributes: ['name', 'id']
                     }]
                 },
                 {
@@ -279,7 +286,7 @@ class ticketController {
                     include: [{
                         model: Person,
                         as: 'creator',
-                        attributes: ['name']
+                        attributes: ['name', 'id']
                     }]
                 },
                 {

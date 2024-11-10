@@ -36,16 +36,20 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false
         },
-        id_departament: {
+        id_branch: {
           type: Sequelize.INTEGER,
-          references: { model: 'departaments', key: 'id'},
+          references: { model: 'branches', key: 'id'},
           onUpdate: 'CASCADE',
           onDelete: 'SET NULL',
           allowNull: false
         },
         location: {
           type: Sequelize.STRING,
-          allowNull: false
+          allowNull: true
+        },
+        description: {
+          type: Sequelize.STRING,
+          allowNull: true
         },
         monitor: {
           type: Sequelize.BOOLEAN,

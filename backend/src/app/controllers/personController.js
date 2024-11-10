@@ -10,13 +10,22 @@ import Companys from '../models/companys';
 import User from '../models/user';
 import * as Yup from 'yup';
 
-import { formatResponsePerson, formatResponsePersonByBranch } from '../../functions/functions';
+import { formatResponsePerson, formatResponsePersonByBranch, formatResponsePersonTechnical } from '../../functions/functions';
 import Sequelize from 'sequelize';
 
 
 class personController {
 
     async index(req, res) {
+
+        const menu = req.query.menu;
+
+        let conditionCategoryPerson = '';
+
+        if(menu == 1)
+        {
+            conditionCategoryPerson = "in (2,3)";
+        }
 
         const include = {
             include: [
@@ -26,6 +35,7 @@ class personController {
                     include: [{
                         model: CategorysPersons,
                         as: 'category',
+                        where: Sequelize.literal(conditionPriority),
                         attributes: ['category']
                     }]
                 },
@@ -170,6 +180,39 @@ class personController {
 
         return res.json(formatResponsePerson(persons));
     }
+
+    async getPersonTechnical(req, res) {
+
+        const include = {
+            include: [
+                {
+                    model: RelCategorysPersons,
+                    as: 'category',
+                    include: [{
+                        model: CategorysPersons,
+                        as: 'category',
+                        attributes: ['category']
+                    }]
+                },
+                {
+                    model: User,
+                    as: 'user',
+                }
+            ],
+            where: Sequelize.where(
+                Sequelize.col('category->category.id'),
+                req.query.menu
+            )
+        };
+
+        const persons = await Person.findAll({
+            ...include,
+
+        });
+
+        return res.json(formatResponsePersonTechnical(persons));
+    }
+
 }
 
 export default new personController();

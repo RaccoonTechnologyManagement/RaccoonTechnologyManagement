@@ -15,28 +15,12 @@ function AtivosLt (props){
             </div>
 
             <div id="selecionado" className={styles.notBorderButton}>
-                <NavLink to={`/ativos/todos`}>
-                    <button>TODOS</button>
-                </NavLink> 
                 <NavLink to={`/ativos/hardware`}>
                     <button>HARDWARE</button>
                 </NavLink>
                 <NavLink to={`/ativos/servidores`}>
                     <button>SERVIDORES</button>
                 </NavLink>
-                
-                {/* 
-                <NavLink to={`/ativos/software`}>
-                    <button>SOFTWARE</button>
-                </NavLink>
-                <NavLink to={`/ativos/licencas`}>
-                    <button>LICENÇAS</button>
-                </NavLink>
-                <NavLink to={`/ativos/excluidos`}>
-                    <button>EXCLUIDOS</button>
-                </NavLink>
-                */}
-
             </div>
 
             <div>{props.children}</div>

@@ -10,7 +10,6 @@ class branchesController {
     }
 
     async getBranchesByCompany(req, res) {
-        console.log(req.query.id_company)
 
         const include = {
             include: [
@@ -28,8 +27,6 @@ class branchesController {
             ...include,
             attributes: ['id', 'branch_name'],
         });
-
-        console.log(branches)
 
         return res.json(branches);
     }

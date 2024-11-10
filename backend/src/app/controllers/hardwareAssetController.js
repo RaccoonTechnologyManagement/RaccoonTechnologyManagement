@@ -2,7 +2,7 @@ import HardwareAsset from '../models/hardwareAsset';
 import Branches from '../models/branches';
 import RelCompanysBranches from '../models/relCompanysBranches';
 import Companys from '../models/companys';
-import StatusTickets from '../models/statusAsset';
+import StatusAsset from '../models/statusAsset';
 import SubCategoriesHardware from '../models/subcategoriesHardware';
 import * as Yup from 'yup'; // biblioteca de validação de campos
 
@@ -14,7 +14,7 @@ class hardwareAssetController {
         const include = {
             include: [
                 {
-                    model: StatusTickets,
+                    model: StatusAsset,
                     as: 'statusAsset',
                     attributes: ['status'],
                 },

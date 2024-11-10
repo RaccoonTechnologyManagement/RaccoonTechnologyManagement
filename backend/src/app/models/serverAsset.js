@@ -9,8 +9,9 @@ class ServerAsset extends Model {
                 host: Sequelize.STRING,
                 id_category: Sequelize.INTEGER,
                 port: Sequelize.STRING,
-                id_departament: Sequelize.INTEGER,
+                id_branch: Sequelize.INTEGER,
                 location: Sequelize.STRING,
+                description: Sequelize.STRING,
                 monitor: Sequelize.BOOLEAN,
                 id_status: Sequelize.INTEGER
             },
@@ -24,9 +25,9 @@ class ServerAsset extends Model {
     }
 
     static associate(models){
-        this.belongsTo(models.CategoriesServer, {foreignKey: 'id_category', as: 'category'});
-        this.belongsTo(models.StatusAsset, {foreignKey: 'id_status', as: 'status'});
-        this.belongsTo(models.Departaments, {foreignKey: 'id_departament', as: 'departaments'});
+        this.belongsTo(models.CategoriesServer, {foreignKey: 'id_category', as: 'categoryServer'});
+        this.belongsTo(models.StatusAsset, {foreignKey: 'id_status', as: 'serverStatusAsset'});
+        this.belongsTo(models.Branches, {foreignKey: 'id_branch', as: 'serverBranch'});
     }
 }
 

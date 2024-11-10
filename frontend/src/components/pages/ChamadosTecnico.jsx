@@ -9,7 +9,7 @@ import { getTickets } from '../data/api';
 
 async function carregarTickets() {
   try {
-    let tickets = await getTickets(2);
+    let tickets = await getTickets(7);
     return tickets;
   } catch (erro) {
     return [];

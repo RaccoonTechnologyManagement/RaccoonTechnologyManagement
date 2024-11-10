@@ -49,6 +49,7 @@ routes.put('/users', UserController.update);
 routes.post('/persons', personController.store);
 routes.get('/persons', personController.index);
 routes.get('/getInfoPerson', personController.getPerson);
+routes.get('/getPersonTechnical', personController.getPersonTechnical);
 
 routes.post('/tickets', ticketController.store);
 routes.get('/tickets', ticketController.index);

@@ -30,7 +30,7 @@ export function formatResponseTicket(ticketResponse)
 {
     let response = [];
 
-    const expFinishAt = ticketResponse['dataValues']['exp_finish_at'] === null ? '00/00/0000' : new Date(ticketResponse['dataValues']['exp_finish_at']);
+    const expFinishAt = (ticketResponse['dataValues']['exp_finish_at'] === null || ticketResponse['dataValues']['exp_finish_at'] == "2000-12-31" )? '00/00/0000' : new Date(ticketResponse['dataValues']['exp_finish_at']);
     const formattedExpFinishAt = expFinishAt == '00/00/0000' ? expFinishAt : expFinishAt.toLocaleDateString('pt-BR');
 
     const createdAt = new Date(ticketResponse['dataValues']['createdAt']);
@@ -45,8 +45,16 @@ export function formatResponseTicket(ticketResponse)
         category: ticketResponse['dataValues']['category'][0]['dataValues']['category']['dataValues']['id'],
         priority: ticketResponse['dataValues']['priority'][0]['dataValues']['priority']['dataValues']['id'],
         status: ticketResponse['dataValues']['status'][0]['dataValues']['status']['dataValues']['id'],
-        accountable: ticketResponse['dataValues']['personsTickets'][0]['dataValues']['accountable']['dataValues']['name'],
-        creator: ticketResponse['dataValues']['personsTickets'][0]['dataValues']['creator']['dataValues']['name'],
+        persons: {
+            accountable: {
+                id: ticketResponse['dataValues']['personsTickets'][0]['dataValues']['accountable']['dataValues']['id'],
+                name: ticketResponse['dataValues']['personsTickets'][0]['dataValues']['accountable']['dataValues']['name']
+            },
+            creator: {
+                id: ticketResponse['dataValues']['personsTickets'][0]['dataValues']['creator']['dataValues']['id'],
+                name: ticketResponse['dataValues']['personsTickets'][0]['dataValues']['creator']['dataValues']['name']
+            }
+        },
         company: {
             company: ticketResponse['dataValues']['departaments'][0]['dataValues']['departament']['dataValues']['relDepartament'][0]['dataValues']['branch']['relBranch'][0]['dataValues']['compan'],
             departament: ticketResponse['dataValues']['departaments'][0]['dataValues']['departament']['dataValues']['department_name'],
@@ -146,8 +154,6 @@ export function formatResponseHardwareAsset(hardwareAssetResponse)
 
     hardwareAssetResponse.forEach((data, index) => {
 
-        // console.log(data['dataValues']['branch']['relBranch'][0]['dataValues']['company']['name'])
-
         response[index] = {
             patrimony_number: data['dataValues']['patrimony_number'],
             brand: data['dataValues']['brand'],
@@ -161,6 +167,43 @@ export function formatResponseHardwareAsset(hardwareAssetResponse)
         }
      });
 
+
+    return response;
+}
+
+export function formatResponseServerAsset(serverAssetResponse)
+{
+    let response = [];
+
+    serverAssetResponse.forEach((data, index) => {
+
+        response[index] = {
+            patrimony_number: data['dataValues']['patrimony_number'],
+            name: data['dataValues']['name'],
+            host: data['dataValues']['host'],
+            category: data['dataValues']['categoryServer']['category'],
+            status: data['dataValues']['serverStatusAsset']['status'],
+            company: {
+                company: data['dataValues']['serverBranch']['relBranch'][0]['dataValues']['company']['name'],
+                branch: data['dataValues']['serverBranch']['branch_name']
+            }
+        }
+     });
+
+
+    return response;
+}
+
+export function formatResponsePersonTechnical(personTechnicalResponse)
+{
+    let response = [];
+
+    personTechnicalResponse.forEach((data, index) => {
+        response[index] = {
+            id_person: data['dataValues']['id'],
+            name: data['dataValues']['name'],
+        }
+     });
 
     return response;
 }

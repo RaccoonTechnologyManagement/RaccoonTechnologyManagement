@@ -15,7 +15,7 @@ function Sidebar(){
         {
             title: "Ativos",
             icon: logoAtivos,
-            link: "/ativos/todos"
+            link: "/ativos/hardware"
         },
         {
             title: "Chamados",

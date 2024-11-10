@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getComments, insertComments, updateTicket, getInfoTicket } from '../data/api'
+import { getComments, insertComments, updateTicket, getInfoTicket, getPersonsTechnical, getInfoPerson } from '../data/api'
 import styles from '../pages/ChamadosEdit.module.css'
 import Container from '../layout/Container'
 import { useEffect, useRef, useState } from 'react';
@@ -47,12 +47,38 @@ function ChamadosEdit(){
     }
   }
 
+  async function carregarInfoPessoa()
+  {
+    try
+    {
+        let person = await getInfoPerson();
+
+        return person;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+  }
+
+  async function carregarTecnicos(data)
+  {
+    try
+    {
+      let tecnicos = await getPersonsTechnical(data);
+      return tecnicos;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+  }
+
   async function carregarTicket()
   {
     try
     {
         let ticket = await getInfoTicket(id_ticket);
-        console.log(ticket)
         return ticket;
     }
     catch(erro)
@@ -134,9 +160,10 @@ function ChamadosEdit(){
         data = {
           id_ticket: id_ticket,
           id_status: status,
+          id_person_accountable: document.getElementById('tecnico').value,
           id_priority: ticket.priority,
           id_category: ticket.category,
-          dateExp: ticket.dateExp 
+          dateExp: document.getElementById('dataPrazo').value ? document.getElementById('dataPrazo').value : "2000-12-31"
         }
       }
 
@@ -153,7 +180,6 @@ function ChamadosEdit(){
   }
 
   const formatDateToISO = (dateStr) => {
-    console.log(dateStr)
     if(dateStr != '')
     {
       const [day, month, year] = dateStr.split('/');
@@ -165,15 +191,46 @@ function ChamadosEdit(){
     }
   };
 
+  function DateInputComponent({ ticket }) {
+    const [selectedDate, setSelectedDate] = useState(formatDateToISO(ticket.dateExp));
+
+    useEffect(() => {
+        setSelectedDate(formatDateToISO(ticket.dateExp));
+    }, [ticket.dateExp]);
+
+    const handleDateChange = (event) => {
+        setSelectedDate(event.target.value);
+    };
+
+    return (
+        <div className={styles.ticketInputs}>
+            <label className={styles.title}>DATA PRAZO</label>
+            <input
+                id="dataPrazo" 
+                type="date"
+                name="dataprazo"
+                value={selectedDate}
+                onChange={handleDateChange}
+            />
+        </div>
+    );
+}
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTicket({ ...ticket, [name]: value });
   };
 
   const [mensagens, setMensagens] = useState([]);
+  const [tecnicos, setTecnicos] = useState([]);
+  const [pessoaLogada, setPessoaLogada] = useState([]);
 
   useEffect(() => {
     const inserirInformacoesTicket = async () => {
+      const tecnicos = await carregarTecnicos(1);
+      const pessoa = await carregarInfoPessoa();
+      setPessoaLogada(pessoa);
+      setTecnicos(tecnicos);
       const info = await carregarTicket();
       setTicket(info);
 
@@ -190,13 +247,12 @@ function ChamadosEdit(){
   }, []);
 
 
-  const userLogged = 'gui.araujo'
   const handleEnviarMensagem = () => {
     if (novaMensagem.trim() === '') return;
 
     const novoComentario = {
       logged: true,
-      usuario: userLogged,
+      usuario: pessoaLogada.name,
       texto: novaMensagem,
     };
 
@@ -252,13 +308,18 @@ function ChamadosEdit(){
             </div>
             <div className={styles.ticketInputs}>
               <label className={styles.title}>TÉCNICO</label>
-              <select name="tecnico" onChange={handleChange}>
-                <option value="">Selecione</option>
-                <option value="1">Tecnico 1</option>
-                <option value="2">Tecnico 2</option>
-                <option value="3">Tecnico 3</option>
-                <option value="4">Tecnico 4</option>
-              </select>
+              <select id="tecnico">
+              <option value={ticket.persons.accountable.id}>
+                {ticket.persons.accountable.id === 1 ? "Sem Técnico" : ticket.persons.accountable.name}
+            </option>
+                {tecnicos
+                  .filter(tecnico => tecnico.id_person !== ticket.persons.accountable.id)
+                  .map((tecnico) => (
+                    <option key={tecnico.id_person} value={tecnico.id_person}>
+                        {tecnico.name}
+                    </option>
+                ))}
+            </select>
             </div>
             <div className={styles.ticketInputs}>
               <label className={styles.title}>DEPARTAMENTO</label>
@@ -285,7 +346,7 @@ function ChamadosEdit(){
               <input 
                 type="text"
                 name="user"
-                value={ticket.creator}
+                value={ticket.persons.creator.name}
                 onChange={handleChange}
                 disabled
               />
@@ -315,18 +376,10 @@ function ChamadosEdit(){
                 name="data"
                 value={formatDateToISO(ticket.dateCreated)}
                 onChange={handleChange}
-                disabledc
+                disabled
               />
             </div>
-            <div className={styles.ticketInputs}>
-              <label className={styles.title}>DATA PRAZO</label>
-              <input 
-                type="date"
-                name="dataprazo"
-                value={formatDateToISO(ticket.dateExp)}
-                onChange={handleChange}
-              />
-            </div>
+            <DateInputComponent ticket={ticket} />
             
             <div className={styles.assetFormGroupFullWidth}>
               <label htmlFor="descricao">DESCRIÇÃO</label>

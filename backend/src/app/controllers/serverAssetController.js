@@ -1,11 +1,49 @@
 import ServerAsset from '../models/serverAsset';
+import Branches from '../models/branches';
+import RelCompanysBranches from '../models/relCompanysBranches';
+import Companys from '../models/companys';
+import StatusAsset from '../models/statusAsset';
+import CategoriesServer from '../models/categoriesServer';
 import * as Yup from 'yup'; // biblioteca de validação de campos
 
+import { formatResponseServerAsset } from '../../functions/functions';
 class serverAssetController {
 
     async index(req, res) {
-        const servers = await ServerAsset.findAll();
-        return res.json(servers);
+
+        const include = {
+            include: [
+                {
+                    model: StatusAsset,
+                    as: 'serverStatusAsset',
+                    attributes: ['status'],
+                },
+                {
+                    model: CategoriesServer,
+                    as: 'categoryServer',
+                    attributes: ['category'],
+                },
+                {
+                    model: Branches,
+                    as: 'serverBranch',
+                    attributes: ['branch_name'],
+                    include: [{
+                        model: RelCompanysBranches,
+                        as: 'relBranch',
+                        include: [{
+                            model: Companys,
+                            as: 'company',
+                            attributes: ['name']
+                        }]
+                    }]
+                }]
+            };
+
+        const asset = await ServerAsset.findAll({
+            ...include
+        });
+
+        return res.json(formatResponseServerAsset(asset));
     }
 
     async store(req, res) {
@@ -16,8 +54,7 @@ class serverAssetController {
             host: Yup.string().required(),
             id_category: Yup.string().required(),
             port: Yup.string().required(),
-            id_departament: Yup.string().required(),
-            location: Yup.string().required(),
+            id_branch: Yup.string().required(),
             monitor: Yup.string().required(),
             id_status: Yup.string().required(),
         });
@@ -32,7 +69,8 @@ class serverAssetController {
             host: req.body.host,
             id_category: req.body.id_category,
             port: req.body.port,
-            id_departament: req.body.id_departament,
+            id_branch: req.body.id_branch,
+            description: req.body.description,
             location: req.body.location,
             monitor: req.body.monitor,
             id_status: req.body.id_status

@@ -17,11 +17,11 @@ function User() {
     position: "",
     email: "",
     phone: "",
-    profilePicture: "" // URL da imagem de perfil
+    profilePicture: "" 
   });
 
-  // Status vindo do banco de dados (exemplo)
-  const [userStatus, setUserStatus] = useState("offiline"); // ou "offline"
+
+  const [userStatus, setUserStatus] = useState("offiline");
 
   const handleChange = (e) => {
     const { name, value } = e.target;

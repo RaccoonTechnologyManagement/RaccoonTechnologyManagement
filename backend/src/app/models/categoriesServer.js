@@ -13,6 +13,9 @@ class CategoriesServer extends Model {
         );
         return this;
     }
+    static associate(models){
+        this.hasMany(models.ServerAsset, { foreignKey: 'id_category', as: 'categoryServer' });
+    }
 }
 
 export default CategoriesServer;

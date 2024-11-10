@@ -218,3 +218,60 @@ export async function getAssetHardware()
         return [];
     }
 }
+
+export async function getAssetServer()
+{
+    try
+    {
+        let response = await axios.get(`http://localhost:3334/serverAsset`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
+
+export async function getPersonsTechnical(menu)
+{
+    try
+    {
+        let response = await axios.get(`http://localhost:3334/getPersonTechnical`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            params: {
+                menu: menu
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
+
+export async function createAssetServer(data)
+{
+    try
+    {
+        let response = await axios.post(`http://localhost:3334/serverAsset`, data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
