@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { getServerAssetMonitoring } from '../../data/api'
+import { useState, useEffect } from 'react'
 import { IoMdArrowRoundBack } from "react-icons/io"
 import { IoMdArrowRoundForward } from "react-icons/io";
 import { monitorar } from '../../data/MonitorarDatabase';
@@ -8,11 +9,32 @@ import styles from '../monitorar/CriarVisaoGeral.module.css'
 
 function CriarVisaoGeral () {
 
-  const cabecalho = [
-    'N° Pat','Nome','Status','IPV4','MAC','Sede','Alerta']
+  const cabecalho = ['Patrimônio', 'Nome', 'Host', 'Empresa', 'Sede', 'Status', 'Alerta']
   const itemsPerPage = 15;
   const totalPages = Math.ceil(monitorar.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
+
+  async function carregarServidoresMonitorados()
+  {
+    try
+    {
+      return getServerAssetMonitoring();
+    }
+    catch(erro)
+    {
+        return [];
+    }
+  }
+
+  const [assets, setAssets] = useState([]);
+
+  useEffect(() => {
+    const fetchAssets = async () => {
+      const data = await carregarServidoresMonitorados();
+      setAssets(data);
+    };
+    fetchAssets();
+  }, []);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -24,7 +46,7 @@ function CriarVisaoGeral () {
   };
   const [search, setSearch] = useState("")
 
-  const verificarSearch = monitorar 
+  const verificarSearch = assets 
   .filter((item) =>{
     return Object.values(item)
     .some((prop) => prop && prop
@@ -36,8 +58,6 @@ function CriarVisaoGeral () {
 
     return (
       <>
-      <h1>Monitoramento</h1>
-      <h1>98/100 Dispositivos Online</h1>
       <InfoSearch setSearch={setSearch} />
       <table className={styles.Tabela}>
             <thead>
@@ -51,18 +71,18 @@ function CriarVisaoGeral () {
               {verificarSearch.length > 0 ? verificarSearch
               .slice(startIndex, endIndex).map((item,index) =>(
                 <tr key={index}>
-                  <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.patrimony_number}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.name}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.host}</td>                
+                  <td className={styles.tabelaCabecalhoItens}>{item.company.company}</td>                  
+                  <td className={styles.tabelaCabecalhoItens}>{item.company.branch}</td>
                   <td className={styles.status}>
-                    {item.status === 'Online'? 
+                    {item.status === 1 ? 
                     <div className={styles.useronline}>Online</div>: ''}
-                    {item.status === 'Offline'? 
+                    {item.status === 0 ? 
                     <div className={styles.useroffline}>Offline</div>: ''}
                   </td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.ipv4}</td>                
-                  <td className={styles.tabelaCabecalhoItens}>{item.mac}</td>                  
-                  <td className={styles.tabelaCabecalhoItens}>{item.departamento}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.alerta}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.alert}</td>
                 </tr>
               ))
               :

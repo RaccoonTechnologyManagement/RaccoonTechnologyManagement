@@ -28,6 +28,7 @@ import CategoriesServer from '../app/models/categoriesServer';
 import StatusAsset from '../app/models/statusAsset';
 import ServerAsset from '../app/models/serverAsset';
 import HardwareAsset from '../app/models/hardwareAsset';
+import ServerAssetMonitoring from '../app/models/serverAssetMonitoring';
 
 const models = [
 	User,
@@ -55,7 +56,8 @@ const models = [
 	CategoriesServer,
 	StatusAsset,
 	ServerAsset,
-	HardwareAsset
+	HardwareAsset,
+	ServerAssetMonitoring
 ]
 
 // Carregando nossos Models

@@ -207,3 +207,24 @@ export function formatResponsePersonTechnical(personTechnicalResponse)
 
     return response;
 }
+
+export function formatResponseServerMonitoring(serverMonitoringResponse)
+{
+    let response = [];
+    
+    serverMonitoringResponse.forEach((data, index) => {
+        response[index] = {
+            patrimony_number: data['dataValues']['serverAsset']['patrimony_number'],
+            name: data['dataValues']['serverAsset']['name'],
+            status: data['dataValues']['status'],
+            host: data['dataValues']['serverAsset']['host'],
+            alert: (!data['dataValues']['alert'] || (typeof data['dataValues']['alert'] === 'string' && data['dataValues']['alert'].length < 1)) ? "N/A" : data['dataValues']['alert'],
+            company: {
+                branch: data['dataValues']['serverAsset']['serverBranch']['dataValues']['branch_name'],
+                company: data['dataValues']['serverAsset']['serverBranch']['dataValues']['relBranch'][0]['dataValues']['company']['name']
+            }
+        }
+     });
+
+    return response;
+}

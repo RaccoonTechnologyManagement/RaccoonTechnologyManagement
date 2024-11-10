@@ -28,6 +28,7 @@ class ServerAsset extends Model {
         this.belongsTo(models.CategoriesServer, {foreignKey: 'id_category', as: 'categoryServer'});
         this.belongsTo(models.StatusAsset, {foreignKey: 'id_status', as: 'serverStatusAsset'});
         this.belongsTo(models.Branches, {foreignKey: 'id_branch', as: 'serverBranch'});
+        this.belongsTo(models.ServerAssetMonitoring, {foreignKey: 'id_branch', as: 'serverAsset'});
     }
 }
 

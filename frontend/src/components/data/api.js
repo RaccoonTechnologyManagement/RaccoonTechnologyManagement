@@ -275,3 +275,21 @@ export async function createAssetServer(data)
         return [];
     }
 }
+
+export async function getServerAssetMonitoring()
+{
+    try
+    {
+        let response = await axios.get(`http://localhost:3334/serverMonitoring`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}

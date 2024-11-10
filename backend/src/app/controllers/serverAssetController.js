@@ -4,6 +4,7 @@ import RelCompanysBranches from '../models/relCompanysBranches';
 import Companys from '../models/companys';
 import StatusAsset from '../models/statusAsset';
 import CategoriesServer from '../models/categoriesServer';
+import ServerAssetMonitoring from '../models/serverAssetMonitoring';
 import * as Yup from 'yup'; // biblioteca de validação de campos
 
 import { formatResponseServerAsset } from '../../functions/functions';
@@ -74,6 +75,11 @@ class serverAssetController {
             location: req.body.location,
             monitor: req.body.monitor,
             id_status: req.body.id_status
+        });
+
+        const serverMonitoring = await ServerAssetMonitoring.create({
+            id_server: asset.id,
+            status: 0
         });
 
         return res.json(asset);

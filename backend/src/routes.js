@@ -31,6 +31,7 @@ import categoriesServerController from './app/controllers/categoriesServerContro
 import statusAssetController from './app/controllers/statusAssetController';
 import serverAssetController from './app/controllers/serverAssetController';
 import hardwareAssetController from './app/controllers/hardwareAssetController';
+import serverAssetMonitoringController from './app/controllers/serverAssetMonitoringController';
 
 const routes = new Router();
 
@@ -129,6 +130,10 @@ routes.get('/serverAsset', serverAssetController.index);
 
 routes.post('/hardwareAsset', hardwareAssetController.store);
 routes.get('/hardwareAsset', hardwareAssetController.index);
+
+routes.post('/serverMonitoring', serverAssetMonitoringController.store);
+routes.get('/serverMonitoring', serverAssetMonitoringController.index);
+routes.put('/serverMonitoring', serverAssetMonitoringController.update);
 
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);
