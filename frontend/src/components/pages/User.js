@@ -1,108 +1,92 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "../layout/Container";
-import { getInfoPerson } from '../data/api'
 import Racoon from "../../img/RACOON.svg";
 import styles from "../pages/User.module.css";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 
+function User() {
+  const [user, setUser] = useState({
+    username: "",
+    firstName: "",
+    lastName: "",
+    company: "",
+    branch: "",
+    department: "",
+    category: "",
+    position: "",
+    email: "",
+    phone: "",
+    profilePicture: "" // URL da imagem de perfil
+  });
 
-function User(){
-      const [user, setUser] = useState({});
+  // Status vindo do banco de dados (exemplo)
+  const [userStatus, setUserStatus] = useState("offiline"); // ou "offline"
 
-      async function carregarInfoPessoa()
-      {
-        try
-        {
-            let person = await getInfoPerson();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
 
-            return person;
-        }
-        catch(erro)
-        {
-            return [];
-        }
-      }
+  const handleEdit = () => {
+    console.log("Botão Editar clicado");
+  };
 
-      const [isLoading, setIsLoading] = useState(true);
+  const handleResetPassword = () => {
+    console.log("Botão Redefinir Senha clicado");
+  };
 
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUser({ ...user, [name]: value });
-      };
-    
-      const handleEdit = () => {
-        console.log("Botão Editar clicado");
-      };
-    
-      const handleResetPassword = () => {
-        console.log("Botão Redefinir Senha clicado");
-      };
+  return (
+    <Container>
+      <div className={styles.profileContainer}>
+        <h1>Meu Perfil</h1>
+        
+        <div className={styles.profileGrid}>
+          <div className={styles.firstContainer}>
+            <div className={styles.profile}>
+              <div className={styles.profileItem}>
+                <label>Usuário</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={user.username}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.profileItem}>
+                <label>Nome</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={user.firstName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.profileItem}>
+                <label>Sobrenome</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={user.lastName}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
 
-      useEffect(() => {
-        const inserirInfoPessoa = async () => {
-          const info = await carregarInfoPessoa();
-          console.log(info)
-          setUser(info);
-          
-          setIsLoading(false);
-        };
-    
-        inserirInfoPessoa();
-      }, []);
-
-      if (isLoading) {
-        return <p>Carregando...</p>;
-      }
-    
-      return (
-        <Container>
-          <div className={styles.profileContainer}>
-            <h1>Meu Perfil</h1>
-            
-            <div className={styles.profileGrid}>
-              <div className={styles.firstContainer}>
-              
-              <div className={styles.profile}>
-                <div className={styles.profileItem}>
-                  <label>Usuário</label>
-                  <input
-                    type="text"
-                    name="username"
-                    value={user.user.username}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className={styles.profileItem}>
-                  <label>Nome</label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={user.name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className={styles.profileItem}>
-                  <label>Sobrenome</label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={user.lastname}
-                    onChange={handleChange}
-                  />
-                </div>
-                </div>
-
-              <div className={styles.avatar}>
+            <div className={styles.avatar}>
               <aside className={styles.profileAvatar}>
-                <img src={Racoon} alt="Profile" />
-                <div className={styles.active}>
-                <span >{user.person_activy ? "ATIVO" : "DESATIVADO"}</span>
+                <img 
+                  src={user.profilePicture || Racoon} 
+                  alt="Profile" 
+                />
+                <div 
+                  className={`${styles.active} ${userStatus === "online" ? styles.online : styles.offline}`}
+                >
+                  <span>{userStatus.toUpperCase()}</span>
                 </div>
               </aside>
-              </div>
-              </div>
-              
+            </div>
+          </div>            
               
               <div className={styles.bdRisk}><div className={styles.Risk}></div></div>
               <div></div>
@@ -116,7 +100,7 @@ function User(){
                 <input
                   type="text"
                   name="company"
-                  value={user.company.company}
+                  value={user.company}
                   onChange={handleChange}
                 /></div>
 
@@ -125,7 +109,7 @@ function User(){
                   <input
                     type="text"
                     name="branch"
-                    value={user.company.branch}
+                    value={user.branch}
                     onChange={handleChange}
                   /></div>
 
@@ -134,7 +118,7 @@ function User(){
                   <input
                     type="text"
                     name="department"
-                    value={user.company.departament.name}
+                    value={user.department}
                     onChange={handleChange}
                   /></div>
 
@@ -155,7 +139,7 @@ function User(){
                 <input
                   type="text"
                   name="position"
-                  value={user.office}
+                  value={user.position}
                   onChange={handleChange}
                 /></div>
 
@@ -165,7 +149,7 @@ function User(){
                 <input
                   type="email"
                   name="email"
-                  value={user.user.email}
+                  value={user.email}
                   onChange={handleChange}
                 />
               </div>
@@ -177,12 +161,12 @@ function User(){
               mask="(99) 99999-9999"
               type="tel"
               name="phone"
-              value={user.telephone}
+              value={user.phone}
               onChange={handleChange}
             /></div>
 
               <div className={styles.actions}>
-                <NavLink to={`/editar-usuario`}>
+                <NavLink to={`/editar-usuario`} >
                   <button id={styles.first} onClick={handleEdit}>EDITAR</button>
                 </NavLink>
     
@@ -200,5 +184,5 @@ function User(){
         </Container>
       );
     }
-    
-export default User
+
+    export default User

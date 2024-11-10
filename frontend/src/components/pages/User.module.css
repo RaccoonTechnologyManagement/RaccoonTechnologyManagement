@@ -52,10 +52,20 @@ h1 {
   margin-top: 40px;
 }
 
-.active span {
-  color: #00DC82;
+.active {
+  padding: 5px 10px;
+  border-radius: 4px;
   font-size: 18px;
   font-weight: bold;
+}
+
+/* Cores de status */
+.online {
+  color: #00DC82; /* Verde para online */
+}
+
+.offline {
+  color: red; /* Vermelho para offline */
 }
 
 .bdRisk {
@@ -79,12 +89,9 @@ h1 {
   margin-top: 35px;
 }
 
-
-
-.profileItem input{
+.profileItem input {
   margin-top: 15px;
 }
-
 
 #first, #last {
   width: 100%; 
@@ -95,7 +102,7 @@ h1 {
   cursor: pointer;
 }
 
-#first{
+#first {
   margin-right: 18px;
 }
 
@@ -104,12 +111,12 @@ h1 {
 }
 
 #first:hover,
-#last:hover{
+#last:hover {
   opacity: 0.8;
 }
 
-
-@media (max-width: 1357px) {
+/* Estilos para telas menores */
+@media (max-width: 1369px) {
   .firstContainer, .secondContainer {
     flex-direction: column;
     justify-content: center;
@@ -129,9 +136,9 @@ h1 {
   #first, #last {
     width: 100%;
     margin-right: 0;
-    
   }
-  #first{
+
+  #first {
     margin-right: 50px;
   }
 }
