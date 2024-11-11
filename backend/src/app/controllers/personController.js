@@ -24,7 +24,11 @@ class personController {
 
         if(menu == 1)
         {
-            conditionCategoryPerson = "in (2,3)";
+            conditionCategoryPerson = "in (1,2,3)";
+        }
+        else if(menu == 2)
+        {
+            conditionCategoryPerson = "in (1)";
         }
 
         const include = {
@@ -35,7 +39,7 @@ class personController {
                     include: [{
                         model: CategorysPersons,
                         as: 'category',
-                        where: Sequelize.literal(conditionPriority),
+                        where: Sequelize.literal(conditionCategoryPerson),
                         attributes: ['category']
                     }]
                 },
