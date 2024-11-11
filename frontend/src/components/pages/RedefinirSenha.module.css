@@ -30,7 +30,7 @@ header h1 {
   z-index: 1;
   padding: 12px;
   border: none;
-  border-radius: 20px;
+  border-radius: 5px;
   width: 100%;
   background-color: #1F1F1F;
   color: #fff;
@@ -78,12 +78,10 @@ header h1 {
 
 .resetButton {
   background-color: #00FF99;
-  color: #000;
 }
 
 .cancelButton {
   background-color: #FF0033;
-  color: #FFF;
 }
 
 .resetButton:hover,

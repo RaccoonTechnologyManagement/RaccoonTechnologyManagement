@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Container from "../layout/Container";
 import Racoon from "../../img/RACOON.svg";
-import padlock from "../../img/padlock.svg"; // Certifique-se de importar a imagem
+import padlock from "../../img/padlock.svg";
 import styles from "../pages/EditarUsuarios.module.css";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 
 function User() {
-  console.log("aqui")
-
   const [user, setUser] = useState({
     username: "",
     firstName: "",
@@ -20,19 +18,31 @@ function User() {
     position: "",
     email: "",
     phone: "",
+    profilePicture: "" // Começa vazio para garantir a exibição do Racoon
   });
+
+  const [userStatus, setUserStatus] = useState("offline");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
 
+  const handleProfilePictureChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUser({ ...user, profilePicture: URL.createObjectURL(file) });
+    }
+  };
+
   const handleEdit = () => {
     console.log("Botão Editar clicado");
+    // Adicione a lógica para salvar as alterações, se necessário
   };
 
   const handleResetPassword = () => {
     console.log("Botão Redefinir Senha clicado");
+    // Adicione a lógica para redefinir a senha, se necessário
   };
 
   return (
@@ -43,6 +53,7 @@ function User() {
         <div className={styles.profileGrid}>
           <div className={styles.firstContainer}>
             <div className={styles.profile}>
+              {/* Campos de perfil */}
               <div className={`${styles.profileItem} ${styles.inputContainer}`}>
                 <label>Usuário</label>
                 <input
@@ -52,11 +63,7 @@ function User() {
                   onChange={handleChange}
                   disabled
                 />
-                <img
-                  src={padlock}
-                  alt="cadeado"
-                  className={styles.lockIcon}
-                />
+                <img src={padlock} alt="cadeado" className={styles.lockIcon} />
               </div>
               <div className={`${styles.profileItem} ${styles.inputContainer}`}>
                 <label>Nome</label>
@@ -80,9 +87,26 @@ function User() {
 
             <div className={styles.avatar}>
               <aside className={styles.profileAvatar}>
-                <img src={Racoon} alt="Profile" />
-                <div className={styles.active}>
-                  <span>ATIVO</span>
+                <label htmlFor="profilePictureInput" style={{ cursor: 'pointer' }}>
+                  <img 
+                    src={user.profilePicture || Racoon} 
+                    alt="Profile" 
+                    width="328" 
+                    height="306"
+                    className={styles.circularImage}
+                  />
+                </label>
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  id="profilePictureInput"
+                  style={{ display: "none" }}
+                  onChange={handleProfilePictureChange}
+                />
+                <div 
+                  className={`${styles.active} ${userStatus === "online" ? styles.online : styles.offline}`}
+                >
+                  <span>{userStatus.toUpperCase()}</span>
                 </div>
               </aside>
             </div>

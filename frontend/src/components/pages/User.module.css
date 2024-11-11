@@ -31,7 +31,7 @@ h1 {
   z-index: 1;
   padding: 12px;
   border: none;
-  border-radius: 20px;
+  border-radius: 5px;
   width: 100%;
   background-color: #1F1F1F;
   color: #fff;
@@ -87,6 +87,7 @@ h1 {
   font-size: 18px;
   font-weight: bold;
   margin-top: 35px;
+  margin-left: 20px;
 }
 
 .profileItem input {
@@ -100,6 +101,7 @@ h1 {
   margin-bottom: 10px;
   background-color: #0072DC;
   cursor: pointer;
+  
 }
 
 #first {
@@ -132,6 +134,10 @@ h1 {
     width: 100%;
     height: auto;
   }
+
+  
+
+  
 
   #first, #last {
     width: 100%;
