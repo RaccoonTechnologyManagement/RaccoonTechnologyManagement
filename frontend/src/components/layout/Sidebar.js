@@ -47,7 +47,7 @@ function Sidebar(){
                         <img src={logoRacoom}/>
                     </div>
                     <div className={styles.SidebarHomeRacoom}>
-                        Racoom Technology Managment
+                        Raccoon Technology Managment
                     </div>
                 </div>
                 <div className={styles.bdRisk}><div className={styles.Risk}></div></div>
