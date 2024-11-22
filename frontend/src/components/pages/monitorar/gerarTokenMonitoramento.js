@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState }  from "react";
 import styles from './MonitorarGerarToken.module.css';
 
 function GerarTokenMonitoramento () {
+    const [token, setToken] = useState("");
 
     const jsonData = {
         "patrimony_number": "1",
         "id_status": "1|2"
+    };
+
+      
+      const gerarToken = () => {
+        const newToken = "TOKEN_GERADO_12345"; 
+        setToken(newToken);
+        alert("Token gerado com sucesso!");
     };
 
     return (
@@ -18,6 +26,20 @@ function GerarTokenMonitoramento () {
             <div className={styles.jsonBox}>
                 <pre>{JSON.stringify(jsonData, null, 2)}</pre>
             </div>
+
+            
+            <button className={styles.botaoGerar} onClick={gerarToken}>
+                Gerar Token
+            </button>
+
+            
+            {token && (
+                <div className={styles.tokenBox}>
+                    <h2>Token Gerado:</h2>
+                    <p>{token}</p>
+                </div>
+            )}
+
         </>
     )
 }

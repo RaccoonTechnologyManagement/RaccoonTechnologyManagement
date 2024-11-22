@@ -26,12 +26,13 @@ import AtivosCriarServidores from './components/pages/AtivosCriarServidores';
 import AtivosCriarSoftwares from './components/pages/AtivosCriarSoftwares';
 import AtivosCriarLicencas from './components/pages/AtivosCriarLicencas';
 import EditarAtivos from './components/pages/editarativos/EditarAtivos';
+import EditarAtivoServ from './components/pages/editarativos/EditarAtivoServ';
 import RedefinirSenha from './components/pages/RedefinirSenha';
 import ChamadosEdit from './components/pages/ChamadosEdit';
 import ChamadosCriar from './components/pages/ChamadosCriar';
 import ChamadosHistorico from './components/pages/ChamadosHistorico';
 import CriarAviso from './components/pages/CriarAviso';
-import GerarTokenMonitoramento from './components/pages/monitorar/gerarTokenMonitoramento';
+import GerarTokenMonitoramento from './components/pages/monitorar/GerarTokenMonitoramento';
 import ChamadosTecnico from './components/pages/ChamadosTecnico';
 
 function App() {
@@ -52,7 +53,8 @@ function App() {
           <Route path="/ativos/criar/servidor" element={<AtivosCriarServidores/>}/>
           {/*<Route path="/ativos/criar/software" element={<AtivosCriarSoftwares/>}/>
           <Route path="/ativos/criar/licenca" element={<AtivosCriarLicencas/>}/>*/}
-          <Route path="/ativos/edit" element={<EditarAtivos/>}/>
+          <Route path="/ativos/hardware/edit" element={<EditarAtivos/>}/>
+          <Route path="/ativos/servidores/edit" element={<EditarAtivoServ/>}/>
           <Route path="/chamados" element={<Navigate to="/chamados/meus-chamados" replace />} />
           <Route path="/chamados/meus-chamados" element={<ChamadosTecnico/>}/>
           <Route path="/chamados/abertos" element={<ChamadosAbertos/>}/>
