@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import styles from '../pages/Usuarios.module.css';
-import editar from '../../img/editar.png';
 import { InfoSearch } from '../component/Search';
 import UsuariosLt from '../layout/UsuariosLt';
-import UsuariosPages from '../layout/UsuariosPages';
 import UsuariosDois from './UsuariosDois';
 import { avisos } from '../data/AvisosDatabase';
 
