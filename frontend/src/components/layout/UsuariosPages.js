@@ -4,24 +4,24 @@ import styles from './CriarAtivo.module.css'
 
 function UsuariosPages (props){
     return(
-        <Container>
+        <>
             <div id="selecionado" className={styles.notBorderButton}>
-                <NavLink to={`/ativos/criar/hardware`}>
+                <NavLink to={`/usuarios`}>
                     <button>USUARIOS</button>
                 </NavLink> 
-                <NavLink to={`/ativos/criar/servidor`}>
+                <NavLink to={`/usuarios/empresa`}>
                     <button>EMPRESAS</button>
                 </NavLink>
-                <NavLink to={`/ativos/criar/software`}>
+                <NavLink to={`/usuarios/sede`}>
                     <button>SEDES</button>
                 </NavLink>
-                <NavLink to={`/ativos/criar/licenca`}>
+                <NavLink to={`/usuarios/departamento`}>
                     <button>DEPARTAMENTO</button>
                 </NavLink>                                              
             </div>
 
             <div>{props.children}</div>
-        </Container>
+        </>
         
     )
 

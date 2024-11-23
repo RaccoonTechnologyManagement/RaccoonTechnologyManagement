@@ -30,9 +30,8 @@
 }
 
 .totallicencas,
-.prioridadealta,
-.prioridadebaixa,
-.prioridademedia{
+.userativo,
+.userinativo{
     font-weight: bold;
     width: 5em;
     height: 2em;
@@ -78,20 +77,14 @@
     color: #f6f6f6;
 }
 
-.prioridadealta{
-    background-color: #EE8282;
-    color: #9D3434;
-}
-.prioridademedia{
-    background-color: #FEFFBD;
-    color: #8B8C57;
-}
-.prioridadebaixa{
+.userativo{
     background-color: #00DC82;
-    color: #FFF;
+    color: #f6f6f6;
 }
-
-
+.userinativo{
+    background-color: #EE8282;
+    color: #f6f6f6;
+}
 
 .totallicencas{
     background-color: #1F1F1F;

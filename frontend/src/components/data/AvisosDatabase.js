@@ -18,18 +18,18 @@ export const avisos = [
 
     {
         titulo: 'teste',
-        prioridade: 'Baixo',
+        prioridade: 'Baixa',
         para: 'Itau',
         tipo: 'Consultoria',
         expira: '01/01/2024' 
     },
 
     {
-        titulo: '',
-        prioridade: '',
-        empresa: '',
-        tipo: '',
-        expira: '' 
+        titulo: 'Problemas na conexão wifi',
+        prioridade: 'Baixa',
+        para: 'Skylab',
+        tipo: 'BO',
+        expira: '10/10/2025' 
     },
 
 ]

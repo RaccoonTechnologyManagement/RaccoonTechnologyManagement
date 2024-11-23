@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { IoMdArrowRoundBack } from "react-icons/io"
 import { IoMdArrowRoundForward } from "react-icons/io";
-import styles from '../pages/AtivosAbertos.module.css'
+import styles from '../pages/UsuariosDois.module.css'
 import editar from '../../img/editar.png'
 import { licencas } from '../data/LicencasDatabase';
 import {InfoSearch} from '../component/UsuariosSearch'
+import UsuariosLt from '../layout/UsuariosPages';
 
 
 function UsuariosDois () {
 
     const cabecalho = [
-        'Nome','Usuarios','Categotria','Empresa','Status',
-      ]
+        'Nome','Usuarios','Categotria','Empresa','Status','']
       const itemsPerPage = 5;
       const totalPages = Math.ceil(licencas.length / itemsPerPage);
       const [currentPage, setCurrentPage] = useState(1);
@@ -37,7 +37,6 @@ function UsuariosDois () {
       const constante1 = 'Valor1';
 
     return (
-
         <div>
           <InfoSearch setSearch={setSearch} />  
           <table className={styles.Tabela}>
@@ -87,6 +86,7 @@ function UsuariosDois () {
         </button>
         </div>
           </div>
+          
     )
 }
 
