@@ -1,41 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css'
-import logoAtivos from '../../img/ativos.png'
 import logoChamados from '../../img/chamados.png'
-import logoMonitorar from '../../img/monitorar.png'
-import logoDashboard from '../../img/dashboard.png'
-import logoUsuarios from '../../img/usuarios.png'
 import logoUser from '../../img/user.png'
 import logoLogout from '../../img/logout.png'
 import logoRacoom from '../../img/racoom.png'
 
-function Sidebar(){
+function SidebarUser(){
 
     const infoSidebar = [
         {
-            title: "Ativos",
-            icon: logoAtivos,
-            link: "/ativos/hardware"
-        },
-        {
             title: "Chamados",
             icon: logoChamados,
-            link: "/chamados"
-        },
-        {
-            title: "Monitorar",
-            icon: logoMonitorar,
-            link: "/monitorar"
-        },
-        {
-            title: "Dashboard",
-            icon: logoDashboard,
-            link: "/dashboard"
-        },
-        {
-            title: "Usuários",
-            icon: logoUsuarios,
-            link: "/usuarios"
+            link: "/user-chamados"
         }
     ]
 
@@ -77,7 +53,7 @@ function Sidebar(){
             <div className={styles.bdRisk}><div className={styles.Risk}></div></div>
             <div className={styles.SideBarFooter}>
                     <NavLink 
-                        to={`/user`}
+                        to={`/usuario`}
                         className={styles.semSublinhado}
                     >
                         <ul className={styles.rowFooter}>
@@ -110,4 +86,4 @@ function Sidebar(){
     )
 }
 
-export default Sidebar
+export default SidebarUser

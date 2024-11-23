@@ -10,40 +10,40 @@ Chart.register(...registerables);
 // Dados fixos para cada gráfico, incluindo títulos e legendas
 const chartsData = [
   {
-    title: 'Chamados Abertos',
+    title: 'MEUS CHAMADOS',
     data: {
-      'Últimos 7 dias': [5, 3, 2],
-      'Últimos 30 dias': [10, 5, 2],
-      'Últimos 3 meses': [20, 15, 5],
+      'Últimos 7 dias': [5, 3],
+      'Últimos 30 dias': [10, 5],
+      'Últimos 3 meses': [20, 15],
     },
-    labels: ['Abertos', 'Fechados', 'Pendentes'],
+    labels: ['Em andamento', 'Finalizados'],
   },
   {
-    title: 'Status de Chamados',
+    title: 'CHAMADOS',
     data: {
       'Últimos 7 dias': [7, 2, 1],
       'Últimos 30 dias': [12, 8, 3],
       'Últimos 3 meses': [25, 10, 10],
     },
-    labels: ['Novos', 'Resolvidos', 'Em Andamento'],
+    labels: ['Abertos', 'Em andamento', 'Finalizados'],
   },
   {
-    title: 'Análise de Chamados',
+    title: 'PRIORIDADE DE CHAMADOS ABERTOS',
     data: {
       'Últimos 7 dias': [3, 5, 7],
       'Últimos 30 dias': [9, 4, 6],
       'Últimos 3 meses': [14, 9, 5],
     },
-    labels: ['Altos', 'Médios', 'Baixos'],
+    labels: ['Alta', 'Média', 'Baixa'],
   },
   {
-    title: 'Desempenho de Chamados',
+    title: 'ATIVOS',
     data: {
-      'Últimos 7 dias': [6, 1, 3],
-      'Últimos 30 dias': [8, 6, 4],
-      'Últimos 3 meses': [11, 12, 3],
+      'Últimos 7 dias': [6, 1],
+      'Últimos 30 dias': [8, 6],
+      'Últimos 3 meses': [11, 12],
     },
-    labels: ['Urgentes', 'Importantes', 'Menos Importantes'],
+    labels: ['Online', 'Offline'],
   },
 ];
 

@@ -11,10 +11,8 @@ import AtivosLt from '../layout/AtivosLt';
 function AtivosHardware (){
 
     const cabecalho = [
-        'Patrimônio', 'Categoria', 'Marca', 'Modelo', 'Empresa', 'Sede', 'Status'
-      ]
-
-      const itemsPerPage = 15;
+        'Patrimônio', 'Categoria', 'Marca', 'Modelo', 'Empresa', 'Sede', 'Status', ''];
+      const itemsPerPage = 25;
       const totalPages = Math.ceil(ativos.length / itemsPerPage);
       const [currentPage, setCurrentPage] = useState(1);
     
@@ -89,8 +87,13 @@ function AtivosHardware (){
                     <div className={styles.ativoAramazenado}>{item.status}</div>: ''}
                   </td>
                   <td className={styles.tabelaCabecalhoItens}>
-                    <img 
-                    src={editar}/>
+                  <img 
+                    src={editar} 
+                    alt="Editar" 
+                    onClick={() => {
+                      window.location.href = '/ativos/hardware/edit';
+                    }} 
+                  />
                   </td>
                 </tr>
               ))
@@ -103,12 +106,20 @@ function AtivosHardware (){
               }
             </tbody>
           </table>
-          <div className={styles.pages}>
-        <button onClick={() => handlePageChange(currentPage - 1)}><IoMdArrowRoundBack/></button>
-        <span>Página {currentPage} de {totalPages}</span><button 
-        onClick={() => handlePageChange(currentPage + 1)}disabled={currentPage === totalPages}><IoMdArrowRoundForward/>
-        </button>
+
+          {verificarSearch.length > 0 && (
+        <div className={styles.pages}>
+          <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}><IoMdArrowRoundBack /></button>
+          <span>Página {currentPage} de {totalPages}</span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            <IoMdArrowRoundForward />
+          </button>
         </div>
+      )}
+
         </AtivosLt>
         )
     }

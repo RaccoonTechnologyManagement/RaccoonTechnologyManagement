@@ -1,10 +1,10 @@
 import styles from '../pages/ChamadosCriar.module.css';
 import { createTicket, getInfoPerson } from '../data/api';
-import Container from '../layout/Container';
+import ContainerUser from './ContainerUser';
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-function ChamadosCriar() {
+function ChamadosCriarUser() {
     const [ticket, setTicket] = useState({
         titulo: '',
         user: '', // Já puxa de acordo com o usuário logado
@@ -41,7 +41,7 @@ function ChamadosCriar() {
             await createTicket(data);  // Chama a API para criar o ticket
 
             setTimeout(() => {
-                navigate('/chamados/abertos');  // Redireciona após 3 segundos
+                navigate('/user-chamados');  // Redireciona após 3 segundos
             }, 3000);
         } catch (erro) {
             console.error('Erro ao criar o ticket:', erro);
@@ -73,7 +73,7 @@ function ChamadosCriar() {
             descricao: '',
             company: { company: '', departament: { name: '' }, branch: '' } // Resetando company para um objeto vazio
         });
-        navigate('/chamados/meus-chamados'); // Redireciona para outra página
+        navigate('/user-chamados/meus-chamados'); // Redireciona para outra página
     };
 
     useEffect(() => {
@@ -137,7 +137,7 @@ function ChamadosCriar() {
     }
 
     return (
-        <Container>
+        <ContainerUser>
             <div className={styles.mainContainerCenter}>
                 <div className={styles.containerCenter}>
                     <div className={styles.ticketNumber}>
@@ -233,8 +233,8 @@ function ChamadosCriar() {
                     )}
                 </div>
             </div>
-        </Container>
+        </ContainerUser>
     );
 }
 
-export default ChamadosCriar;
+export default ChamadosCriarUser;

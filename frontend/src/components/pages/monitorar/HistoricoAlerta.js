@@ -1,5 +1,5 @@
 import MonitorarLt from "../../layout/MonitorarLt"
-import GerarTokenMonitoramento from "./gerarTokenMonitoramento"
+import GerarTokenMonitoramento from "./GerarTokenMonitoramento"
 
 function HistoricoAlerta () {
     return (

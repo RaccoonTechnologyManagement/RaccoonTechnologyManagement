@@ -11,9 +11,8 @@ import AtivosLt from '../layout/AtivosLt';
 function AtivosServidores (){
 
     const cabecalho = [
-        'Patrimônio', 'Nome', 'Host', 'Categoria', 'Empresa', 'Sede', 'Status',
-      ]
-      const itemsPerPage = 15;
+        'Patrimônio', 'Nome', 'Host', 'Categoria', 'Empresa', 'Sede', 'Status', ''];
+      const itemsPerPage = 25;
       const totalPages = Math.ceil(ativos.length / itemsPerPage);
       const [currentPage, setCurrentPage] = useState(1);
 
@@ -47,7 +46,7 @@ function AtivosServidores (){
           setCurrentPage(newPage);
         }
       };
-      const [search, setSearch] = useState("")
+      const [search, setSearch] = useState("");
     
       const verificarSearch = assets 
       .filter((item) =>{
@@ -88,8 +87,14 @@ function AtivosServidores (){
                     <div className={styles.ativoAramazenado}>{item.status}</div>: ''}
                   </td>
                   <td className={styles.tabelaCabecalhoItens}>
-                    <img 
-                    src={editar}/>
+                  <img 
+                    src={editar} 
+                    alt="Editar" 
+                    onClick={() => {
+                      localStorage.setItem('idAsset', item.patrimony_number);
+                      window.location.href = '/ativos/servidores/edit';
+                    }} 
+                  />
                   </td>
                 </tr>
               ))
@@ -102,13 +107,21 @@ function AtivosServidores (){
               }
             </tbody>
           </table>
-          <div className={styles.pages}>
-        <button onClick={() => handlePageChange(currentPage - 1)}><IoMdArrowRoundBack/></button>
-        <span>Página {currentPage} de {totalPages}</span><button 
-        onClick={() => handlePageChange(currentPage + 1)}disabled={currentPage === totalPages}><IoMdArrowRoundForward/>
-        </button>
+
+          {verificarSearch.length > 0 && (
+        <div className={styles.pages}>
+          <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}><IoMdArrowRoundBack /></button>
+          <span>Página {currentPage} de {totalPages}</span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            <IoMdArrowRoundForward />
+          </button>
         </div>
-        </AtivosLt>
+      )}
+
+      </AtivosLt>
         )
     }
     

@@ -40,7 +40,7 @@ export const Login = ()=>{
                     <div className={styles.bdLogoRaccoon}>
                         <img src={logoRacoom}/>
                     </div>
-                    <p>Raccon Technology Management</p>
+                    <p>Raccoon Technology Management</p>
                 </div>
                 <h3>Bem-vindo de volta!</h3>
                 <span>ESTAVAMOS ANSIOSOS POR SUA VOLTA "MENINO DO T.I"</span>

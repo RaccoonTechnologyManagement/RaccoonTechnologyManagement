@@ -9,7 +9,7 @@ import styles from '../monitorar/CriarVisaoGeral.module.css'
 
 function CriarVisaoGeral () {
 
-  const cabecalho = ['Patrimônio', 'Nome', 'Host', 'Empresa', 'Sede', 'Status', 'Alerta']
+  const cabecalho = ['Patrimônio', 'Nome', 'Host', 'Empresa', 'Sede', 'Status', 'Alerta'];
   const itemsPerPage = 15;
   const totalPages = Math.ceil(monitorar.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,20 +44,52 @@ function CriarVisaoGeral () {
       setCurrentPage(newPage);
     }
   };
+
   const [search, setSearch] = useState("")
 
-  const verificarSearch = assets 
-  .filter((item) =>{
+  const verificarSearch = assets.filter((item) => {
+    // Verifica se a pesquisa é relacionada ao status 'online' ou 'offline' de forma mais flexível
+    const statusSearch = search.toLowerCase();
+    
+    // Verifica se o status é "online" ou "offline"
+    if (statusSearch.includes('online') && item.status === 1) {
+      return true;
+    }
+    if (statusSearch.includes('offline') && item.status === 0) {
+      return true;
+    }
+  
+    // Filtro genérico para outros campos
     return Object.values(item)
-    .some((prop) => prop && prop
-    .toString().toLowerCase()
-    .includes(search.toLowerCase()));
-  })
+      .some((prop) => 
+        prop && prop.toString().toLowerCase().includes(statusSearch)
+      );
+  });
+  
+  
 
+  // Contagem de dispositivos ONLINE e OFFLINE
+  const dispositivosOnline = assets.filter((item) => item.status === 1).length;
+  const dispositivosOffline = assets.filter((item) => item.status === 0).length;
 
+  // Total de dispositivos
+  const totalDispositivos = assets.length;
 
     return (
       <>
+         <div className={styles.tituloContainer}>
+        {/* Seção de Dispositivos Online */}
+        <div className={styles.tituloDivOnline}>
+          <h1 className={styles.titulo}>DISPOSITIVOS ONLINE:</h1>
+          <span className={styles.quantidadeFundoOnline}>{dispositivosOnline} / {totalDispositivos}</span>
+        </div>
+
+        {/* Seção de Dispositivos Offline */}
+        <div className={styles.tituloDivOffline}>
+          <h1 className={styles.titulo}>DISPOSITIVOS OFFLINE:</h1>
+          <span className={styles.quantidadeFundoOffline}>{dispositivosOffline} / {totalDispositivos}</span>
+        </div>
+      </div>
       <InfoSearch setSearch={setSearch} />
       <table className={styles.Tabela}>
             <thead>

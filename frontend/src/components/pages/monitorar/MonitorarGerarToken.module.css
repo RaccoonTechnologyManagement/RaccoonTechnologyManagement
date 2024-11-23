@@ -19,4 +19,43 @@
     font-size: 14px;
 }
 
+.botaoGerar {
+    background-color: #00DC82; /* Cor verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 0;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.1s ease-in-out; /* Adiciona transição para transformação */
+}
 
+/* Efeito de hover */
+.botaoGerar:hover {
+    background-color: #02854e; /* Cor verde mais escuro ao passar o mouse */
+}
+
+/* Efeito de botão pressionado */
+.botaoGerar:active {
+    transform: scale(0.95); /* Diminui o botão para dar a sensação de ser pressionado */
+    background-color: #00DC82; /* Cor mais escura quando pressionado */
+}
+
+.tokenBox {
+    background-color:  #292929; /* Cor de fundo */
+    padding: 20px;
+    border-radius: 8px;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 600px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white; /* Cor do texto */
+}
