@@ -30,10 +30,16 @@ import EditarAtivoServ from './components/pages/editarativos/EditarAtivoServ';
 import RedefinirSenha from './components/pages/RedefinirSenha';
 import ChamadosEdit from './components/pages/ChamadosEdit';
 import ChamadosCriar from './components/pages/ChamadosCriar';
+import ChamadosCriarUser from './components/usuario/ChamadosCriarUser';
 import ChamadosHistorico from './components/pages/ChamadosHistorico';
 import CriarAviso from './components/pages/CriarAviso';
 import GerarTokenMonitoramento from './components/pages/monitorar/GerarTokenMonitoramento';
 import ChamadosTecnico from './components/pages/ChamadosTecnico';
+import ChamadosAbertosUser from './components/usuario/ChamadosAbertosUser';
+import Usuario from './components/usuario/Usuario';
+import ChamadosHistoricoUser from './components/usuario/ChamadosHistoricoUser';
+import UsuarioRedefinirSenha from './components/usuario/UsuarioRedefinirSenha';
+import UsuarioEditar from './components/usuario/UsuarioEditar';
 
 function App() {
   return (
@@ -56,6 +62,14 @@ function App() {
           <Route path="/ativos/hardware/edit" element={<EditarAtivos/>}/>
           <Route path="/ativos/servidores/edit" element={<EditarAtivoServ/>}/>
           <Route path="/chamados" element={<Navigate to="/chamados/meus-chamados" replace />} />
+          <Route path="/user-chamados" element={<Navigate to="/user-chamados/meus-chamados" replace />} />
+          <Route path="/user-chamados/meus-chamados" element={<ChamadosAbertosUser/>}/>
+          <Route path="/user-chamados/criar" element={<ChamadosCriarUser/>}/>
+          <Route path="/user-chamados/historico" element={<ChamadosHistoricoUser/>}/>
+          <Route path="/usuario" element={<Usuario/>}/>
+          <Route path="/usuario/redefinir-senha" element={<UsuarioRedefinirSenha />} /> 
+          <Route path="/usuario/editar-usuario" element={<UsuarioEditar />} />
+
           <Route path="/chamados/meus-chamados" element={<ChamadosTecnico/>}/>
           <Route path="/chamados/abertos" element={<ChamadosAbertos/>}/>
           <Route path="/chamados/sem-tecnico" element={<ChamadosSemTecnico/>}/>
@@ -65,7 +79,7 @@ function App() {
           <Route path="/chamados/edit" element={<ChamadosEdit/>}/>
           <Route path="/chamados/historico" element={<ChamadosHistorico/>}/>
           <Route path="/editar-usuario" element={<EditarUsuarios />} />
-          <Route path="/redefinir-senha" element={<RedefinirSenha />} />         
+          <Route path="/redefinir-senha" element={<RedefinirSenha />} />        
           <Route path="/chamados/vencidos" element={<ChamadosVencidos/>}/>
           <Route path="/monitorar" element={<Navigate to="/monitorar/visaogeral" replace />} />
           <Route path="/monitorar/GerarTokenMonitoramento" element={<HistoricoAlerta/>}/>

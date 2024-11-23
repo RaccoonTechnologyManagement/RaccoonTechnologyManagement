@@ -1,0 +1,9 @@
+.Container{
+    width: 100%;
+    margin: 0em 2.5% 0em calc(4.5rem + 2.5%);
+    padding: 1em 2em;
+    background-color: #0C0B0B;
+    border-radius: 10px;
+    max-height: 100vh; 
+    overflow-y: auto;
+}

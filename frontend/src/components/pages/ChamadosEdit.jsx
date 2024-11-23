@@ -179,6 +179,7 @@ function ChamadosEdit(){
     }
   }
 
+  
   const formatDateToISO = (dateStr) => {
     if(dateStr != '')
     {
@@ -271,6 +272,10 @@ function ChamadosEdit(){
   if (isLoading) {
     return <p>Carregando...</p>;
   }
+
+  const handleCancel = () => {
+    navigate("/chamados/meus-chamados"); // Redireciona para a página desejada
+  };
 
   return(
     <Container>
@@ -449,7 +454,7 @@ function ChamadosEdit(){
                   atualizarChamado(ticket.status)
                 }
                 }>SALVAR</button>
-              <button className={styles.cancelButton}>CANCELAR</button>
+              <button className={styles.cancelButton} onClick={handleCancel}>CANCELAR</button>
             </div>
           </div>
         </div>
