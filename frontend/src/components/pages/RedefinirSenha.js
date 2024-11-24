@@ -4,8 +4,7 @@ import Container from "../layout/Container";
 import styles from "../pages/RedefinirSenha.module.css";
 import olho from "../../img/olho.png";
 import olho1 from "../../img/olho1.png";
-import { NavLink } from "react-router-dom";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function RedefinirSenha() {
   const [passwords, setPasswords] = useState({
@@ -22,8 +21,8 @@ function RedefinirSenha() {
   });
 
   const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState(""); 
-  
+  const [messageType, setMessageType] = useState("");
+
   const handleChange = (e) => {
     setPasswords({
       ...passwords,
@@ -40,29 +39,46 @@ function RedefinirSenha() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (
+      !passwords.oldPassword ||
+      !passwords.newPassword ||
+      !passwords.confirmPassword
+    ) {
+      setMessage("Todos os campos são obrigatórios.");
+      setMessageType("error");
+      return;
+    }
+
+    if (passwords.newPassword !== passwords.confirmPassword) {
+      setMessage("As novas senhas não coincidem.");
+      setMessageType("error");
+      return;
+    }
+
     const data = {
       oldPassword: passwords.oldPassword,
       password: passwords.newPassword,
-      confirmPassword: passwords.confirmPassword
+      confirmPassword: passwords.confirmPassword,
     };
 
     axios.put("http://localhost:3334/users", data, {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     })
     .then(response => {
-        localStorage.setItem('token', response.data.token);
-        setMessage("Senha redefinida com sucesso!");
-        setMessageType("success");
-         
-        setTimeout(() => {
-          navigate('/chamados');
-        }, 3000);
+      localStorage.setItem('token', response.data.token);
+      setMessage("Senha redefinida com sucesso!");
+      setMessageType("success");
+
+      setTimeout(() => {
+        navigate('/chamados');
+      }, 2000);
     })
     .catch(error => {
-        setMessage(error.response.data.error);
-        setMessageType("error"); 
+      setMessage(error.response?.data?.error || "Erro ao redefinir a senha.");
+      setMessageType("error");
     });
   };
 
@@ -125,19 +141,23 @@ function RedefinirSenha() {
             />
           </div>
           <footer className={styles.buttongroup}>
-          <NavLink to={`/user`}>
             <button type="submit" className={styles.resetButton}>
               REDEFINIR
             </button>
-            </NavLink>
-            <NavLink to={`/user`}>
-            <button type="button" className={styles.cancelButton}>
+            <button
+              type="button"
+              className={styles.cancelButton}
+              onClick={() => navigate('/user')}
+            >
               CANCELAR
             </button>
-            </NavLink>
           </footer>
         </form>
-        <p className={`${styles.message} ${message ? styles.show : ""} ${messageType === "error" ? styles.error : ""}`}>
+        <p
+          className={`${styles.message} ${message ? styles.show : ""} ${
+            messageType === "error" ? styles.error : ""
+          }`}
+        >
           {message}
         </p>
       </div>

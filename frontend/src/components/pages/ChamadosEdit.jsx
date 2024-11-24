@@ -106,23 +106,16 @@ function ChamadosEdit(){
   {
     try
     {
-      return axios.get(`http://localhost:3334/getInfoPerson`, {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-        .then(response => {
-          let mensagensFormatadas = messagens.map(mensagem => 
-            {
-              return {
-                logged: validaUsuarioLogado(mensagem.id_person, response.data.id),
-                usuario: mensagem.person.name,
-                texto: mensagem.comment
-              };
-            });
+        let mensagensFormatadas = messagens.map(mensagem => 
+        {
+          return {
+            logged: validaUsuarioLogado(mensagem.id_person, pessoaLogada.id),
+            usuario: mensagem.person.name,
+            texto: mensagem.comment
+          };
+        });
 
-          return mensagensFormatadas;
-       })
+        return mensagensFormatadas;
     }
     catch(erro)
     {
@@ -324,6 +317,7 @@ function ChamadosEdit(){
                         {tecnico.name}
                     </option>
                 ))}
+              <option value="1">Sem técnico</option>
             </select>
             </div>
             <div className={styles.ticketInputs}>

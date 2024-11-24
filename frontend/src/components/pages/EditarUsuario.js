@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState, useEffect } from 'react';
 import Container from "../layout/Container";
 import Racoon from "../../img/RACOON.svg";
 import padlock from "../../img/padlock.svg";
 import styles from "../pages/EditarUsuarios.module.css";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
+import { uploadImageProfile }  from '../../functions/function.js'
 
 function User() {
   const [user, setUser] = useState({
@@ -18,8 +19,17 @@ function User() {
     position: "",
     email: "",
     phone: "",
-    profilePicture: "" // Começa vazio para garantir a exibição do Racoon
+    profilePicture: ""
   });
+
+  async function salvarImagemPerfil() {
+    try {
+      let img = await uploadImageProfile();
+      return img;
+    } catch (erro) {
+      return [];
+    }
+  }
 
   const [userStatus, setUserStatus] = useState("offline");
 
@@ -28,11 +38,15 @@ function User() {
     setUser({ ...user, [name]: value });
   };
 
+  const [imgProfile, setImgProfile] = useState("");
+
   const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setUser({ ...user, profilePicture: URL.createObjectURL(file) });
+        const profilePhoto =  salvarImagemPerfil(file);
+        setImgProfile(profilePhoto);
     }
+
   };
 
   const handleEdit = () => {
