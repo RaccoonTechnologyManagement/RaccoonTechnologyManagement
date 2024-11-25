@@ -1,112 +1,120 @@
-/* CriarAviso.css */
+.criar-aviso-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  .criar-aviso-container h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .criar-aviso-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  .input-group label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-  
-  .input-group input,
-  .input-group select,
-  .input-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-  }
-  
-  .input-group textarea {
-    resize: none;
-    height: 60px;
-  }
-  
-  .row {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .row .input-group {
-    flex: 1;
-  }
-  
-  .toggle-switch {
-    display: flex;
-    align-items: center;
-  }
-  
-  .toggle-switch input[type="checkbox"] {
-    display: none;
-  }
-  
-  .toggle-switch label {
-    width: 40px;
-    height: 20px;
-    background-color: #555;
-    border-radius: 20px;
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .toggle-switch label::after {
-    content: '';
-    width: 18px;
-    height: 18px;
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    transition: 0.3s;
-  }
-  
-  .toggle-switch input[type="checkbox"]:checked + label {
-    background-color: #0f0;
-  }
-  
-  .toggle-switch input[type="checkbox"]:checked + label::after {
-    transform: translateX(20px);
-  }
-  
-  .button-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .create-button {
-    background-color: #0f0;
-    color: #000;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .cancel-button {
-    background-color: #f00;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
+.criar-aviso-form {
+  display: flex;
+  flex-direction: column;
+}
+.input-error {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+  font-size: 14px;
+}
+
+.input-group textarea {
+  resize: none;
+  height: 60px;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.row .input-group {
+  flex: 1;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-switch input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-switch label {
+  width: 40px;
+  height: 20px;
+  background-color: #555;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-switch label::after {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transition: 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked + label {
+  background-color: #00DC82;
+}
+
+.toggle-switch input[type="checkbox"]:checked + label::after {
+  transform: translateX(20px);
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.create-button {
+  background-color: #00DC82;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #DC0000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
