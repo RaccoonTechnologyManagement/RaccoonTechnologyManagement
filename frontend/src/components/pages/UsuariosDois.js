@@ -3,7 +3,7 @@ import { IoMdArrowRoundBack } from "react-icons/io"
 import { IoMdArrowRoundForward } from "react-icons/io";
 import styles from '../pages/UsuariosDois.module.css'
 import editar from '../../img/editar.png'
-import { licencas } from '../data/LicencasDatabase';
+import { usuarios } from '../data/UsuariosDatabase';
 import {InfoSearch} from '../component/UsuariosSearch'
 import UsuariosLt from '../layout/UsuariosPages';
 
@@ -11,9 +11,9 @@ import UsuariosLt from '../layout/UsuariosPages';
 function UsuariosDois () {
 
     const cabecalho = [
-        'Nome','Usuarios','Categotria','Empresa','Status','']
+        'Nome','Usuarios','Categotria','Empresa','Status']
       const itemsPerPage = 5;
-      const totalPages = Math.ceil(licencas.length / itemsPerPage);
+      const totalPages = Math.ceil(usuarios.length / itemsPerPage);
       const [currentPage, setCurrentPage] = useState(1);
     
       const startIndex = (currentPage - 1) * itemsPerPage;
@@ -26,7 +26,7 @@ function UsuariosDois () {
       };
       const [search, setSearch] = useState("")
     
-      const verificarSearch = licencas 
+      const verificarSearch = usuarios 
       .filter((item) =>{
         return Object.values(item)
         .some((prop) => prop && prop
@@ -34,7 +34,6 @@ function UsuariosDois () {
         .includes(search.toLowerCase()));
       })
 
-      const constante1 = 'Valor1';
 
     return (
         <div>
@@ -51,9 +50,9 @@ function UsuariosDois () {
               {verificarSearch.length > 0 ? verificarSearch
               .slice(startIndex, endIndex).map((item,index) =>(
                 <tr key={index}>
-                  <td className={styles.tabelaCabecalhoItens}>{item.id}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.user}</td>
-                  <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>                             
+                  <td className={styles.tabelaCabecalhoItens}>{item.nome}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.usuario}</td>
+                  <td className={styles.tabelaCabecalhoItens}>{item.categoria}</td>                             
                   <td className={styles.tabelaCabecalhoItensEmpresa}>{item.empresa}</td>
                   
                   <td className={styles.status}>
@@ -63,11 +62,6 @@ function UsuariosDois () {
                     <div className={styles.userinativo}>Inativo</div>: ''}
                   </td>
                                   
-
-                  <td className={styles.tabelaCabecalhoItens}>
-                    <img 
-                    src={editar}/>
-                  </td>
                 </tr>
               ))
               :

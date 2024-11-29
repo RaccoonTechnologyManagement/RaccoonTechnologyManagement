@@ -12,6 +12,7 @@
     "express": "^4.19.2",
     "js": "^0.1.0",
     "jsonwebtoken": "^9.0.2",
+    "lowdb": "^7.0.1",
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.3",
