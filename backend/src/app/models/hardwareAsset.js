@@ -33,7 +33,7 @@ class HardwareAsset extends Model {
         this.belongsTo(models.SubCategoriesHardware, {foreignKey: 'id_subcategory', as: 'subcategoryHardware'});
         this.belongsTo(models.StatusAsset, {foreignKey: 'id_status', as: 'statusAsset'});
         this.belongsTo(models.Branches, {foreignKey: 'id_branch', as: 'branch'});
-        this.belongsTo(models.Person, {foreignKey: 'id_person', as: 'person'});
+        this.belongsTo(models.Person, {foreignKey: 'id_person', as: 'personAssetHardware'});
     }
 }
 

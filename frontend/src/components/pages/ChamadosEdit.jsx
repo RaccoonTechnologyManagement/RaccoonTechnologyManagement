@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { getComments, insertComments, updateTicket, getInfoTicket, getPersonsTechnical, getInfoPerson } from '../data/api'
 import styles from '../pages/ChamadosEdit.module.css'
 import Container from '../layout/Container'

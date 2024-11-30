@@ -4,9 +4,11 @@ import RelCompanysBranches from '../models/relCompanysBranches';
 import Companys from '../models/companys';
 import StatusAsset from '../models/statusAsset';
 import SubCategoriesHardware from '../models/subcategoriesHardware';
+import Person from '../models/person';
+import User from '../models/user';
 import * as Yup from 'yup'; // biblioteca de validação de campos
 
-import { formatResponseHardwareAsset } from '../../functions/functions';
+import { formatResponseHardwareAsset, formatResponseOneHardwareAsset } from '../../functions/functions';
 class hardwareAssetController {
 
     async index(req, res) {
@@ -81,6 +83,48 @@ class hardwareAssetController {
 
 
         return res.json(asset);
+    }
+
+    async getOneHardwareAsset(req, res) {
+
+        const patrimonyNumber = req.query.patrimony_number;
+
+        const include = {
+            include: [
+                {
+                    model: StatusAsset,
+                    as: 'statusAsset',
+                    attributes: ['status'],
+                },
+                {
+                    model: SubCategoriesHardware,
+                    as: 'subcategoryHardware',
+                    attributes: ['subcategory'],
+                },
+                {
+                    model: Branches,
+                    as: 'branch',
+                    attributes: ['branch_name'],
+                    include: [{
+                        model: RelCompanysBranches,
+                        as: 'relBranch',
+                        include: [{
+                            model: Companys,
+                            as: 'company',
+                            attributes: ['id']
+                        }]
+                    }]
+                }]
+            };
+
+        const asset = await HardwareAsset.findAll({
+            ...include,
+            where: {
+                patrimony_number: patrimonyNumber,
+            }
+        });
+
+        return res.json(formatResponseOneHardwareAsset(asset));
     }
 }
 

@@ -252,7 +252,7 @@ function CriarHardwareComp() {
                             name="empresa"
                             className={errors.empresa ? styles.errorInput : ''}
                             value={selectedCompany}
-                            onChange={(e) => setSelectedCompany(e.target.value)}        
+                            onChange={(e) => setSelectedCompany(e.target.value)}
                         >
                             <option value="0">Selecione uma Empresa</option>
                             {companies.map((company) => (

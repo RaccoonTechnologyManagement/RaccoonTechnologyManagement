@@ -171,6 +171,35 @@ export function formatResponseHardwareAsset(hardwareAssetResponse)
     return response;
 }
 
+export function formatResponseOneHardwareAsset(hardwareAsset)
+{
+    let response = [];
+    console.log(hardwareAsset);
+    response = {
+        patrimony_number: hardwareAsset[0]['dataValues']['patrimony_number'],
+        status: hardwareAsset[0]['dataValues']['id_status'],
+        category: hardwareAsset[0]['dataValues']['id_subcategory'],
+        brand: hardwareAsset[0]['dataValues']['brand'],
+        model: hardwareAsset[0]['dataValues']['model'],
+        ip_address: hardwareAsset[0]['dataValues']['ip_address'],
+        mac_address: hardwareAsset[0]['dataValues']['mac_address'],
+        network_mac_address: hardwareAsset[0]['dataValues']['network_mac_address'],
+        location: hardwareAsset[0]['dataValues']['location'],
+        ipv6: hardwareAsset[0]['dataValues']['ipv6'],
+        ipv4: hardwareAsset[0]['dataValues']['ipv4'],
+        description: hardwareAsset[0]['dataValues']['description'],
+        serial_number: hardwareAsset[0]['dataValues']['serial_number'],
+        location: hardwareAsset[0]['dataValues']['location'],
+        person: hardwareAsset[0]['dataValues']['id_person'],
+        company: {
+            company: hardwareAsset[0]['dataValues']['branch']['relBranch'][0]['dataValues']['company']['id'],
+            branch: hardwareAsset[0]['dataValues']['id_branch']
+        }
+    }
+
+    return response;
+}
+
 export function formatResponseServerAsset(serverAssetResponse)
 {
     let response = [];

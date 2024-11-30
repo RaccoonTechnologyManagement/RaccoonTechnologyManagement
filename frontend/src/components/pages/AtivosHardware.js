@@ -91,6 +91,7 @@ function AtivosHardware (){
                     src={editar} 
                     alt="Editar" 
                     onClick={() => {
+                      localStorage.setItem('patrimonyNumberHardware', item.patrimony_number);
                       window.location.href = '/ativos/hardware/edit';
                     }} 
                   />

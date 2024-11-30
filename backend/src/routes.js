@@ -130,6 +130,7 @@ routes.get('/serverAsset', serverAssetController.index);
 
 routes.post('/hardwareAsset', hardwareAssetController.store);
 routes.get('/hardwareAsset', hardwareAssetController.index);
+routes.get('/hardwareAssetOne', hardwareAssetController.getOneHardwareAsset);
 
 routes.post('/serverMonitoring', serverAssetMonitoringController.store);
 routes.get('/serverMonitoring', serverAssetMonitoringController.index);

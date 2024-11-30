@@ -5,7 +5,6 @@ import padlock from "../../img/padlock.svg";
 import styles from "../pages/EditarUsuarios.module.css";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
-import { uploadImageProfile }  from '../../functions/function.js'
 
 function User() {
   const [user, setUser] = useState({
@@ -22,15 +21,6 @@ function User() {
     profilePicture: ""
   });
 
-  async function salvarImagemPerfil() {
-    try {
-      let img = await uploadImageProfile();
-      return img;
-    } catch (erro) {
-      return [];
-    }
-  }
-
   const [userStatus, setUserStatus] = useState("offline");
 
   const handleChange = (e) => {
@@ -43,10 +33,8 @@ function User() {
   const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-        const profilePhoto =  salvarImagemPerfil(file);
-        setImgProfile(profilePhoto);
+      setUser({ ...user, profilePicture: URL.createObjectURL(file) });
     }
-
   };
 
   const handleEdit = () => {
