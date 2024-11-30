@@ -3,7 +3,7 @@ import styles from './EditarAtivos.module.css';
 import { useNavigate} from 'react-router-dom';
 import Container from '../../layout/Container';
 import { useEffect, useState } from 'react';
-import { getInfoHardwareAsset, getCompanys, getBranchesByCompany, getPersonByBranch } from '../../data/api'
+import { getInfoHardwareAsset, getCompanys, getBranchesByCompany, getPersonByBranch, deleteOneHardwareAsset } from '../../data/api'
 
 function EditarAtivos () {
     const patrimonyNumber = localStorage.getItem('patrimonyNumberHardware');
@@ -11,6 +11,18 @@ function EditarAtivos () {
     const [isLoading, setIsLoading] = useState(true);
 
     const navigate = useNavigate();
+
+    async function deletarAtivoHardware(patrimonyNumber)
+    {
+      try
+      {
+          return await deleteOneHardwareAsset(patrimonyNumber);
+      }
+      catch(erro)
+      {
+          return [];
+      }
+    }
 
     async function carregarAtivoHardware(patrimonyNumber)
     {
@@ -106,6 +118,16 @@ function EditarAtivos () {
 
   const handleCancel = () => {
     navigate("/ativos/hardware");
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+    deletarAtivoHardware(patrimonyNumber)
+    navigate("/ativos/hardware");
+
+    setTimeout(() => {
+      navigate("/ativos/hardware");
+  }, 1000);
   };
 
   const [asset, setAsset] = useState([]);
@@ -297,6 +319,7 @@ function EditarAtivos () {
             <div className={styles.boxLeftButtonGroup}>
               <img
                 className={styles.deleteButton}
+                onClick={handleDelete}
                 src={iconeExcluir}>
               </img>
             </div>

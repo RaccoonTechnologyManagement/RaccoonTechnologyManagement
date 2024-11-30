@@ -126,6 +126,19 @@ class hardwareAssetController {
 
         return res.json(formatResponseOneHardwareAsset(asset));
     }
+
+    async delete(req, res) {
+        const patrimonyNumber = req.query.patrimony_number;
+
+        await HardwareAsset.destroy({
+            where: {
+                patrimony_number: patrimonyNumber,
+            },
+        });
+
+        return res.status(200)
+    }
+    
 }
 
 export default new hardwareAssetController();

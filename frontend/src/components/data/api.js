@@ -311,3 +311,21 @@ export async function getInfoHardwareAsset(patrimony_number)
         return [];
     }
 }
+
+    export async function deleteOneHardwareAsset(patrimony_number)
+    {
+        try
+        {
+            let response = await axios.delete(`http://localhost:3334/hardwareDelete?patrimony_number=${patrimony_number}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+    
+            return response.data;
+        }
+        catch(erro)
+        {
+            return [];
+        }
+}
