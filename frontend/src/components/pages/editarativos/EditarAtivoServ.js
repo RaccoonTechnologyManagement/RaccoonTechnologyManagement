@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 function EditarAtivoServ () {
   const chatRef = useRef();
   const [novaMensagem, setNovaMensagem] = useState('');
+  
 
 
   const [asset, setAsset] = useState({});
@@ -43,6 +44,10 @@ function EditarAtivoServ () {
     setMensagens([...mensagens, novaMensagemObj]); // Atualiza o estado com a nova mensagem
     setNovaMensagem(''); // Limpa o input
     chatRef.current.scrollTop = chatRef.current.scrollHeight;
+  };
+
+  const handleCancel = () => {
+    navigate("/ativos/servidores"); // Redireciona para a página desejada
   };
 
 
@@ -155,7 +160,7 @@ function EditarAtivoServ () {
             <button 
               className={styles.saveButton}
               >SALVAR</button>
-            <button className={styles.cancelButton}>CANCELAR</button>
+            <button className={styles.cancelButton} onClick={handleCancel}>CANCELAR</button>
           </div>
         </div>
       </div>

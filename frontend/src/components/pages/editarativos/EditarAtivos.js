@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 function EditarAtivos () {
     const chatRef = useRef();
     const [novaMensagem, setNovaMensagem] = useState('');
+    const navigate = useNavigate();
   
     const [ticket, setTicket] = useState({
         id: 'CR7',
@@ -52,6 +53,11 @@ function EditarAtivos () {
       setMensagens([...mensagens, novaMensagemObj]); // Atualiza o estado com a nova mensagem
       setNovaMensagem(''); // Limpa o input
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    };
+
+
+    const handleCancel = () => {
+      navigate("/ativos/hardware"); // Redireciona para a página desejada
     };
   
   
@@ -198,7 +204,7 @@ function EditarAtivos () {
               <button 
                 className={styles.saveButton}
                 >SALVAR</button>
-              <button className={styles.cancelButton}>CANCELAR</button>
+              <button className={styles.cancelButton} onClick={handleCancel}>CANCELAR</button>
             </div>
           </div>
         </div>
