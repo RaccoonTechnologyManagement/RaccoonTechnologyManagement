@@ -128,6 +128,8 @@ routes.get('/statusAsset', statusAssetController.index);
 routes.post('/serverAsset', serverAssetController.store);
 routes.get('/serverAsset', serverAssetController.index);
 routes.get('/serverAssetOne', serverAssetController.getOneServerAsset);
+routes.delete('/serverDelete', serverAssetController.delete);
+routes.put('/serverAsset', serverAssetController.update);
 
 routes.post('/hardwareAsset', hardwareAssetController.store);
 routes.get('/hardwareAsset', hardwareAssetController.index);

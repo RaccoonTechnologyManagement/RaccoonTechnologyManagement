@@ -265,6 +265,7 @@ export function formatResponseOneServerAsset(serverAsset)
         patrimony_number: serverAsset[0]['dataValues']['patrimony_number'],
         name: serverAsset[0]['dataValues']['name'],
         host: serverAsset[0]['dataValues']['host'],
+        monitor: serverAsset[0]['dataValues']['monitor'],
         id_category: serverAsset[0]['dataValues']['id_category'],
         port: serverAsset[0]['dataValues']['port'],
         location: serverAsset[0]['dataValues']['location'],

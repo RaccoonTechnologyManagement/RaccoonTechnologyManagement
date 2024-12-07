@@ -18,7 +18,7 @@ module.exports = {
           references: { model: 'server_asset', key: 'id'},
           onUpdate: 'CASCADE',
           onDelete: 'SET NULL',
-          allowNull: false
+          allowNull: true
         },
         status: {
           type: Sequelize.INTEGER,

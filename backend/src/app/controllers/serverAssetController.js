@@ -126,6 +126,43 @@ class serverAssetController {
 
         return res.json(asset);
     }
+
+    async delete(req, res) {
+        const patrimonyNumber = req.query.patrimony_number;
+
+        await ServerAsset.destroy({
+            where: {
+                patrimony_number: patrimonyNumber,
+            },
+        });
+
+        return res.status(200)
+    }
+
+    
+    async update(req, res){
+
+        const patrimonyNumber = req.query.patrimony_number;
+
+        await ServerAsset.update(
+            { 
+                name: req.body.name,
+                patrimony_number: patrimonyNumber,
+                host: req.body.host,
+                id_category: req.body.id_category,
+                port: req.body.port,
+                id_branch: req.body.id_branch,
+                description: req.body.description,
+                location: req.body.location,
+                monitor: req.body.monitor,
+                id_status: req.body.id_status
+            },
+            { where: { patrimony_number: patrimonyNumber }}
+        );
+
+        return res.json(200);
+    }
+
 }
 
 export default new serverAssetController();

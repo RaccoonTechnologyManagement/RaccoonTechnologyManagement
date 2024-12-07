@@ -365,3 +365,39 @@ export async function getInfoServerAsset(patrimony_number)
         return [];
     }
 }
+
+export async function deleteOneServerAsset(patrimony_number)
+{
+    try
+    {
+        let response = await axios.delete(`http://localhost:3334/serverDelete?patrimony_number=${patrimony_number}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
+
+export async function updateServerAsset(patrimony_number, data)
+{
+    try
+    {
+        let response = await axios.put(`http://localhost:3334/serverAsset?patrimony_number=${patrimony_number}`, data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
