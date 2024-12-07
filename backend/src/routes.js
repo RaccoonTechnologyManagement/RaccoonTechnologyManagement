@@ -41,6 +41,7 @@ routes.get('/teste', (req, res) => {
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', sessionController.store);
+routes.post('/token', sessionController.generateTokenMonitor);
 
 // Todas rotas que estiverem abaixo, necessitaram de token para serem usadas.
 routes.use(authMiddleware);

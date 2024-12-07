@@ -28,7 +28,7 @@ function EditarAtivoServ () {
     const { name, value } = e.target;
     setAsset((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: name === "monitor" ? (value === "1") : value,
     }));
     console.log(name, value);
   };
@@ -213,9 +213,9 @@ const handleSubmit = (event) => {
         <form action="#" className={styles.formActive}>
           <div className={styles.activeInputs}>
             <label className={styles.title}>MONITORAR</label>
-            <select id="monitorar" name="monitor" onChange={handleChange} value={asset.monitor ? 1 : 2}>
+            <select id="monitorar" name="monitor" onChange={handleChange} value={asset.monitor ? "1" : "0"}>
               <option value="1">SIM</option>
-              <option value="2">NÃO</option>
+              <option value="0">NÃO</option>
             </select>
           </div>
           <div className={styles.activeInputs}>

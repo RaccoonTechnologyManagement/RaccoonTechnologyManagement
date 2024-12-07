@@ -69,21 +69,32 @@ class serverAssetMonitoring {
     async update(req, res) {
 
         const schema = Yup.object().shape({
-            id_server: Yup.string().required(),
+            patrimony_number: Yup.string().required(),
             status: Yup.string().required(),
         });
 
+        
         if(!(await schema.isValid(req.body))){
             return res.status(400).json({error: 'Campos preenchidos de forma incorreta'})
         }
 
-        const monitoring = await ServerAssetMonitoring.create({
-            id_server: req.body.id_server,
-            status: req.body.status,
-            alert: req.body.alert,
+        const assetByPatrimonyNumber = await ServerAsset.findAll({
+            where: {
+                patrimony_number: req.body.patrimony_number,
+            }
         });
 
-        return res.json(monitoring);
+        await ServerAssetMonitoring.update(
+            {
+                status: req.body.status,
+                alert: req.body.alert,
+            },
+            { 
+                where: { id_server: assetByPatrimonyNumber[0]['dataValues']['id'] }
+            }
+        );
+
+        return res.status(200).json({ sucess: "true" });
     }
 }
 

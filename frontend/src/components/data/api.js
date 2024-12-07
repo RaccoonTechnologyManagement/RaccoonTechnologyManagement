@@ -401,3 +401,21 @@ export async function updateServerAsset(patrimony_number, data)
         return [];
     }
 }
+
+export async function generateTokenMonitor()
+{
+    try
+    {
+        let response = await axios.post(`http://localhost:3334/token`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}

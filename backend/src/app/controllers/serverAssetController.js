@@ -144,7 +144,7 @@ class serverAssetController {
 
         const patrimonyNumber = req.query.patrimony_number;
 
-        await ServerAsset.update(
+        const asset = await ServerAsset.update(
             { 
                 name: req.body.name,
                 patrimony_number: patrimonyNumber,
