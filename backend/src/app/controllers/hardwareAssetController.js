@@ -4,9 +4,7 @@ import RelCompanysBranches from '../models/relCompanysBranches';
 import Companys from '../models/companys';
 import StatusAsset from '../models/statusAsset';
 import SubCategoriesHardware from '../models/subcategoriesHardware';
-import Person from '../models/person';
-import User from '../models/user';
-import * as Yup from 'yup'; // biblioteca de validação de campos
+import * as Yup from 'yup';
 
 import { formatResponseHardwareAsset, formatResponseOneHardwareAsset } from '../../functions/functions';
 class hardwareAssetController {
@@ -138,6 +136,35 @@ class hardwareAssetController {
 
         return res.status(200)
     }
+
+    async update(req, res){
+
+        const patrimonyNumber = req.query.patrimony_number;
+
+        await HardwareAsset.update(
+            { 
+                patrimony_number: patrimonyNumber,
+                model: req.body.model,
+                brand: req.body.brand,
+                serial_number: req.body.serial_number,
+                id_subcategory: req.body.id_subcategory,
+                id_branch: req.body.id_branch,
+                ip_address: req.body.ip_address,
+                mac_address: req.body.mac_address,
+                network_mac_address: req.body.network_mac_address,
+                ipv6: req.body.ipv6,
+                ipv4: req.body.ipv4,
+                location: req.body.location,
+                description: req.body.description,
+                id_person: req.body.id_person,
+                id_status: req.body.id_status
+            },
+            { where: { patrimony_number: patrimonyNumber }}
+        );
+
+        return res.json(200);
+    }
+
     
 }
 

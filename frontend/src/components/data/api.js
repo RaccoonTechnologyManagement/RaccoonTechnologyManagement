@@ -312,20 +312,38 @@ export async function getInfoHardwareAsset(patrimony_number)
     }
 }
 
-    export async function deleteOneHardwareAsset(patrimony_number)
+export async function deleteOneHardwareAsset(patrimony_number)
+{
+    try
     {
-        try
-        {
-            let response = await axios.delete(`http://localhost:3334/hardwareDelete?patrimony_number=${patrimony_number}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            });
-    
-            return response.data;
-        }
-        catch(erro)
-        {
-            return [];
-        }
+        let response = await axios.delete(`http://localhost:3334/hardwareDelete?patrimony_number=${patrimony_number}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}
+
+export async function updateHardwareAsset(patrimony_number, data)
+{
+    try
+    {
+        let response = await axios.put(`http://localhost:3334/hardwareAsset?patrimony_number=${patrimony_number}`, data, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
 }

@@ -174,7 +174,6 @@ export function formatResponseHardwareAsset(hardwareAssetResponse)
 export function formatResponseOneHardwareAsset(hardwareAsset)
 {
     let response = [];
-    console.log(hardwareAsset);
     response = {
         patrimony_number: hardwareAsset[0]['dataValues']['patrimony_number'],
         status: hardwareAsset[0]['dataValues']['id_status'],
