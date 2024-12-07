@@ -256,3 +256,26 @@ export function formatResponseServerMonitoring(serverMonitoringResponse)
 
     return response;
 }
+
+export function formatResponseOneServerAsset(serverAsset)
+{
+    let response = [];
+
+    response = {
+        patrimony_number: serverAsset[0]['dataValues']['patrimony_number'],
+        name: serverAsset[0]['dataValues']['name'],
+        host: serverAsset[0]['dataValues']['host'],
+        id_category: serverAsset[0]['dataValues']['id_category'],
+        port: serverAsset[0]['dataValues']['port'],
+        location: serverAsset[0]['dataValues']['location'],
+        description: serverAsset[0]['dataValues']['description'],
+        description: serverAsset[0]['dataValues']['description'],
+        id_status: serverAsset[0]['dataValues']['id_status'],
+        company: {
+            id_branch: serverAsset[0]['serverBranch']['dataValues']['id'],
+            id_company: serverAsset[0]['serverBranch']['dataValues']['relBranch'][0]['dataValues']['id_company']
+        }
+    }
+
+    return response;
+}

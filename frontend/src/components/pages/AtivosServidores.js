@@ -91,7 +91,7 @@ function AtivosServidores (){
                     src={editar} 
                     alt="Editar" 
                     onClick={() => {
-                      localStorage.setItem('idAsset', item.patrimony_number);
+                      localStorage.setItem('patrimonyNumberServer', item.patrimony_number);
                       window.location.href = '/ativos/servidores/edit';
                     }} 
                   />

@@ -127,6 +127,7 @@ routes.get('/statusAsset', statusAssetController.index);
 
 routes.post('/serverAsset', serverAssetController.store);
 routes.get('/serverAsset', serverAssetController.index);
+routes.get('/serverAssetOne', serverAssetController.getOneServerAsset);
 
 routes.post('/hardwareAsset', hardwareAssetController.store);
 routes.get('/hardwareAsset', hardwareAssetController.index);
@@ -137,6 +138,7 @@ routes.put('/hardwareAsset', hardwareAssetController.update);
 routes.post('/serverMonitoring', serverAssetMonitoringController.store);
 routes.get('/serverMonitoring', serverAssetMonitoringController.index);
 routes.put('/serverMonitoring', serverAssetMonitoringController.update);
+
 
 // Passando middleware de forma local
 // routes.put('/users', authMiddleware, UserController.update);

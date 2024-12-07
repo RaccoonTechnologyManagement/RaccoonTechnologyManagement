@@ -347,3 +347,21 @@ export async function updateHardwareAsset(patrimony_number, data)
         return [];
     }
 }
+
+export async function getInfoServerAsset(patrimony_number)
+{
+    try
+    {
+        let response = await axios.get(`http://localhost:3334/serverAssetOne?patrimony_number=${patrimony_number}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        return response.data;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}

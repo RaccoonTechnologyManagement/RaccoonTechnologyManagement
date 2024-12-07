@@ -7,7 +7,7 @@ import CategoriesServer from '../models/categoriesServer';
 import ServerAssetMonitoring from '../models/serverAssetMonitoring';
 import * as Yup from 'yup'; // biblioteca de validação de campos
 
-import { formatResponseServerAsset } from '../../functions/functions';
+import { formatResponseServerAsset, formatResponseOneServerAsset } from '../../functions/functions';
 class serverAssetController {
 
     async index(req, res) {
@@ -45,6 +45,48 @@ class serverAssetController {
         });
 
         return res.json(formatResponseServerAsset(asset));
+    }
+
+    async getOneServerAsset(req, res) {
+
+        const patrimonyNumber = req.query.patrimony_number;
+
+        const include = {
+            include: [
+                {
+                    model: StatusAsset,
+                    as: 'serverStatusAsset',
+                    attributes: ['status'],
+                },
+                {
+                    model: CategoriesServer,
+                    as: 'categoryServer',
+                    attributes: ['category'],
+                },
+                {
+                    model: Branches,
+                    as: 'serverBranch',
+                    attributes: ['id'],
+                    include: [{
+                        model: RelCompanysBranches,
+                        as: 'relBranch',
+                        include: [{
+                            model: Companys,
+                            as: 'company',
+                            attributes: ['id']
+                        }]
+                    }]
+                }]
+            };
+
+        const asset = await ServerAsset.findAll({
+            ...include,
+            where: {
+                patrimony_number: patrimonyNumber,
+            }
+        });
+
+        return res.json(formatResponseOneServerAsset(asset));
     }
 
     async store(req, res) {
