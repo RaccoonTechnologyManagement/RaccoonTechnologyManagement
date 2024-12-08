@@ -40,6 +40,7 @@ import Usuario from './components/usuario/Usuario';
 import ChamadosHistoricoUser from './components/usuario/ChamadosHistoricoUser';
 import UsuarioRedefinirSenha from './components/usuario/UsuarioRedefinirSenha';
 import UsuarioEditar from './components/usuario/UsuarioEditar';
+import CriarUsuario from "./components/pages/CriarUsuario"
 
 function App() {
   return (
@@ -86,6 +87,7 @@ function App() {
           <Route path="/monitorar/visaogeral" element={<VisaoGeral/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/CriarAviso" element={<CriarAviso/>}/>
+          <Route path="/criar-usuario" element={<CriarUsuario />} />
           <Route path="/usuarios" element={<Usuarios/>}/>
           <Route path="/user" element={<User/>}/>
 

@@ -7,7 +7,7 @@ function UsuarioEditar() {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
-    profilePicture: "",
+    profilePicture: localStorage.getItem("profilePicture") || "", // Inicializar com o valor do localStorage
   });
 
   const handleProfilePictureChange = async (e) => {
@@ -16,6 +16,10 @@ function UsuarioEditar() {
       try {
         const uploadedImageUrl = await uploadImageProfile(file);
         setUser({ ...user, profilePicture: uploadedImageUrl });
+
+        // Salvar a imagem no localStorage
+        localStorage.setItem("profilePicture", uploadedImageUrl);
+
         console.log("Upload bem-sucedido:", uploadedImageUrl);
       } catch (error) {
         console.error("Erro ao fazer upload da imagem:", error);
@@ -31,7 +35,7 @@ function UsuarioEditar() {
 
   return (
     <div className={styles.profileContainer}>
-      <h1>Meu Perfil</h1>
+      <h1>Editar Perfil</h1>
 
       <div className={styles.avatar}>
         <label htmlFor="profilePictureInput" style={{ cursor: "pointer" }}>
