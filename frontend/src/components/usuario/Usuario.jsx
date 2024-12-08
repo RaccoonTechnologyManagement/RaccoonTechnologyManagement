@@ -4,6 +4,7 @@ import Racoon from "../../img/RACOON.svg";
 import styles from "../pages/User.module.css";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
+import { getInfoPerson } from "../data/api";
 
 function Usuario() {
   const [user, setUser] = useState({
@@ -20,8 +21,32 @@ function Usuario() {
     profilePicture: "" 
   });
 
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [userStatus, setUserStatus] = useState("offline");
+  async function carregarInformacoesPessoa()
+  {
+    try
+    {
+        let asset = await getInfoPerson();
+        return asset;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+  }
+
+  useEffect(() => {
+    const carregarInformacoesPessoaLogada = async () => {
+        const info = await carregarInformacoesPessoa();
+        setUser(info);
+        setUserStatus(user.person_activy ? "online" : "offline")
+        setIsLoading(false);
+      };
+      carregarInformacoesPessoaLogada();
+}, []);
+
+  const [userStatus, setUserStatus] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,6 +61,10 @@ function Usuario() {
     console.log("Botão Redefinir Senha clicado");
   };
 
+  if (isLoading) {
+    return <p>Carregando...</p>;
+  }
+
   return (
     <ContainerUser>
       <div className={styles.profileContainer}>
@@ -49,7 +78,8 @@ function Usuario() {
                 <input
                   type="text"
                   name="username"
-                  value={user.username}
+                  disabled
+                  value={user.user.username}
                   onChange={handleChange}
                 />
               </div>
@@ -58,7 +88,8 @@ function Usuario() {
                 <input
                   type="text"
                   name="firstName"
-                  value={user.firstName}
+                  disabled
+                  value={user.name}
                   onChange={handleChange}
                 />
               </div>
@@ -67,7 +98,8 @@ function Usuario() {
                 <input
                   type="text"
                   name="lastName"
-                  value={user.lastName}
+                  disabled
+                  value={user.lastname}
                   onChange={handleChange}
                 />
               </div>
@@ -77,10 +109,10 @@ function Usuario() {
               <aside className={styles.profileAvatar}>
                 <img 
                   src={user.profilePicture || Racoon} 
-                  alt="Profile" 
+                  alt="Profile"
                 />
                 <div 
-                  className={`${styles.active} ${userStatus === "online" ? styles.online : styles.offline}`}
+                  className={`${styles.active} ${user.person_activy  ? styles.online : styles.offline}`}
                 >
                   <span>{userStatus.toUpperCase()}</span>
                 </div>
@@ -100,7 +132,8 @@ function Usuario() {
                 <input
                   type="text"
                   name="company"
-                  value={user.company}
+                  disabled
+                  value={user.company.company}
                   onChange={handleChange}
                 /></div>
 
@@ -109,7 +142,8 @@ function Usuario() {
                   <input
                     type="text"
                     name="branch"
-                    value={user.branch}
+                    value={user.company.branch}
+                    disabled
                     onChange={handleChange}
                   /></div>
 
@@ -118,7 +152,8 @@ function Usuario() {
                   <input
                     type="text"
                     name="department"
-                    value={user.department}
+                    value={user.company.departament.name}
+                    disabled
                     onChange={handleChange}
                   /></div>
 
@@ -128,6 +163,7 @@ function Usuario() {
                         type="text"
                         name="category"
                         value={user.category}
+                        disabled
                         onChange={handleChange}
                       /></div>
 
@@ -139,7 +175,8 @@ function Usuario() {
                 <input
                   type="text"
                   name="position"
-                  value={user.position}
+                  disabled
+                  value={user.office}
                   onChange={handleChange}
                 /></div>
 
@@ -148,8 +185,9 @@ function Usuario() {
                 <label>E-mail</label>
                 <input
                   type="email"
+                  disabled
                   name="email"
-                  value={user.email}
+                  value={user.user.email}
                   onChange={handleChange}
                 />
               </div>
@@ -160,8 +198,9 @@ function Usuario() {
                 <InputMask
               mask="(99) 99999-9999"
               type="tel"
+              disabled
               name="phone"
-              value={user.phone}
+              value={user.telephone}
               onChange={handleChange}
             /></div>
 

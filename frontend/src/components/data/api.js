@@ -419,3 +419,22 @@ export async function generateTokenMonitor()
         return [];
     }
 }
+
+export async function loginPerson(data)
+{
+    try
+    {
+        let session = axios.post("http://localhost:3334/sessions", data).then(response => {
+          localStorage.setItem('token', response.data.token);
+        //   navigate('/chamados');
+        }).catch(response => {
+          alert(response.response.data.error);
+        });
+
+        return session;
+    }
+    catch(erro)
+    {
+        return [];
+    }
+}

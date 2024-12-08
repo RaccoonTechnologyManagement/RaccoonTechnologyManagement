@@ -6,32 +6,44 @@ import { useNavigate} from 'react-router-dom';
 import logoRacoom from '../../img/racoom.png'
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { getInfoPerson, loginPerson } from '../data/api';
 
 export const Login = ()=>{
-
-
 
     const [user, setUser] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
 
+    async function pessoa()
+    {
+      try
+      {
+        return getInfoPerson();
+      }
+      catch(erro)
+      {
+          return [];
+      }
+    }
+
     const handleSubmit = async (e)=>{
-        e.preventDefault()
+        e.preventDefault();
         const data = {
             email: user,
             password: password,
-          };
-          axios.post("http://localhost:3334/sessions", data)
-          .then(response => {
-            localStorage.setItem('token', response.data.token);
+        };
+
+        loginPerson(data)
+        const info = await pessoa();
+        if(info.category == "Técnico" || info.category == "adm")
+        {
             navigate('/chamados');
-          })
-          .catch(response => {
-            alert(response.response.data.error);
-          });
+        }
+        else
+        {
+            navigate('/user-chamados');
+        }
       };
-
-
 
     return(
         <div className={styles.mainContainer}>
