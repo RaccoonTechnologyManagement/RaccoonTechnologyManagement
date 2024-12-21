@@ -43,7 +43,7 @@ Este repositório contém o código-fonte do Trabalho de Conclusão de Curso (TC
 
 ## Status
 
-⌛ **Em desenvolvimento**
+✅ **Finalizado**
 
 ## Licença
 
